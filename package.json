@@ -1,0 +1,46 @@
+{
+  "name": "screeps-webpack-plugin",
+  "version": "1.0.0-alpha",
+  "description": "Compile your AI against a Screeps server",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava --watch",
+    "lint": "standard | snazzy",
+    "container": "export NAME=${PWD##*/}; export CACHE=npm-lazy; export CACHE_URL=http://${CACHE}; docker ps -a | grep -q $CACHE && npm run -s container:cache-start || npm run -s container:cache-run; docker ps -a | grep -q $NAME && npm run -s container:app-start || npm run -s container:app-run",
+    "container:app-start": "docker start -ai $NAME",
+    "container:app-run": "docker run --name $NAME --link $CACHE -w /$NAME -v $(pwd):/$NAME -v $(pwd)/package.json:/package.json -v /root/.npm -v /node_modules -e \"NODE_PATH=/node_modules\" -e \"CHOKIDAR_USEPOLLING=1\" -e \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/node_modules/.bin\" -e \"npm_config_registry=${CACHE_URL}\" --dns 8.8.8.8 --dns 8.8.4.4 --entrypoint=/bin/bash -it node:7",
+    "container:cache-start": "docker start $CACHE",
+    "container:cache-run": "docker run --name $CACHE -d langrisha/npm-lazy --port=80 --external-url=$CACHE_URL"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/langri-sha/screeps-webpack-plugin.git"
+  },
+  "keywords": [
+    "screeps",
+    "plugin",
+    "webpack",
+    "webpackplugin",
+    "commit",
+    "branch",
+    "branches"
+  ],
+  "author": "Filip Dupanović",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/langri-sha/screeps-webpack-plugin/issues"
+  },
+  "homepage": "https://github.com/langri-sha/screeps-webpack-plugin#readme",
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "commitizen": "^2.8.6",
+    "cz-conventional-changelog": "^1.2.0",
+    "snazzy": "^5.0.0",
+    "standard": "^8.5.0"
+  }
+}

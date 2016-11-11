@@ -1,0 +1,9 @@
+.*
+!.gitignore
+!.editorconfig
+!.eslintrc
+!.npmignore
+!.travis.yml
+
+node_modules/
+npm-debug.log*
