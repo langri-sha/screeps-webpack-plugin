@@ -31,6 +31,9 @@
     "url": "https://github.com/langri-sha/screeps-webpack-plugin/issues"
   },
   "homepage": "https://github.com/langri-sha/screeps-webpack-plugin#readme",
+  "engines": {
+    "node": ">=6"
+  },
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
