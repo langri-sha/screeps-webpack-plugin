@@ -4,6 +4,7 @@
   "description": "Compile your AI against a Screeps server",
   "main": "index.js",
   "scripts": {
+    "start": "npm run -s lint; npm run -s test",
     "test": "nyc ava --verbose",
     "lint": "standard | snazzy",
     "container": "export NAME=${PWD##*/}; export CACHE=npm-lazy; export CACHE_URL=http://${CACHE}; docker ps -a | grep -q $CACHE && npm run -s container:cache-start || npm run -s container:cache-run; docker ps -a | grep -q $NAME && npm run -s container:app-start || npm run -s container:app-run",
@@ -46,6 +47,7 @@
     "cz-conventional-changelog": "^1.2.0",
     "nyc": "^8.4.0",
     "snazzy": "^5.0.0",
-    "standard": "^8.5.0"
+    "standard": "^8.5.0",
+    "webpack": "^2.1.0-beta.25"
   }
 }
