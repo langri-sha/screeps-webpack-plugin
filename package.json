@@ -4,7 +4,7 @@
   "description": "Compile your AI against a Screeps server",
   "main": "index.js",
   "scripts": {
-    "test": "ava --verbose",
+    "test": "nyc ava --verbose",
     "lint": "standard | snazzy",
     "container": "export NAME=${PWD##*/}; export CACHE=npm-lazy; export CACHE_URL=http://${CACHE}; docker ps -a | grep -q $CACHE && npm run -s container:cache-start || npm run -s container:cache-run; docker ps -a | grep -q $NAME && npm run -s container:app-start || npm run -s container:app-run",
     "container:app-start": "docker start -ai $NAME",
@@ -41,8 +41,10 @@
   },
   "devDependencies": {
     "ava": "^0.16.0",
+    "codecov": "^1.0.1",
     "commitizen": "^2.8.6",
     "cz-conventional-changelog": "^1.2.0",
+    "nyc": "^8.4.0",
     "snazzy": "^5.0.0",
     "standard": "^8.5.0"
   }

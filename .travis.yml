@@ -1,3 +1,7 @@
 language: node_js
 node_js:
   - 6
+
+after_script:
+- nyc report --reporter=text-lcov | coveralls --verbose
+- nyc report --reporter=lcov && codecov
