@@ -18,7 +18,7 @@ function compile (options) {
     },
     plugins: []
   }, options))
-  compiler.fileSystem = new MemoryFs()
+  compiler.outputFileSystem = new MemoryFs()
 
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
