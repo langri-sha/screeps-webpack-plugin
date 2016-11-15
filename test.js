@@ -4,6 +4,8 @@ import webpack from 'webpack'
 
 import ScreepsWebpackPlugin from './index'
 
+const debug = require('debug')('screeps-webpack-plugin')
+
 function compile (options) {
   const compiler = webpack(Object.assign({
     target: 'node',
@@ -23,13 +25,12 @@ function compile (options) {
 
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
-      if (err) return reject(err)
+      debug(stats.toJson())
+
+      if (err) return reject([err])
 
       if (stats.hasErrors() || stats.hasWarnings()) {
-        return reject(new Error(stats.toString({
-          errorDetails: true,
-          warnings: true
-        })))
+        return reject(stats.compilation.errors)
       }
 
       resolve({compiler, stats})
@@ -37,18 +38,21 @@ function compile (options) {
   })
 }
 
-test('Test Webpack compiler setup', async t => {
-  t.plan(2)
+const checkError = (t, err, ...checks) => {
+  t.is(err.name, 'ScreepsWebpackPluginError')
 
-  t.notThrows(async () => {
-    await compile()
-  })
+  for (const check of checks) {
+    t.truthy(err.toString().match(check))
+  }
+}
+
+test('Test Webpack compiler setup', async t => {
+  t.plan(1)
 
   class TestPlugin {
     apply (compiler) {
-      compiler.plugin('emit', (compilation, callback) => {
+      compiler.plugin('done', () => {
         t.pass()
-        callback()
       })
     }
   }
@@ -66,12 +70,8 @@ test(`Test requires target 'node'`, async t => {
     })
 
     t.fail()
-  } catch (e) {
-    const msg = e.toString()
-
-    t.true(msg.includes('screeps-webpack-plugin'))
-    t.true(msg.includes('target'))
-    t.true(msg.includes('node'))
+  } catch ([e]) {
+    checkError(t, e, 'target', 'node')
   }
 })
 
