@@ -6,6 +6,7 @@ import ScreepsWebpackPlugin from './index'
 
 function compile (options) {
   const compiler = webpack(Object.assign({
+    target: 'node',
     entry: [
       'index.js'
     ],
@@ -53,6 +54,25 @@ test('Test Webpack compiler setup', async t => {
   }
 
   await compile({plugins: [new TestPlugin()]})
+})
+
+test(`Test requires target 'node'`, async t => {
+  try {
+    await compile({
+      target: 'web',
+      plugins: [
+        new ScreepsWebpackPlugin()
+      ]
+    })
+
+    t.fail()
+  } catch (e) {
+    const msg = e.toString()
+
+    t.true(msg.includes('screeps-webpack-plugin'))
+    t.true(msg.includes('target'))
+    t.true(msg.includes('node'))
+  }
 })
 
 test('Test constructor', t => {
