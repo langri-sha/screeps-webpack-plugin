@@ -96,7 +96,7 @@ class ScreepsWebpackPlugin {
     const outputFileSystem = (
       compilation.compiler.outputFileSystem.readFile
       ? compilation.compiler.outputFileSystem
-      : fs.readFile
+      : fs
     )
     const promises = []
 
