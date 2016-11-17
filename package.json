@@ -1,10 +1,11 @@
 {
   "name": "screeps-webpack-plugin",
-  "version": "1.0.0-alpha",
+  "version": "1.0.0-beta",
   "description": "Compile your AI against a Screeps server",
   "main": "index.js",
   "scripts": {
-    "test": "ava --verbose",
+    "start": "npm run -s lint; npm run -s test",
+    "test": "nyc ava --verbose",
     "lint": "standard | snazzy",
     "container": "export NAME=${PWD##*/}; export CACHE=npm-lazy; export CACHE_URL=http://${CACHE}; docker ps -a | grep -q $CACHE && npm run -s container:cache-start || npm run -s container:cache-run; docker ps -a | grep -q $NAME && npm run -s container:app-start || npm run -s container:app-run",
     "container:app-start": "docker start -ai $NAME",
@@ -31,6 +32,9 @@
     "url": "https://github.com/langri-sha/screeps-webpack-plugin/issues"
   },
   "homepage": "https://github.com/langri-sha/screeps-webpack-plugin#readme",
+  "engines": {
+    "node": ">=6"
+  },
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
@@ -38,9 +42,16 @@
   },
   "devDependencies": {
     "ava": "^0.16.0",
+    "codecov": "^1.0.1",
     "commitizen": "^2.8.6",
     "cz-conventional-changelog": "^1.2.0",
+    "debug": "^2.3.2",
+    "nyc": "^8.4.0",
     "snazzy": "^5.0.0",
-    "standard": "^8.5.0"
+    "standard": "^8.5.0",
+    "webpack": "^2.1.0-beta.25"
+  },
+  "dependencies": {
+    "screeps-modules": "^1.0.2"
   }
 }
