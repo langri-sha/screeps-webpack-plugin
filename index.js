@@ -1,5 +1,6 @@
 const debug = require('debug')('screeps-webpack-plugin')
 const path = require('path')
+const fs = require('fs')
 
 const ScreepsModules = require('screeps-modules')
 
@@ -92,12 +93,12 @@ class ScreepsWebpackPlugin {
       }
     }
 
-    const outputFileSystem = compilation.compiler.outputFileSystem
+    const readFile = compilation.compiler.outputFileSystem.readFile || fs.readFile
     const promises = []
 
     for (const file of files) {
       promises.push(new Promise((resolve, reject) => {
-        outputFileSystem.readFile(file, 'utf-8', (err, data) => {
+        readFile(file, 'utf-8', (err, data) => {
           if (err) {
             return reject(err)
           }
