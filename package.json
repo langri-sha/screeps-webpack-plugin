@@ -44,7 +44,7 @@
     "screeps-modules": "^1.0.2"
   },
   "peerDependencies": {
-    "webpack": ">=1"
+    "webpack": ">=1.0 <=2.1.0-beta.26"
   },
   "devDependencies": {
     "ava": "^0.17.0",
