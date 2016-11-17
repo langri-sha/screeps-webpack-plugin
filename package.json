@@ -40,6 +40,12 @@
       "path": "cz-conventional-changelog"
     }
   },
+  "dependencies": {
+    "screeps-modules": "^1.0.2"
+  },
+  "peerDependencies": {
+    "webpack": "*"
+  },
   "devDependencies": {
     "ava": "^0.16.0",
     "codecov": "^1.0.1",
@@ -50,8 +56,5 @@
     "snazzy": "^5.0.0",
     "standard": "^8.5.0",
     "webpack": "^2.1.0-beta.25"
-  },
-  "dependencies": {
-    "screeps-modules": "^1.0.2"
   }
 }
