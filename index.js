@@ -93,12 +93,16 @@ class ScreepsWebpackPlugin {
       }
     }
 
-    const readFile = compilation.compiler.outputFileSystem.readFile || fs.readFile
+    const outputFileSystem = (
+      compilation.compiler.outputFileSystem.readFile
+      ? compilation.compiler.outputFileSystem
+      : fs.readFile
+    )
     const promises = []
 
     for (const file of files) {
       promises.push(new Promise((resolve, reject) => {
-        readFile(file, 'utf-8', (err, data) => {
+        outputFileSystem.readFile(file, 'utf-8', (err, data) => {
           if (err) {
             return reject(err)
           }
