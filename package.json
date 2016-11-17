@@ -44,10 +44,10 @@
     "screeps-modules": "^1.0.2"
   },
   "peerDependencies": {
-    "webpack": "*"
+    "webpack": ">=1"
   },
   "devDependencies": {
-    "ava": "^0.16.0",
+    "ava": "^0.17.0",
     "codecov": "^1.0.1",
     "commitizen": "^2.8.6",
     "cz-conventional-changelog": "^1.2.0",
