@@ -151,5 +151,6 @@ test('Test commit', async t => {
 })
 
 test('Test constructor', t => {
-  t.truthy(new ScreepsWebpackPlugin())
+  t.notThrows(() => new ScreepsWebpackPlugin())
+  t.truthy(new ScreepsWebpackPlugin().options)
 })

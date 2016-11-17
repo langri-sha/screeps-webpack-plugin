@@ -18,7 +18,7 @@ class ScreepsWebpackPluginError extends Error {
 }
 
 class ScreepsWebpackPlugin {
-  constructor (options) {
+  constructor (options = {}) {
     this.options = options
   }
 
