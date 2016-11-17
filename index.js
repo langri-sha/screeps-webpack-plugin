@@ -1,5 +1,6 @@
 const debug = require('debug')('screeps-webpack-plugin')
 const path = require('path')
+const fs = require('fs')
 
 const ScreepsModules = require('screeps-modules')
 
@@ -17,7 +18,7 @@ class ScreepsWebpackPluginError extends Error {
 }
 
 class ScreepsWebpackPlugin {
-  constructor (options) {
+  constructor (options = {}) {
     this.options = options
   }
 
@@ -92,7 +93,11 @@ class ScreepsWebpackPlugin {
       }
     }
 
-    const outputFileSystem = compilation.compiler.outputFileSystem
+    const outputFileSystem = (
+      compilation.compiler.outputFileSystem.readFile
+      ? compilation.compiler.outputFileSystem
+      : fs.readFile
+    )
     const promises = []
 
     for (const file of files) {

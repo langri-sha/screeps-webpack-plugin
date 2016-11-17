@@ -6,7 +6,7 @@ Bundle and push your AI to Screeps servers!
 
 If you have registered on the official server via Steam or GitHub, please go to [account management](https://screeps.com/a/#!/account) and make sure you have configured an email and password for your account to access your account on https://screeps.com and https://screeps.com/ptr.
 
-On private servers, make sure you have [authorization enabled](https://github.com/screepsmods/screepsmod-auth) and that an administrator has created your account.
+On private servers, make sure you have [authorization enabled](https://github.com/screepsmods/screepsmod-auth) and that the administrator has created your account.
 
 ## Installation
 
