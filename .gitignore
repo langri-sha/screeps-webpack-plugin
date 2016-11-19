@@ -1,5 +1,6 @@
 .*
 !.gitignore
+!.bithoundrc
 !.editorconfig
 !.eslintrc
 !.travis.yml
