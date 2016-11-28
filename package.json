@@ -49,7 +49,7 @@
     "commitizen": "^2.8.6",
     "cz-conventional-changelog": "^1.2.0",
     "debug": "^2.3.2",
-    "nyc": "^9.0.1",
+    "nyc": "^10.0.0",
     "snazzy": "^5.0.0",
     "standard": "^8.5.0",
     "webpack": "^2.1.0-beta.26"
