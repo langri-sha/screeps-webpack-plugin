@@ -44,7 +44,7 @@
     "screeps-modules": "^1.1.1"
   },
   "devDependencies": {
-    "ava": "^0.17.0",
+    "ava": "^0.18.0",
     "codecov": "^1.0.1",
     "commitizen": "^2.9.3",
     "cz-conventional-changelog": "^1.2.0",
