@@ -52,6 +52,6 @@
     "nyc": "^9.0.1",
     "snazzy": "^5.0.0",
     "standard": "^8.5.0",
-    "webpack": "^2.1.0-beta.26"
+    "webpack": "^2.3.3"
   }
 }
