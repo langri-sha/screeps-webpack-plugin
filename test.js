@@ -30,7 +30,7 @@ function compile (options) {
     compiler.run((err, stats) => {
       debug(stats.toJson())
 
-      if (err) return reject([err])
+      if (err) return reject(err)
 
       if (stats.hasErrors() || stats.hasWarnings()) {
         return reject(stats.compilation.errors)

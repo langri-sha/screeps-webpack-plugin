@@ -44,6 +44,7 @@ new ScreepsWebpackPlugin({
   password: 'PASSWORD',
   token: 'TOKEN',
   serverUrl: 'https://screeps.com',
+  serverPassword: 'SERVER_PASS',
   gzip: false
 })
 ```
