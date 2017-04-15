@@ -26,10 +26,11 @@ import ScreepsWebpackPlugin from 'screeps-webpack-plugin'
 
 module.exports = {
   target: 'node',
-  entry: 'index.js'
+  entry: 'index.js',
   output: {
     path: 'dist',
-    filename: 'main'
+    filename: 'main',
+    libraryTarget: 'commonjs'
   },
   plugins: [new ScreepsWebpackPlugin(options)]
 }
