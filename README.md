@@ -29,7 +29,8 @@ module.exports = {
   entry: 'index.js',
   output: {
     path: 'dist',
-    filename: 'main'
+    filename: 'main',
+    libraryTarget: 'commonjs'
   },
   plugins: [new ScreepsWebpackPlugin(options)]
 }
