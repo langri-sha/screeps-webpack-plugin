@@ -107,7 +107,7 @@ class ScreepsWebpackPlugin {
             return reject(err)
           }
 
-          const moduleName = path.basename(file)
+          const moduleName = path.parse(file).name
 
           resolve({[moduleName]: data})
         })
