@@ -22,6 +22,7 @@ function compile (options) {
       path: '/',
       filename: '[name]'
     },
+    mode: 'development',
     plugins: []
   }, options))
   compiler.outputFileSystem = new MemoryFs()
@@ -33,7 +34,7 @@ function compile (options) {
       if (err) return reject(err)
 
       if (stats.hasErrors() || stats.hasWarnings()) {
-        return reject(stats.compilation.errors)
+        return reject({ errors: stats.compilation.errors, warnings: stats.compilation.warnings})
       }
 
       resolve({compiler, stats})
@@ -41,11 +42,16 @@ function compile (options) {
   })
 }
 
-const plugin = (name, ...args) => (
+const plugin = (name, sync, ...args) => (
   new (class {
     apply (compiler) {
-      compiler.plugin('compilation', (compilation) => {
-        compilation.plugin(name, ...args)
+      compiler.hooks.compilation.tap("name", (compilation) => {
+        if(sync) {
+          compilation.hooks[name].tap("name", ...args)
+        } else {
+          compilation.hooks[name].tapAsync("name", ...args)  
+        }
+        
       })
     }
   })()
@@ -64,7 +70,7 @@ test('Test Webpack compiler setup', async t => {
 
   class TestPlugin {
     apply (compiler) {
-      compiler.plugin('done', () => {
+      compiler.hooks.done.tap("TestPlugin", () => {
         t.pass()
       })
     }
@@ -73,25 +79,27 @@ test('Test Webpack compiler setup', async t => {
   await compile({plugins: [new TestPlugin()]})
 })
 
-test(`Test requires target 'node'`, async t => {
-  try {
-    await compile({
-      target: 'web',
-      plugins: [
-        new ScreepsWebpackPlugin()
-      ]
-    })
+// Functionality not supported in webpack 4
 
-    t.fail()
-  } catch ([e]) {
-    checkError(t, e, 'target', 'node')
-  }
-})
+// test(`Test requires target 'node'`, async t => {
+//   try {
+//     await compile({
+//       target: 'web',
+//       plugins: [
+//         new ScreepsWebpackPlugin()
+//       ]
+//     })
+
+//     t.fail()
+//   } catch ([e]) {
+//     checkError(t, e, 'target', 'node')
+//   }
+// })
 
 test('Test commit', async t => {
   t.plan(10)
 
-  const collectModules = plugin('screeps-webpack-plugin-collect-modules',
+  const collectModules = plugin('screeps-webpack-plugin-collect-modules', false,
     ({modules, plugin, compilation}, cb) => {
       t.deepEqual(Object.keys(modules), ['etc', 'main'])
       t.truthy(modules.main.match(/foobar/))
@@ -106,7 +114,7 @@ test('Test commit', async t => {
     }
   )
 
-  const configureClient = plugin('screeps-webpack-plugin-configure-client',
+  const configureClient = plugin('screeps-webpack-plugin-configure-client', true,
     (client, plugin) => {
       t.true(client instanceof ScreepsModules)
       t.true(plugin instanceof ScreepsWebpackPlugin)
@@ -119,14 +127,14 @@ test('Test commit', async t => {
     }
   )
 
-  const beforeCommit = plugin('screeps-webpack-plugin-before-commit',
+  const beforeCommit = plugin('screeps-webpack-plugin-before-commit', true,
     (branch, modules) => {
       t.is(branch, 'test')
       t.is(modules.quux, 'norf')
     }
   )
 
-  const afterCommit = plugin('screeps-webpack-plugin-after-commit',
+  const afterCommit = plugin('screeps-webpack-plugin-after-commit', true,
     (body) => {
       t.is(body, 'foobar')
     }
