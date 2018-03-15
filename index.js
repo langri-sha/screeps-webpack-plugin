@@ -1,17 +1,7 @@
 const debug = require('debug')('screeps-webpack-plugin')
 const path = require('path')
 const fs = require('fs')
-const {
-  SyncHook,
-  SyncBailHook,
-  SyncWaterfallHook,
-  SyncLoopHook,
-  AsyncParallelHook,
-  AsyncParallelBailHook,
-  AsyncSeriesHook,
-  AsyncSeriesBailHook,
-  AsyncSeriesWaterfallHook
- } = require("tapable");
+const { SyncHook, SyncWaterfallHook, AsyncSeriesWaterfallHook } = require('tapable')
 
 const ScreepsModules = require('screeps-modules')
 
@@ -32,7 +22,7 @@ class ScreepsWebpackPluginError extends Error {
 
 class ScreepsWebpackPlugin {
   constructor (options = {}) {
-    this.options = options;
+    this.options = options
   }
 
   apply (compiler) {
@@ -93,13 +83,13 @@ class ScreepsWebpackPlugin {
   }
 
   registerHandlers (compilation) {
-    compilation.hooks[COLLECT_MODULES] = new AsyncSeriesWaterfallHook(["opts"]);
-    compilation.hooks[CONFIG_CLIENT] = new SyncWaterfallHook(["initial", "plugin"]);
-    compilation.hooks[BEFORE_COMMIT] = new SyncHook(["branch", "modules"]);
-    compilation.hooks[AFTER_COMMIT] = new SyncHook(["body"]);
+    compilation.hooks[COLLECT_MODULES] = new AsyncSeriesWaterfallHook(['opts'])
+    compilation.hooks[CONFIG_CLIENT] = new SyncWaterfallHook(['initial', 'plugin'])
+    compilation.hooks[BEFORE_COMMIT] = new SyncHook(['branch', 'modules'])
+    compilation.hooks[AFTER_COMMIT] = new SyncHook(['body'])
 
-    compilation.hooks[COLLECT_MODULES].tapAsync(pluginName, this.collectModules);
-    compilation.hooks[CONFIG_CLIENT].tap(pluginName, this.configureClient);
+    compilation.hooks[COLLECT_MODULES].tapAsync(pluginName, this.collectModules)
+    compilation.hooks[CONFIG_CLIENT].tap(pluginName, this.configureClient)
   }
 
   collectModules ({modules: initial, plugin, compilation}, cb) {
@@ -144,7 +134,7 @@ class ScreepsWebpackPlugin {
 
         cb(null, {modules, plugin, compilation})
       })
-      .catch((err) => cb(err, {modules:null}))
+      .catch((err) => cb(err, {modules: null}))
   }
 
   configureClient (initial, plugin) {

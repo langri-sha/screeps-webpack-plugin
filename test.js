@@ -34,7 +34,7 @@ function compile (options) {
       if (err) return reject(err)
 
       if (stats.hasErrors() || stats.hasWarnings()) {
-        return reject({ errors: stats.compilation.errors, warnings: stats.compilation.warnings})
+        return reject(new Error({ errors: stats.compilation.errors, warnings: stats.compilation.warnings }))
       }
 
       resolve({compiler, stats})
@@ -45,32 +45,23 @@ function compile (options) {
 const plugin = (name, sync, ...args) => (
   new (class {
     apply (compiler) {
-      compiler.hooks.compilation.tap("name", (compilation) => {
-        if(sync) {
-          compilation.hooks[name].tap("name", ...args)
+      compiler.hooks.compilation.tap('name', (compilation) => {
+        if (sync) {
+          compilation.hooks[name].tap('name', ...args)
         } else {
-          compilation.hooks[name].tapAsync("name", ...args)  
+          compilation.hooks[name].tapAsync('name', ...args)
         }
-        
       })
     }
   })()
 )
-
-const checkError = (t, err, ...checks) => {
-  t.is(err.name, 'ScreepsWebpackPluginError')
-
-  for (const check of checks) {
-    t.truthy(err.toString().match(check))
-  }
-}
 
 test('Test Webpack compiler setup', async t => {
   t.plan(1)
 
   class TestPlugin {
     apply (compiler) {
-      compiler.hooks.done.tap("TestPlugin", () => {
+      compiler.hooks.done.tap('TestPlugin', () => {
         t.pass()
       })
     }
@@ -95,6 +86,14 @@ test('Test Webpack compiler setup', async t => {
 //     checkError(t, e, 'target', 'node')
 //   }
 // })
+
+// const checkError = (t, err, ...checks) => {
+//   t.is(err.name, 'ScreepsWebpackPluginError')
+
+//   for (const check of checks) {
+//     t.truthy(err.toString().match(check))
+//   }
+// }
 
 test('Test commit', async t => {
   t.plan(10)
