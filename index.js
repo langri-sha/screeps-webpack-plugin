@@ -1,6 +1,7 @@
 const debug = require('debug')('screeps-webpack-plugin')
 const path = require('path')
 const fs = require('fs')
+const { SyncHook, SyncWaterfallHook, AsyncSeriesWaterfallHook } = require('tapable')
 
 const ScreepsModules = require('screeps-modules')
 
@@ -9,6 +10,8 @@ const COLLECT_MODULES = 'screeps-webpack-plugin-collect-modules'
 const CONFIG_CLIENT = 'screeps-webpack-plugin-configure-client'
 const BEFORE_COMMIT = 'screeps-webpack-plugin-before-commit'
 const AFTER_COMMIT = 'screeps-webpack-plugin-after-commit'
+
+const pluginName = 'ScreepsWebpackPlugin'
 
 class ScreepsWebpackPluginError extends Error {
   constructor (msg) {
@@ -23,17 +26,19 @@ class ScreepsWebpackPlugin {
   }
 
   apply (compiler) {
-    compiler.plugin('compilation', (compilation) => {
-      if (compiler.options.target !== 'node') {
-        const err = new ScreepsWebpackPluginError(`Can only support Node.js {target: 'node'}`)
+    compiler.hooks.compilation.tap(pluginName, (compilation) => {
+      // compiler.options not supported in webpack 4
 
-        return compilation.errors.push(err)
-      }
+      // if (compiler.options.target !== 'node') {
+      //   const err = new ScreepsWebpackPluginError(`Can only support Node.js {target: 'node'}`)
+
+      //   return compilation.errors.push(err)
+      // }
 
       this.registerHandlers(compilation)
     })
 
-    compiler.plugin('after-emit', (compilation, cb) => {
+    compiler.hooks.afterEmit.tapAsync(pluginName, (compilation, cb) => {
       Promise.resolve()
         .then(() => {
           return new Promise((resolve, reject) => {
@@ -43,26 +48,26 @@ class ScreepsWebpackPlugin {
               compilation
             }
 
-            compilation.applyPluginsAsyncWaterfall(COLLECT_MODULES, initial, (err, {modules}) => {
+            compilation.hooks[COLLECT_MODULES].callAsync(initial, (err, obj) => {
               if (err) {
                 debug('Error while collecting modules', err.stack)
 
                 return reject(err)
               } else {
-                resolve(modules)
+                resolve(obj.modules)
               }
             })
           })
         })
       .then((modules) => {
-        const client = compilation.applyPluginsWaterfall(CONFIG_CLIENT, null, this)
+        const client = compilation.hooks[CONFIG_CLIENT].call(null, this)
         const {branch} = this.options
 
-        compilation.applyPlugins(BEFORE_COMMIT, branch, modules)
+        compilation.hooks[BEFORE_COMMIT].call(branch, modules)
 
         return client.commit(branch, modules)
           .then((body) => {
-            compilation.applyPlugins(AFTER_COMMIT, body)
+            compilation.hooks[AFTER_COMMIT].call(body)
           })
           .catch((body) => {
             throw new Error(body)
@@ -78,8 +83,13 @@ class ScreepsWebpackPlugin {
   }
 
   registerHandlers (compilation) {
-    compilation.plugin(COLLECT_MODULES, this.collectModules)
-    compilation.plugin(CONFIG_CLIENT, this.configureClient)
+    compilation.hooks[COLLECT_MODULES] = new AsyncSeriesWaterfallHook(['opts'])
+    compilation.hooks[CONFIG_CLIENT] = new SyncWaterfallHook(['initial', 'plugin'])
+    compilation.hooks[BEFORE_COMMIT] = new SyncHook(['branch', 'modules'])
+    compilation.hooks[AFTER_COMMIT] = new SyncHook(['body'])
+
+    compilation.hooks[COLLECT_MODULES].tapAsync(pluginName, this.collectModules)
+    compilation.hooks[CONFIG_CLIENT].tap(pluginName, this.configureClient)
   }
 
   collectModules ({modules: initial, plugin, compilation}, cb) {
@@ -124,7 +134,7 @@ class ScreepsWebpackPlugin {
 
         cb(null, {modules, plugin, compilation})
       })
-      .catch(cb)
+      .catch((err) => cb(err, {modules: null}))
   }
 
   configureClient (initial, plugin) {

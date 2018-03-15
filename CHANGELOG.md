@@ -1,5 +1,9 @@
 # Change Log
 
+## [2.0.0] - 2018-03-15
+### Changed
+- Upgraded to work with webpack 4
+
 ## [1.3.0] - 2017-05-15
 ### Added
 - Allow use of module with `.js` extension @bryanbecker #28
