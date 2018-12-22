@@ -48,7 +48,7 @@
     "codecov": "^2.1.0",
     "commitizen": "^2.9.3",
     "cz-conventional-changelog": "^2.0.0",
-    "debug": "^2.6.0",
+    "debug": "^4.1.1",
     "nyc": "^10.2.0",
     "snazzy": "^7.0.0",
     "standard": "^10.0.1",
