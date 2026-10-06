@@ -114,7 +114,7 @@ The plugin only provides opaque access to the response body, so that it can be s
 
 Share your feedback, bugs and PRs on the [issues tracker](https://github.com/langri-sha/screeps-webpack-plugin/issues).
 
-[npm]: https://www.npmjs.com/pack1age/screeps-webpack-plugin
+[npm]: https://www.npmjs.com/package/screeps-webpack-plugin
 [npm-badge]: https://img.shields.io/npm/v/screeps-webpack-plugin.svg
 [node-badge]: https://img.shields.io/node/v/screeps-webpack-plugin.svg
 [travis-ci]: https://travis-ci.org/langri-sha/screeps-webpack-plugin
