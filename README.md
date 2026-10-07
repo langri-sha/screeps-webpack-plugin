@@ -1,6 +1,6 @@
 # screeps-webpack-plugin
 
-[![NPM][npm-badge]][npm] ![Node version][node-badge]  [![Build status][travis-ci-badge]][travis-ci] [![bitHound Dependencies][bithound-badge]][bithound] [![bitHound Development Dependencies][bithound-dev-badge]][bithound-dev] [![Coverage][codecov-badge]][codecov]
+[![NPM][npm-badge]][npm] ![Node version][node-badge]  [![Build status][travis-ci-badge]][travis-ci] [![Coverage][codecov-badge]][codecov]
 
 Bundle and push your AI to Screeps servers!
 
@@ -121,7 +121,3 @@ Share your feedback, bugs and PRs on the [issues tracker](https://github.com/lan
 [travis-ci-badge]: https://travis-ci.org/langri-sha/screeps-webpack-plugin.svg?branch=master
 [codecov]: https://codecov.io/gh/langri-sha/screeps-webpack-plugin
 [codecov-badge]: https://codecov.io/gh/langri-sha/screeps-webpack-plugin/branch/master/graph/badge.svg
-[bithound]: https://www.bithound.io/github/langri-sha/screeps-webpack-plugin/master/dependencies/npm
-[bithound-badge]: https://www.bithound.io/github/langri-sha/screeps-webpack-plugin/badges/dependencies.svg
-[bithound-dev]: https://www.bithound.io/github/langri-sha/screeps-webpack-plugin/master/dependencies/npm
-[bithound-dev-badge]: https://www.bithound.io/github/langri-sha/screeps-webpack-plugin/badges/devDependencies.svg
