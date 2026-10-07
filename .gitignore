@@ -2,7 +2,6 @@
 !.gitignore
 !.editorconfig
 !.eslintrc
-!.travis.yml
 
 node_modules/
 coverage/
