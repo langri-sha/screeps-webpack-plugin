@@ -22,7 +22,7 @@
 ### Added
 - Support for pushing modules on build
 
-[Unreleased]: https://github.com/langri-sha/screeps-webpack-plugin/commits/master
+[Unreleased]: https://github.com/langri-sha/screeps-webpack-plugin/commits/main
 [1.3.0]: https://github.com/langri-sha/screeps-webpack-plugin/compare/1.2.0...v1.3.0
 [1.2.0]: https://github.com/langri-sha/screeps-webpack-plugin/compare/1.1.0...v1.2.0
 [1.1.0]: https://github.com/langri-sha/screeps-webpack-plugin/compare/1.0.1...v1.1.0
