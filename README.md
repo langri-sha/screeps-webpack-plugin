@@ -1,6 +1,6 @@
 # screeps-webpack-plugin
 
-[![NPM][npm-badge]][npm] ![Node version][node-badge]  [![Coverage][codecov-badge]][codecov]
+[![NPM][npm-badge]][npm] ![Node version][node-badge]
 
 Bundle and push your AI to Screeps servers!
 
@@ -117,5 +117,3 @@ Share your feedback, bugs and PRs on the [issues tracker](https://github.com/lan
 [npm]: https://www.npmjs.com/package/screeps-webpack-plugin
 [npm-badge]: https://img.shields.io/npm/v/screeps-webpack-plugin.svg
 [node-badge]: https://img.shields.io/node/v/screeps-webpack-plugin.svg
-[codecov]: https://codecov.io/gh/langri-sha/screeps-webpack-plugin
-[codecov-badge]: https://codecov.io/gh/langri-sha/screeps-webpack-plugin/branch/main/graph/badge.svg
