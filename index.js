@@ -50,6 +50,10 @@ class ScreepsWebpackPlugin {
     })
 
     compiler.hooks.afterEmit.tapPromise(PLUGIN_NAME, (compilation) => {
+      if (compiler.options.target !== 'node') {
+        return Promise.resolve()
+      }
+
       const hooks = ScreepsWebpackPlugin.getHooks(compilation)
       const initial = {
         modules: {},
