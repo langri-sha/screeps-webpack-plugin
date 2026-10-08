@@ -151,6 +151,38 @@ test('Test commit', async t => {
   })
 })
 
+test('Test commit source maps', async t => {
+  t.plan(2)
+
+  const configureClient = plugin('configureClient', 'tap',
+    (client) => {
+      client.commit = () => Promise.resolve()
+
+      return client
+    }
+  )
+
+  const beforeCommit = plugin('beforeCommit', 'tap',
+    (branch, modules) => {
+      t.deepEqual(Object.keys(modules).sort(), ['etc', 'etc.js.map', 'main', 'main.js.map'])
+      t.is(JSON.parse(modules['main.js.map']).file, 'main.js')
+    }
+  )
+
+  await compile({
+    devtool: 'source-map',
+    output: {
+      path: '/',
+      filename: '[name].js'
+    },
+    plugins: [
+      new ScreepsWebpackPlugin(),
+      configureClient,
+      beforeCommit
+    ]
+  })
+})
+
 test('Test commit failure', async t => {
   const configureClient = plugin('configureClient', 'tap',
     (client) => {
