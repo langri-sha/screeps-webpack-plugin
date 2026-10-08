@@ -28,6 +28,7 @@
   ],
   "author": "Filip Dupanović",
   "license": "MIT",
+  "packageManager": "pnpm@12.9.1",
   "bugs": {
     "url": "https://github.com/langri-sha/screeps-webpack-plugin/issues"
   },
