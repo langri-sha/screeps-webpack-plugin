@@ -44,6 +44,9 @@
     "screeps-modules": "^1.1.1",
     "tapable": "^2.0.0"
   },
+  "peerDependencies": {
+    "webpack": "^5.0.0"
+  },
   "devDependencies": {
     "ava": "^8.0.0",
     "commitizen": "^4.0.0",
