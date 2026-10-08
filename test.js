@@ -42,11 +42,11 @@ function compile (options) {
   })
 }
 
-const plugin = (name, ...args) => (
+const plugin = (hook, method, fn) => (
   new (class {
     apply (compiler) {
-      compiler.plugin('compilation', (compilation) => {
-        compilation.plugin(name, ...args)
+      compiler.hooks.compilation.tap('TestPlugin', (compilation) => {
+        ScreepsWebpackPlugin.getHooks(compilation)[hook][method]('TestPlugin', fn)
       })
     }
   })()
@@ -92,9 +92,9 @@ test("Test requires target 'node'", async t => {
 test('Test commit', async t => {
   t.plan(10)
 
-  const collectModules = plugin('screeps-webpack-plugin-collect-modules',
+  const collectModules = plugin('collectModules', 'tapAsync',
     ({ modules, plugin, compilation }, cb) => {
-      t.deepEqual(Object.keys(modules), ['etc', 'main'])
+      t.deepEqual(Object.keys(modules).sort(), ['etc', 'main'])
       t.truthy(modules.main.match(/foobar/))
       t.truthy(modules.etc.match(/foobar/))
 
@@ -107,7 +107,7 @@ test('Test commit', async t => {
     }
   )
 
-  const configureClient = plugin('screeps-webpack-plugin-configure-client',
+  const configureClient = plugin('configureClient', 'tap',
     (client, plugin) => {
       t.true(client instanceof ScreepsModules)
       t.true(plugin instanceof ScreepsWebpackPlugin)
@@ -120,14 +120,14 @@ test('Test commit', async t => {
     }
   )
 
-  const beforeCommit = plugin('screeps-webpack-plugin-before-commit',
+  const beforeCommit = plugin('beforeCommit', 'tap',
     (branch, modules) => {
       t.is(branch, 'test')
       t.is(modules.quux, 'norf')
     }
   )
 
-  const afterCommit = plugin('screeps-webpack-plugin-after-commit',
+  const afterCommit = plugin('afterCommit', 'tap',
     (body) => {
       t.is(body, 'foobar')
     }
@@ -149,6 +149,29 @@ test('Test commit', async t => {
       afterCommit
     ]
   })
+})
+
+test('Test commit failure', async t => {
+  const configureClient = plugin('configureClient', 'tap',
+    (client) => {
+      client.commit = () => Promise.reject(new Error('nope'))
+
+      return client
+    }
+  )
+
+  try {
+    await compile({
+      plugins: [
+        new ScreepsWebpackPlugin(),
+        configureClient
+      ]
+    })
+
+    t.fail()
+  } catch ([e]) {
+    checkError(t, e, 'nope')
+  }
 })
 
 test('Test constructor', t => {
