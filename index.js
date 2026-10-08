@@ -96,7 +96,14 @@ class ScreepsWebpackPlugin {
 
     for (const chunk of compilation.chunks) {
       for (const file of chunk.files) {
+        const asset = compilation.getAsset(file)
+        const related = (asset && asset.info.related) || {}
+
         files.push(path.resolve(outputPath, file))
+
+        for (const sourceMap of [].concat(related.sourceMap || [])) {
+          files.push(path.resolve(outputPath, sourceMap))
+        }
       }
     }
 
