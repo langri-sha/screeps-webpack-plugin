@@ -1,6 +1,6 @@
 const { createFsFromVolume, Volume } = require('memfs')
 const ScreepsModules = require('screeps-modules')
-const test = require('ava').default
+const test = require('node:test')
 const webpack = require('webpack')
 const Compilation = require('webpack/lib/Compilation')
 
@@ -53,10 +53,10 @@ const plugin = (hook, method, fn) => (
 )
 
 const checkError = (t, err, ...checks) => {
-  t.is(err.name, 'ScreepsWebpackPluginError')
+  t.assert.strictEqual(err.name, 'ScreepsWebpackPluginError')
 
   for (const check of checks) {
-    t.truthy(err.toString().match(check))
+    t.assert.ok(err.toString().match(check))
   }
 }
 
@@ -66,7 +66,7 @@ test('Test Webpack compiler setup', async t => {
   class TestPlugin {
     apply (compiler) {
       compiler.hooks.done.tap('TestPlugin', () => {
-        t.pass()
+        t.assert.ok(true)
       })
     }
   }
@@ -83,9 +83,9 @@ test("Test requires target 'node'", async t => {
       ]
     })
 
-    t.fail()
+    t.assert.fail()
   } catch (errors) {
-    t.is(errors.length, 1)
+    t.assert.strictEqual(errors.length, 1)
     checkError(t, errors[0], 'target', 'node')
   }
 })
@@ -95,12 +95,12 @@ test('Test commit', async t => {
 
   const collectModules = plugin('collectModules', 'tapAsync',
     ({ modules, plugin, compilation }, cb) => {
-      t.deepEqual(Object.keys(modules).sort(), ['etc', 'main'])
-      t.truthy(modules.main.match(/foobar/))
-      t.truthy(modules.etc.match(/foobar/))
+      t.assert.deepStrictEqual(Object.keys(modules).sort(), ['etc', 'main'])
+      t.assert.ok(modules.main.match(/foobar/))
+      t.assert.ok(modules.etc.match(/foobar/))
 
-      t.true(plugin instanceof ScreepsWebpackPlugin)
-      t.true(compilation instanceof Compilation)
+      t.assert.ok(plugin instanceof ScreepsWebpackPlugin)
+      t.assert.ok(compilation instanceof Compilation)
 
       modules.quux = 'norf'
 
@@ -110,8 +110,8 @@ test('Test commit', async t => {
 
   const configureClient = plugin('configureClient', 'tap',
     (client, plugin) => {
-      t.true(client instanceof ScreepsModules)
-      t.true(plugin instanceof ScreepsWebpackPlugin)
+      t.assert.ok(client instanceof ScreepsModules)
+      t.assert.ok(plugin instanceof ScreepsWebpackPlugin)
 
       client.commit = (...args) => {
         return Promise.resolve('foobar')
@@ -123,14 +123,14 @@ test('Test commit', async t => {
 
   const beforeCommit = plugin('beforeCommit', 'tap',
     (branch, modules) => {
-      t.is(branch, 'test')
-      t.is(modules.quux, 'norf')
+      t.assert.strictEqual(branch, 'test')
+      t.assert.strictEqual(modules.quux, 'norf')
     }
   )
 
   const afterCommit = plugin('afterCommit', 'tap',
     (body) => {
-      t.is(body, 'foobar')
+      t.assert.strictEqual(body, 'foobar')
     }
   )
 
@@ -157,7 +157,7 @@ test('Test plugin order', async t => {
 
   const collectModules = plugin('collectModules', 'tapAsync',
     ({ modules, plugin, compilation }, cb) => {
-      t.deepEqual(Object.keys(modules).sort(), ['etc', 'main'])
+      t.assert.deepStrictEqual(Object.keys(modules).sort(), ['etc', 'main'])
 
       cb(null, { modules, plugin, compilation })
     }
@@ -165,7 +165,7 @@ test('Test plugin order', async t => {
 
   const configureClient = plugin('configureClient', 'tap',
     (client) => {
-      t.true(client instanceof ScreepsModules)
+      t.assert.ok(client instanceof ScreepsModules)
 
       client.commit = () => Promise.resolve()
 
@@ -195,8 +195,8 @@ test('Test commit source maps', async t => {
 
   const beforeCommit = plugin('beforeCommit', 'tap',
     (branch, modules) => {
-      t.deepEqual(Object.keys(modules).sort(), ['etc', 'etc.js.map', 'main', 'main.js.map'])
-      t.is(JSON.parse(modules['main.js.map']).file, 'main.js')
+      t.assert.deepStrictEqual(Object.keys(modules).sort(), ['etc', 'etc.js.map', 'main', 'main.js.map'])
+      t.assert.strictEqual(JSON.parse(modules['main.js.map']).file, 'main.js')
     }
   )
 
@@ -231,13 +231,13 @@ test('Test commit failure', async t => {
       ]
     })
 
-    t.fail()
+    t.assert.fail()
   } catch ([e]) {
     checkError(t, e, 'nope')
   }
 })
 
 test('Test constructor', t => {
-  t.notThrows(() => new ScreepsWebpackPlugin())
-  t.truthy(new ScreepsWebpackPlugin().options)
+  t.assert.doesNotThrow(() => new ScreepsWebpackPlugin())
+  t.assert.ok(new ScreepsWebpackPlugin().options)
 })
