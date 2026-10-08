@@ -1,4 +1,4 @@
-const MemoryFs = require('memory-fs')
+const { createFsFromVolume, Volume } = require('memfs')
 const ScreepsModules = require('screeps-modules')
 const test = require('ava').default
 const webpack = require('webpack')
@@ -24,7 +24,7 @@ function compile (options) {
     },
     plugins: []
   }, options))
-  compiler.outputFileSystem = new MemoryFs()
+  compiler.outputFileSystem = createFsFromVolume(new Volume())
 
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
