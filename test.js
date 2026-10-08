@@ -10,6 +10,7 @@ const debug = require('debug')('screeps-webpack-plugin')
 
 function compile (options) {
   const compiler = webpack(Object.assign({
+    mode: 'none',
     target: 'node',
     entry: {
       main: ['index.js'],
@@ -64,7 +65,7 @@ test('Test Webpack compiler setup', async t => {
 
   class TestPlugin {
     apply (compiler) {
-      compiler.plugin('done', () => {
+      compiler.hooks.done.tap('TestPlugin', () => {
         t.pass()
       })
     }
