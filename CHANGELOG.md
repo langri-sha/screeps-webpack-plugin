@@ -1,5 +1,16 @@
 # Change Log
 
+## [Unreleased]
+### Changed
+- Require webpack 5 and Node.js 10.13
+- Replace the `screeps-webpack-plugin-*` events with hooks from `ScreepsWebpackPlugin.getHooks(compilation)`
+
+### Removed
+- The `COLLECT_MODULES`, `CONFIG_CLIENT`, `BEFORE_COMMIT` and `AFTER_COMMIT` constants
+
+### Fixed
+- Plugins listed ahead of this one get the client and the collected modules
+
 ## [1.3.0] - 2017-05-15
 ### Added
 - Allow use of module with `.js` extension @bryanbecker #28
