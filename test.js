@@ -84,8 +84,9 @@ test("Test requires target 'node'", async t => {
     })
 
     t.fail()
-  } catch ([e]) {
-    checkError(t, e, 'target', 'node')
+  } catch (errors) {
+    t.is(errors.length, 1)
+    checkError(t, errors[0], 'target', 'node')
   }
 })
 
