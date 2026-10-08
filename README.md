@@ -1,6 +1,6 @@
 # screeps-webpack-plugin
 
-[![NPM][npm-badge]][npm] ![Node version][node-badge]
+[![CI][ci-badge]][ci] [![NPM][npm-badge]][npm] ![Node version][node-badge]
 
 Bundle and push your AI to Screeps servers!
 
@@ -119,6 +119,8 @@ The plugin only provides opaque access to the response body, so that it can be s
 
 Share your feedback, bugs and PRs on the [issues tracker](https://github.com/langri-sha/screeps-webpack-plugin/issues).
 
+[ci]: https://github.com/langri-sha/screeps-webpack-plugin/actions/workflows/check.yml
+[ci-badge]: https://github.com/langri-sha/screeps-webpack-plugin/actions/workflows/check.yml/badge.svg
 [npm]: https://www.npmjs.com/package/screeps-webpack-plugin
 [npm-badge]: https://img.shields.io/npm/v/screeps-webpack-plugin.svg
 [node-badge]: https://img.shields.io/node/v/screeps-webpack-plugin.svg
