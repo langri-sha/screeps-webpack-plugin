@@ -36,7 +36,7 @@ function compile (options) {
         return reject(stats.compilation.errors)
       }
 
-      resolve({compiler, stats})
+      resolve({ compiler, stats })
     })
   })
 }
@@ -70,10 +70,10 @@ test('Test Webpack compiler setup', async t => {
     }
   }
 
-  await compile({plugins: [new TestPlugin()]})
+  await compile({ plugins: [new TestPlugin()] })
 })
 
-test(`Test requires target 'node'`, async t => {
+test("Test requires target 'node'", async t => {
   try {
     await compile({
       target: 'web',
@@ -92,7 +92,7 @@ test('Test commit', async t => {
   t.plan(10)
 
   const collectModules = plugin('screeps-webpack-plugin-collect-modules',
-    ({modules, plugin, compilation}, cb) => {
+    ({ modules, plugin, compilation }, cb) => {
       t.deepEqual(Object.keys(modules), ['etc', 'main'])
       t.truthy(modules.main.match(/foobar/))
       t.truthy(modules.etc.match(/foobar/))
@@ -102,7 +102,7 @@ test('Test commit', async t => {
 
       modules.quux = 'norf'
 
-      cb(null, {modules, plugin, compilation})
+      cb(null, { modules, plugin, compilation })
     }
   )
 
