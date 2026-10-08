@@ -22,13 +22,14 @@ Make sure you are using `{target: 'node'}`, other environments aren't supported.
 
 ```
 // webpack.config.js
-import ScreepsWebpackPlugin from 'screeps-webpack-plugin'
+const path = require('path')
+const ScreepsWebpackPlugin = require('screeps-webpack-plugin')
 
 module.exports = {
   target: 'node',
-  entry: 'index.js',
+  entry: './index.js',
   output: {
-    path: 'dist',
+    path: path.resolve(__dirname, 'dist'),
     filename: 'main',
     libraryTarget: 'commonjs'
   },
