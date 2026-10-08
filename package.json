@@ -41,7 +41,8 @@
     }
   },
   "dependencies": {
-    "screeps-modules": "^1.1.1"
+    "screeps-modules": "^1.1.1",
+    "tapable": "^2.0.0"
   },
   "devDependencies": {
     "ava": "^8.0.0",

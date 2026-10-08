@@ -54,56 +54,60 @@ If your server modules provide support, you can use tokens for authentication an
 
 See [screeps-modules#Usage](https://github.com/langri-sha/screeps-modules#usage) for more information.
 
-## Events
+## Hooks
 
-##### `screeps-webpack-plugin-collect-modules`
+The plugin adds [tapable](https://github.com/webpack/tapable) hooks to each compilation, which your own plugins can tap into.
+
+```
+const ScreepsWebpackPlugin = require('screeps-webpack-plugin')
+
+compiler.hooks.compilation.tap('MyPlugin', (compilation) => {
+  const hooks = ScreepsWebpackPlugin.getHooks(compilation)
+
+  // ...
+})
+```
+
+##### `collectModules`
 
 Asynchronously alter the modules which will be pushed to the server.
 
 ```
-compilation.plugin(
-  'screeps-webpack-plugin-collect-modules', ({modules, plugin, compilation}, cb) => {
-    //...
-    cb(null, {modules, plugin, compilation})
-  }
-)
+hooks.collectModules.tapAsync('MyPlugin', ({ modules, plugin, compilation }, cb) => {
+  // ...
+  cb(null, { modules, plugin, compilation })
+})
 ```
 
-##### `screeps-webpack-plugin-configure-client`
+##### `configureClient`
 
 Configure the client used for the request.
 
 ```
-compilation.plugin(
-  'screeps-webpack-plugin-configure-client', (client, plugin) => {
-    //...
-    return client
-  }
-)
+hooks.configureClient.tap('MyPlugin', (client, plugin) => {
+  // ...
+  return client
+})
 ```
 
-##### `screeps-webpack-plugin-before-commit`
+##### `beforeCommit`
 
 Inspect request data.
 
 ```
-compilation.plugin(
-  'screeps-webpack-plugin-before-commit', (branch, modules) => {
-    // ...
-  }
-)
+hooks.beforeCommit.tap('MyPlugin', (branch, modules) => {
+  // ...
+})
 ```
 
-##### `screeps-webpack-plugin-after-commit`
+##### `afterCommit`
 
 Inspect the response body of the commit.
 
 ```
-compilation.plugin(
-  'screeps-webpack-plugin-after-commit', (body) => {
-    //..
-  }
-)
+hooks.afterCommit.tap('MyPlugin', (body) => {
+  // ...
+})
 ```
 
 ## Troubleshooting

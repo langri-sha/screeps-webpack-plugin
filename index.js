@@ -1,14 +1,13 @@
 const debug = require('debug')('screeps-webpack-plugin')
 const path = require('path')
 const fs = require('fs')
+const { AsyncSeriesWaterfallHook, SyncHook, SyncWaterfallHook } = require('tapable')
 
 const ScreepsModules = require('screeps-modules')
 
-// Events.
-const COLLECT_MODULES = 'screeps-webpack-plugin-collect-modules'
-const CONFIG_CLIENT = 'screeps-webpack-plugin-configure-client'
-const BEFORE_COMMIT = 'screeps-webpack-plugin-before-commit'
-const AFTER_COMMIT = 'screeps-webpack-plugin-after-commit'
+const PLUGIN_NAME = 'ScreepsWebpackPlugin'
+
+const compilationHooks = new WeakMap()
 
 class ScreepsWebpackPluginError extends Error {
   constructor (msg) {
@@ -18,12 +17,29 @@ class ScreepsWebpackPluginError extends Error {
 }
 
 class ScreepsWebpackPlugin {
+  static getHooks (compilation) {
+    let hooks = compilationHooks.get(compilation)
+
+    if (!hooks) {
+      hooks = {
+        collectModules: new AsyncSeriesWaterfallHook(['data']),
+        configureClient: new SyncWaterfallHook(['client', 'plugin']),
+        beforeCommit: new SyncHook(['branch', 'modules']),
+        afterCommit: new SyncHook(['body'])
+      }
+
+      compilationHooks.set(compilation, hooks)
+    }
+
+    return hooks
+  }
+
   constructor (options = {}) {
     this.options = options
   }
 
   apply (compiler) {
-    compiler.plugin('compilation', (compilation) => {
+    compiler.hooks.compilation.tap(PLUGIN_NAME, (compilation) => {
       if (compiler.options.target !== 'node') {
         const err = new ScreepsWebpackPluginError("Can only support Node.js {target: 'node'}")
 
@@ -33,61 +49,52 @@ class ScreepsWebpackPlugin {
       this.registerHandlers(compilation)
     })
 
-    compiler.plugin('after-emit', (compilation, cb) => {
-      Promise.resolve()
-        .then(() => {
-          return new Promise((resolve, reject) => {
-            const initial = {
-              modules: {},
-              plugin: this,
-              compilation
-            }
+    compiler.hooks.afterEmit.tapPromise(PLUGIN_NAME, (compilation) => {
+      const hooks = ScreepsWebpackPlugin.getHooks(compilation)
+      const initial = {
+        modules: {},
+        plugin: this,
+        compilation
+      }
 
-            compilation.applyPluginsAsyncWaterfall(COLLECT_MODULES, initial, (err, { modules }) => {
-              if (err) {
-                debug('Error while collecting modules', err.stack)
+      return hooks.collectModules.promise(initial)
+        .catch((err) => {
+          debug('Error while collecting modules', err.stack)
 
-                return reject(err)
-              } else {
-                resolve(modules)
-              }
-            })
-          })
+          throw err
         })
-        .then((modules) => {
-          const client = compilation.applyPluginsWaterfall(CONFIG_CLIENT, null, this)
+        .then(({ modules }) => {
+          const client = hooks.configureClient.call(null, this)
           const { branch } = this.options
 
-          compilation.applyPlugins(BEFORE_COMMIT, branch, modules)
+          hooks.beforeCommit.call(branch, modules)
 
           return client.commit(branch, modules)
             .then((body) => {
-              compilation.applyPlugins(AFTER_COMMIT, body)
+              hooks.afterCommit.call(body)
             })
             .catch((body) => {
               throw new Error(body)
             })
         })
-        .then(cb)
         .catch((err) => {
           compilation.errors.push(new ScreepsWebpackPluginError(err.stack))
-
-          cb()
         })
     })
   }
 
   registerHandlers (compilation) {
-    compilation.plugin(COLLECT_MODULES, this.collectModules)
-    compilation.plugin(CONFIG_CLIENT, this.configureClient)
+    const hooks = ScreepsWebpackPlugin.getHooks(compilation)
+
+    hooks.collectModules.tapAsync(PLUGIN_NAME, this.collectModules)
+    hooks.configureClient.tap(PLUGIN_NAME, this.configureClient)
   }
 
   collectModules ({ modules: initial, plugin, compilation }, cb) {
-    const chunks = compilation.getStats().toJson().chunks
     const outputPath = compilation.options.output.path
     const files = []
 
-    for (const chunk of chunks) {
+    for (const chunk of compilation.chunks) {
       for (const file of chunk.files) {
         files.push(path.resolve(outputPath, file))
       }
@@ -131,12 +138,5 @@ class ScreepsWebpackPlugin {
     return new ScreepsModules(plugin.options)
   }
 }
-
-Object.assign(ScreepsWebpackPlugin, {
-  COLLECT_MODULES,
-  CONFIG_CLIENT,
-  BEFORE_COMMIT,
-  AFTER_COMMIT
-})
 
 module.exports = ScreepsWebpackPlugin
