@@ -25,7 +25,7 @@ class ScreepsWebpackPlugin {
   apply (compiler) {
     compiler.plugin('compilation', (compilation) => {
       if (compiler.options.target !== 'node') {
-        const err = new ScreepsWebpackPluginError(`Can only support Node.js {target: 'node'}`)
+        const err = new ScreepsWebpackPluginError("Can only support Node.js {target: 'node'}")
 
         return compilation.errors.push(err)
       }
@@ -43,7 +43,7 @@ class ScreepsWebpackPlugin {
               compilation
             }
 
-            compilation.applyPluginsAsyncWaterfall(COLLECT_MODULES, initial, (err, {modules}) => {
+            compilation.applyPluginsAsyncWaterfall(COLLECT_MODULES, initial, (err, { modules }) => {
               if (err) {
                 debug('Error while collecting modules', err.stack)
 
@@ -54,26 +54,26 @@ class ScreepsWebpackPlugin {
             })
           })
         })
-      .then((modules) => {
-        const client = compilation.applyPluginsWaterfall(CONFIG_CLIENT, null, this)
-        const {branch} = this.options
+        .then((modules) => {
+          const client = compilation.applyPluginsWaterfall(CONFIG_CLIENT, null, this)
+          const { branch } = this.options
 
-        compilation.applyPlugins(BEFORE_COMMIT, branch, modules)
+          compilation.applyPlugins(BEFORE_COMMIT, branch, modules)
 
-        return client.commit(branch, modules)
-          .then((body) => {
-            compilation.applyPlugins(AFTER_COMMIT, body)
-          })
-          .catch((body) => {
-            throw new Error(body)
-          })
-      })
-      .then(cb)
-      .catch((err) => {
-        compilation.errors.push(new ScreepsWebpackPluginError(err.stack))
+          return client.commit(branch, modules)
+            .then((body) => {
+              compilation.applyPlugins(AFTER_COMMIT, body)
+            })
+            .catch((body) => {
+              throw new Error(body)
+            })
+        })
+        .then(cb)
+        .catch((err) => {
+          compilation.errors.push(new ScreepsWebpackPluginError(err.stack))
 
-        cb()
-      })
+          cb()
+        })
     })
   }
 
@@ -82,7 +82,7 @@ class ScreepsWebpackPlugin {
     compilation.plugin(CONFIG_CLIENT, this.configureClient)
   }
 
-  collectModules ({modules: initial, plugin, compilation}, cb) {
+  collectModules ({ modules: initial, plugin, compilation }, cb) {
     const chunks = compilation.getStats().toJson().chunks
     const outputPath = compilation.options.output.path
     const files = []
@@ -95,8 +95,8 @@ class ScreepsWebpackPlugin {
 
     const outputFileSystem = (
       compilation.compiler.outputFileSystem.readFile
-      ? compilation.compiler.outputFileSystem
-      : fs
+        ? compilation.compiler.outputFileSystem
+        : fs
     )
     const promises = []
 
@@ -109,7 +109,7 @@ class ScreepsWebpackPlugin {
 
           const moduleName = path.basename(file, '.js')
 
-          resolve({[moduleName]: data})
+          resolve({ [moduleName]: data })
         })
       }))
     }
@@ -122,7 +122,7 @@ class ScreepsWebpackPlugin {
           return modules
         }, initial || {})
 
-        cb(null, {modules, plugin, compilation})
+        cb(null, { modules, plugin, compilation })
       })
       .catch(cb)
   }
