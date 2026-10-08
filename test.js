@@ -152,6 +152,36 @@ test('Test commit', async t => {
   })
 })
 
+test('Test plugin order', async t => {
+  t.plan(2)
+
+  const collectModules = plugin('collectModules', 'tapAsync',
+    ({ modules, plugin, compilation }, cb) => {
+      t.deepEqual(Object.keys(modules).sort(), ['etc', 'main'])
+
+      cb(null, { modules, plugin, compilation })
+    }
+  )
+
+  const configureClient = plugin('configureClient', 'tap',
+    (client) => {
+      t.true(client instanceof ScreepsModules)
+
+      client.commit = () => Promise.resolve()
+
+      return client
+    }
+  )
+
+  await compile({
+    plugins: [
+      collectModules,
+      configureClient,
+      new ScreepsWebpackPlugin()
+    ]
+  })
+})
+
 test('Test commit source maps', async t => {
   t.plan(2)
 

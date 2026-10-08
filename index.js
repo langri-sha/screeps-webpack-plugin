@@ -90,8 +90,9 @@ class ScreepsWebpackPlugin {
   registerHandlers (compilation) {
     const hooks = ScreepsWebpackPlugin.getHooks(compilation)
 
-    hooks.collectModules.tapAsync(PLUGIN_NAME, this.collectModules)
-    hooks.configureClient.tap(PLUGIN_NAME, this.configureClient)
+    // Run before the taps of plugins listed ahead of this one.
+    hooks.collectModules.tapAsync({ name: PLUGIN_NAME, stage: -100 }, this.collectModules)
+    hooks.configureClient.tap({ name: PLUGIN_NAME, stage: -100 }, this.configureClient)
   }
 
   collectModules ({ modules: initial, plugin, compilation }, cb) {
