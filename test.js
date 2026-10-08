@@ -1,10 +1,10 @@
-import MemoryFs from 'memory-fs'
-import ScreepsModules from 'screeps-modules'
-import test from 'ava'
-import webpack from 'webpack'
-import Compilation from 'webpack/lib/Compilation'
+const MemoryFs = require('memory-fs')
+const ScreepsModules = require('screeps-modules')
+const test = require('ava').default
+const webpack = require('webpack')
+const Compilation = require('webpack/lib/Compilation')
 
-import ScreepsWebpackPlugin from './index'
+const ScreepsWebpackPlugin = require('./index')
 
 const debug = require('debug')('screeps-webpack-plugin')
 
