@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run -s lint; npm run -s test",
-    "test": "nyc ava --verbose",
+    "test": "nyc node --test test.js",
     "lint": "standard | snazzy",
     "container": "export NAME=${PWD##*/}; export CACHE=npm-lazy; export CACHE_URL=http://${CACHE}; docker ps -a | grep -q $CACHE && npm run -s container:cache-start || npm run -s container:cache-run; docker ps -a | grep -q $NAME && npm run -s container:app-start || npm run -s container:app-run",
     "container:app-start": "docker start -ai $NAME",
@@ -48,7 +48,6 @@
     "webpack": "^5.0.0"
   },
   "devDependencies": {
-    "ava": "^8.0.0",
     "commitizen": "^4.0.0",
     "cz-conventional-changelog": "^3.0.0",
     "debug": "^4.0.0",
