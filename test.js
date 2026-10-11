@@ -1,10 +1,8 @@
 const { createFsFromVolume, Volume } = require('memfs')
-const http = require('http')
-const ScreepsModules = require('./screeps-modules')
+const ScreepsModules = require('screeps-modules')
 const test = require('node:test')
 const webpack = require('webpack')
 const Compilation = require('webpack/lib/Compilation')
-const zlib = require('zlib')
 
 const ScreepsWebpackPlugin = require('./index')
 
@@ -61,84 +59,6 @@ const checkError = (t, err, ...checks) => {
     t.assert.ok(err.toString().match(check))
   }
 }
-
-test('ScreepsModules preserves the Screeps HTTP protocol', async t => {
-  const requests = []
-  const server = http.createServer((req, res) => {
-    const chunks = []
-
-    req.on('data', chunk => chunks.push(chunk))
-    req.on('end', () => {
-      const body = Buffer.concat(chunks).toString()
-      requests.push({
-        method: req.method,
-        url: req.url,
-        headers: req.headers,
-        body
-      })
-
-      if (req.url === '/api/auth/signin') {
-        res.setHeader('Content-Type', 'application/json')
-        return res.end(JSON.stringify({ ok: true, token: 'session-token' }))
-      }
-
-      if (req.method === 'POST') {
-        res.setHeader('Content-Type', 'application/json')
-        return res.end(JSON.stringify({ ok: true }))
-      }
-
-      res.setHeader('Content-Encoding', 'gzip')
-      res.setHeader('Content-Type', 'application/json')
-      res.setHeader('X-Token', 'rotated-token')
-      res.end(zlib.gzipSync(JSON.stringify({ modules: { main: 'code' } })))
-    })
-  })
-
-  await new Promise(resolve => server.listen(0, '127.0.0.1', resolve))
-
-  try {
-    const client = new ScreepsModules({
-      email: 'pilot@example.com',
-      password: 'password',
-      serverPassword: 'server-password',
-      serverUrl: `http://127.0.0.1:${server.address().port}`,
-      gzip: true
-    })
-
-    t.assert.strictEqual(await client.refreshToken(), 'session-token')
-    t.assert.strictEqual(await client.commit('sim', { main: 'code' }), '{"ok":true}')
-    t.assert.deepStrictEqual(await client.retrieve('sim'), { modules: { main: 'code' } })
-    t.assert.strictEqual(requests[0].method, 'POST')
-    t.assert.strictEqual(requests[0].url, '/api/auth/signin')
-    t.assert.strictEqual(requests[0].headers.authorization, undefined)
-    t.assert.deepStrictEqual(JSON.parse(requests[0].body), {
-      email: 'pilot@example.com',
-      password: 'password'
-    })
-    t.assert.strictEqual(requests[1].method, 'POST')
-    t.assert.strictEqual(requests[1].headers['content-encoding'], 'gzip')
-    t.assert.strictEqual(requests[1].headers['x-token'], 'session-token')
-    t.assert.strictEqual(requests[1].headers['x-server-password'], 'server-password')
-    t.assert.deepStrictEqual(JSON.parse(zlib.gunzipSync(Buffer.from(requests[1].body, 'hex'))), {
-      branch: 'sim',
-      modules: { main: 'code' }
-    })
-    t.assert.strictEqual(requests[2].method, 'GET')
-    t.assert.strictEqual(requests[2].url, '/api/user/code?branch=sim')
-    t.assert.strictEqual(requests[2].headers['accept-encoding'], 'gzip')
-    t.assert.strictEqual(client.options.token, 'rotated-token')
-    client.options.token = ''
-    client.options.gzip = false
-    t.assert.deepStrictEqual(await client.commit('next', { main: 'new code' }), { ok: true })
-    t.assert.strictEqual(requests[3].headers.authorization, `Basic ${Buffer.from('pilot@example.com:password').toString('base64')}`)
-    t.assert.deepStrictEqual(JSON.parse(requests[3].body), {
-      branch: 'next',
-      modules: { main: 'new code' }
-    })
-  } finally {
-    await new Promise((resolve, reject) => server.close(err => err ? reject(err) : resolve()))
-  }
-})
 
 test('Test Webpack compiler setup', async t => {
   t.plan(1)

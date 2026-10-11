@@ -3,7 +3,7 @@ const path = require('path')
 const fs = require('fs')
 const { AsyncSeriesWaterfallHook, SyncHook, SyncWaterfallHook } = require('tapable')
 
-const ScreepsModules = require('./screeps-modules')
+const ScreepsModules = require('screeps-modules')
 
 const PLUGIN_NAME = 'ScreepsWebpackPlugin'
 
