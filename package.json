@@ -26,6 +26,7 @@
     "organization": false
   },
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "default": "projen default",
     "lint": "eslint .",
