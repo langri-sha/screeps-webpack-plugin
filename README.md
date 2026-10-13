@@ -19,6 +19,14 @@ the administrator has created your account.
 npm install screeps-webpack-plugin
 ```
 
+The package requires Node.js 24 or later, and loads through both `import` and
+`require()`:
+
+```
+import ScreepsWebpackPlugin from 'screeps-webpack-plugin'
+const ScreepsWebpackPlugin = require('screeps-webpack-plugin')
+```
+
 ## Usage
 
 Add the plugin to your Webpack configuration.
