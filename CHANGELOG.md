@@ -1,4 +1,23 @@
-# Change Log
+# Change Log - screeps-webpack-plugin
+
+<!-- This log was last generated on Tue, 13 Oct 2026 23:52:48 GMT and should not be manually modified. -->
+
+<!-- Start content -->
+
+## 2.0.0
+
+Tue, 13 Oct 2026 23:52:48 GMT
+
+### Major changes
+
+- Require webpack 5 and Node.js 24. Replace the `screeps-webpack-plugin-*` events with hooks from `ScreepsWebpackPlugin.getHooks(compilation)`, removing the `COLLECT_MODULES`, `CONFIG_CLIENT`, `BEFORE_COMMIT` and `AFTER_COMMIT` constants. Plugins listed ahead of this one get the client and the collected modules. Ship type declarations. (filip.dupanovic@gmail.com)
+- Port the plugin to TypeScript and ESM; require() keeps returning the plugin class. (filip.dupanovic@gmail.com)
+
+### Patches
+
+- Update dependency @langri-sha/projen-project to v0.38.2
+- Update dependency screeps-modules to v2
+- Publish the compiled build from dist, with generated declarations. (filip.dupanovic@gmail.com)
 
 ## [1.3.0] - 2017-05-15
 ### Added

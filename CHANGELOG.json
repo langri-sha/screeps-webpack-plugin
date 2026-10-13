@@ -1,0 +1,46 @@
+{
+  "name": "screeps-webpack-plugin",
+  "entries": [
+    {
+      "date": "Tue, 13 Oct 2026 23:52:48 GMT",
+      "version": "2.0.0",
+      "tag": "screeps-webpack-plugin_v2.0.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "2769ca1b5b164f52686831d68276b722064fcb86",
+            "comment": "Update dependency @langri-sha/projen-project to v0.38.2"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "2769ca1b5b164f52686831d68276b722064fcb86",
+            "comment": "Update dependency screeps-modules to v2"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "screeps-webpack-plugin",
+            "commit": "2769ca1b5b164f52686831d68276b722064fcb86",
+            "comment": "Publish the compiled build from dist, with generated declarations."
+          }
+        ],
+        "major": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "screeps-webpack-plugin",
+            "commit": "2769ca1b5b164f52686831d68276b722064fcb86",
+            "comment": "Require webpack 5 and Node.js 24. Replace the `screeps-webpack-plugin-*` events with hooks from `ScreepsWebpackPlugin.getHooks(compilation)`, removing the `COLLECT_MODULES`, `CONFIG_CLIENT`, `BEFORE_COMMIT` and `AFTER_COMMIT` constants. Plugins listed ahead of this one get the client and the collected modules. Ship type declarations."
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "screeps-webpack-plugin",
+            "commit": "2769ca1b5b164f52686831d68276b722064fcb86",
+            "comment": "Port the plugin to TypeScript and ESM; require() keeps returning the plugin class."
+          }
+        ]
+      }
+    }
+  ]
+}

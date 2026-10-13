@@ -1,7 +1,0 @@
-{
-  "type": "major",
-  "comment": "Port the plugin to TypeScript and ESM; require() keeps returning the plugin class.",
-  "packageName": "screeps-webpack-plugin",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}
