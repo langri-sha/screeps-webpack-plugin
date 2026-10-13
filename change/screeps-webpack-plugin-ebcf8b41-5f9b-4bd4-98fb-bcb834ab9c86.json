@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Publish the compiled build from dist, with generated declarations.",
+  "packageName": "screeps-webpack-plugin",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
