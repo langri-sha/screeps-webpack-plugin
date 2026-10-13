@@ -18,3 +18,4 @@
 /pnpm-workspace.yaml linguist-generated
 /prettier.config.mjs linguist-generated
 /renovate.json5 linguist-generated linguist-language=JSON-with-Comments
+/tsconfig.json linguist-generated linguist-language=JSON-with-Comments
