@@ -37,6 +37,12 @@
       enabled: false,
     },
     {
+      description: 'Move every Dagger module off one engine release at a time',
+      groupName: 'Dagger engine',
+      groupSlug: 'dagger-engine',
+      matchDepNames: ['dagger/dagger'],
+    },
+    {
       description: 'Update our own packages together',
       groupName: 'langri-sha projen toolchain',
       groupSlug: 'langri-sha-projen',
@@ -136,6 +142,31 @@
         "'(?<depName>@?[\\w-\\/]+)@(?<currentValue>[^']+)'",
       ],
       depTypeTemplate: "{{#if (equals depType 'deps')}}dependencies{{else if (equals depType 'devDeps')}}devDependencies{{else}}peerDependencies{{/if}}",
+    },
+    {
+      customType: 'regex',
+      datasourceTemplate: 'github-tags',
+      versioningTemplate: 'semver',
+      depNameTemplate: 'dagger/dagger',
+      managerFilePatterns: ['/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/'],
+      matchStrings: ["engineVersion:\\s*'v(?<currentValue>[^']+)'"],
+      extractVersionTemplate: '^v(?<version>.+)$',
+    },
+    {
+      customType: 'regex',
+      datasourceTemplate: 'github-tags',
+      versioningTemplate: 'semver',
+      managerFilePatterns: [
+        '/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/',
+        '/(^|/)dagger\\.toml$/',
+        '/(^|/)dagger-module\\.toml$/',
+      ],
+      matchStrings: [
+        '[\'"]github\\.com/(?<repo>[\\w.-]+/[\\w.-]+)(?:/(?<subdir>[^\'"@]+))?@(?<tagDir>[^\'"@]+/)?v(?<currentValue>\\d[^\'"]*)[\'"]',
+      ],
+      depNameTemplate: 'github.com/{{{repo}}}{{#if subdir}}/{{{subdir}}}{{/if}}',
+      packageNameTemplate: '{{{repo}}}',
+      extractVersionTemplate: '^{{#if tagDir}}{{{tagDir}}}{{else}}{{#if subdir}}{{{subdir}}}/{{/if}}{{/if}}v(?<version>.+)$',
     },
     {
       customType: 'regex',
