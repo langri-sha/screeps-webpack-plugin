@@ -58,6 +58,7 @@ const project = new Project({
   lintSynthesized: {},
   npmIgnore: {
     ignorePatterns: [
+      '/*.config.*',
       '/*.yaml',
       '/CODEOWNERS',
       '/coverage/',
