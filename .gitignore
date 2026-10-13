@@ -13,6 +13,7 @@
 *.db
 *.log
 !.github/
+!.husky/
 !.projen/
 dist/
 node_modules/
@@ -27,6 +28,7 @@ node_modules/
 !/CODEOWNERS
 !/.editorconfig
 !/license
+!/lint-staged.config.mjs
 !/.npmignore
 !/pnpm-workspace.yaml
 !/.config
