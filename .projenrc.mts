@@ -101,6 +101,7 @@ const project = new Project({
 
 project.gitignore.addPatterns('coverage/')
 
+project.package?.addField('types', 'index.d.ts')
 project.package?.addField('packageManager', 'pnpm@12.11.2')
 
 project.package?.setScript('start', 'pnpm run -s lint; pnpm run -s test')
