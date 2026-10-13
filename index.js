@@ -3,21 +3,25 @@ const path = require('path')
 
 const debug = require('debug')('screeps-webpack-plugin')
 const ScreepsModules = require('screeps-modules')
-const { AsyncSeriesWaterfallHook, SyncHook, SyncWaterfallHook } = require('tapable')
+const {
+  AsyncSeriesWaterfallHook,
+  SyncHook,
+  SyncWaterfallHook,
+} = require('tapable')
 
 const PLUGIN_NAME = 'ScreepsWebpackPlugin'
 
 const compilationHooks = new WeakMap()
 
 class ScreepsWebpackPluginError extends Error {
-  constructor (msg) {
+  constructor(msg) {
     super(msg)
     this.name = 'ScreepsWebpackPluginError'
   }
 }
 
 class ScreepsWebpackPlugin {
-  static getHooks (compilation) {
+  static getHooks(compilation) {
     let hooks = compilationHooks.get(compilation)
 
     if (!hooks) {
@@ -25,7 +29,7 @@ class ScreepsWebpackPlugin {
         collectModules: new AsyncSeriesWaterfallHook(['data']),
         configureClient: new SyncWaterfallHook(['client', 'plugin']),
         beforeCommit: new SyncHook(['branch', 'modules']),
-        afterCommit: new SyncHook(['body'])
+        afterCommit: new SyncHook(['body']),
       }
 
       compilationHooks.set(compilation, hooks)
@@ -34,14 +38,16 @@ class ScreepsWebpackPlugin {
     return hooks
   }
 
-  constructor (options = {}) {
+  constructor(options = {}) {
     this.options = options
   }
 
-  apply (compiler) {
+  apply(compiler) {
     compiler.hooks.compilation.tap(PLUGIN_NAME, (compilation) => {
       if (compiler.options.target !== 'node') {
-        const err = new ScreepsWebpackPluginError("Can only support Node.js {target: 'node'}")
+        const err = new ScreepsWebpackPluginError(
+          "Can only support Node.js {target: 'node'}",
+        )
 
         return compilation.errors.push(err)
       }
@@ -58,10 +64,11 @@ class ScreepsWebpackPlugin {
       const initial = {
         modules: {},
         plugin: this,
-        compilation
+        compilation,
       }
 
-      return hooks.collectModules.promise(initial)
+      return hooks.collectModules
+        .promise(initial)
         .catch((err) => {
           debug('Error while collecting modules', err.stack)
 
@@ -73,7 +80,8 @@ class ScreepsWebpackPlugin {
 
           hooks.beforeCommit.call(branch, modules)
 
-          return client.commit(branch, modules)
+          return client
+            .commit(branch, modules)
             .then((body) => {
               hooks.afterCommit.call(body)
             })
@@ -87,15 +95,21 @@ class ScreepsWebpackPlugin {
     })
   }
 
-  registerHandlers (compilation) {
+  registerHandlers(compilation) {
     const hooks = ScreepsWebpackPlugin.getHooks(compilation)
 
     // Run before the taps of plugins listed ahead of this one.
-    hooks.collectModules.tapAsync({ name: PLUGIN_NAME, stage: -100 }, this.collectModules)
-    hooks.configureClient.tap({ name: PLUGIN_NAME, stage: -100 }, this.configureClient)
+    hooks.collectModules.tapAsync(
+      { name: PLUGIN_NAME, stage: -100 },
+      this.collectModules,
+    )
+    hooks.configureClient.tap(
+      { name: PLUGIN_NAME, stage: -100 },
+      this.configureClient,
+    )
   }
 
-  collectModules ({ modules: initial, plugin, compilation }, cb) {
+  collectModules({ modules: initial, plugin, compilation }, cb) {
     const outputPath = compilation.options.output.path
     const files = []
 
@@ -112,25 +126,25 @@ class ScreepsWebpackPlugin {
       }
     }
 
-    const outputFileSystem = (
-      compilation.compiler.outputFileSystem.readFile
-        ? compilation.compiler.outputFileSystem
-        : fs
-    )
+    const outputFileSystem = compilation.compiler.outputFileSystem.readFile
+      ? compilation.compiler.outputFileSystem
+      : fs
     const promises = []
 
     for (const file of files) {
-      promises.push(new Promise((resolve, reject) => {
-        outputFileSystem.readFile(file, 'utf-8', (err, data) => {
-          if (err) {
-            return reject(err)
-          }
+      promises.push(
+        new Promise((resolve, reject) => {
+          outputFileSystem.readFile(file, 'utf-8', (err, data) => {
+            if (err) {
+              return reject(err)
+            }
 
-          const moduleName = path.basename(file, '.js')
+            const moduleName = path.basename(file, '.js')
 
-          resolve({ [moduleName]: data })
-        })
-      }))
+            resolve({ [moduleName]: data })
+          })
+        }),
+      )
     }
 
     Promise.all(promises)
@@ -146,7 +160,7 @@ class ScreepsWebpackPlugin {
       .catch(cb)
   }
 
-  configureClient (_initial, plugin) {
+  configureClient(_initial, plugin) {
     return new ScreepsModules(plugin.options)
   }
 }

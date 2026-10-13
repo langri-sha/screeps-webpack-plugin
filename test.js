@@ -8,23 +8,28 @@ const Compilation = require('webpack/lib/Compilation')
 
 const ScreepsWebpackPlugin = require('./index')
 
-function compile (options) {
-  const compiler = webpack(Object.assign({
-    mode: 'none',
-    target: 'node',
-    entry: {
-      main: ['index.js'],
-      etc: ['foo.js', 'bar.js']
-    },
-    resolve: {
-      modules: ['./fixtures']
-    },
-    output: {
-      path: '/',
-      filename: '[name]'
-    },
-    plugins: []
-  }, options))
+function compile(options) {
+  const compiler = webpack(
+    Object.assign(
+      {
+        mode: 'none',
+        target: 'node',
+        entry: {
+          main: ['index.js'],
+          etc: ['foo.js', 'bar.js'],
+        },
+        resolve: {
+          modules: ['./fixtures'],
+        },
+        output: {
+          path: '/',
+          filename: '[name]',
+        },
+        plugins: [],
+      },
+      options,
+    ),
+  )
   compiler.outputFileSystem = createFsFromVolume(new Volume())
 
   return new Promise((resolve, reject) => {
@@ -42,15 +47,17 @@ function compile (options) {
   })
 }
 
-const plugin = (hook, method, fn) => (
+const plugin = (hook, method, fn) =>
   new (class {
-    apply (compiler) {
+    apply(compiler) {
       compiler.hooks.compilation.tap('TestPlugin', (compilation) => {
-        ScreepsWebpackPlugin.getHooks(compilation)[hook][method]('TestPlugin', fn)
+        ScreepsWebpackPlugin.getHooks(compilation)[hook][method](
+          'TestPlugin',
+          fn,
+        )
       })
     }
   })()
-)
 
 const checkError = (t, err, ...checks) => {
   t.assert.strictEqual(err.name, 'ScreepsWebpackPluginError')
@@ -60,11 +67,11 @@ const checkError = (t, err, ...checks) => {
   }
 }
 
-test('Test Webpack compiler setup', async t => {
+test('Test Webpack compiler setup', async (t) => {
   t.plan(1)
 
   class TestPlugin {
-    apply (compiler) {
+    apply(compiler) {
       compiler.hooks.done.tap('TestPlugin', () => {
         t.assert.ok(true)
       })
@@ -74,13 +81,11 @@ test('Test Webpack compiler setup', async t => {
   await compile({ plugins: [new TestPlugin()] })
 })
 
-test("Test requires target 'node'", async t => {
+test("Test requires target 'node'", async (t) => {
   try {
     await compile({
       target: 'web',
-      plugins: [
-        new ScreepsWebpackPlugin()
-      ]
+      plugins: [new ScreepsWebpackPlugin()],
     })
 
     t.assert.fail()
@@ -90,10 +95,12 @@ test("Test requires target 'node'", async t => {
   }
 })
 
-test('Test commit', async t => {
+test('Test commit', async (t) => {
   t.plan(10)
 
-  const collectModules = plugin('collectModules', 'tapAsync',
+  const collectModules = plugin(
+    'collectModules',
+    'tapAsync',
     ({ modules, plugin, compilation }, cb) => {
       t.assert.deepStrictEqual(Object.keys(modules).sort(), ['etc', 'main'])
       t.assert.ok(modules.main.match(/foobar/))
@@ -105,34 +112,28 @@ test('Test commit', async t => {
       modules.quux = 'norf'
 
       cb(null, { modules, plugin, compilation })
-    }
+    },
   )
 
-  const configureClient = plugin('configureClient', 'tap',
-    (client, plugin) => {
-      t.assert.ok(client instanceof ScreepsModules)
-      t.assert.ok(plugin instanceof ScreepsWebpackPlugin)
+  const configureClient = plugin('configureClient', 'tap', (client, plugin) => {
+    t.assert.ok(client instanceof ScreepsModules)
+    t.assert.ok(plugin instanceof ScreepsWebpackPlugin)
 
-      client.commit = () => {
-        return Promise.resolve('foobar')
-      }
-
-      return client
+    client.commit = () => {
+      return Promise.resolve('foobar')
     }
-  )
 
-  const beforeCommit = plugin('beforeCommit', 'tap',
-    (branch, modules) => {
-      t.assert.strictEqual(branch, 'test')
-      t.assert.strictEqual(modules.quux, 'norf')
-    }
-  )
+    return client
+  })
 
-  const afterCommit = plugin('afterCommit', 'tap',
-    (body) => {
-      t.assert.strictEqual(body, 'foobar')
-    }
-  )
+  const beforeCommit = plugin('beforeCommit', 'tap', (branch, modules) => {
+    t.assert.strictEqual(branch, 'test')
+    t.assert.strictEqual(modules.quux, 'norf')
+  })
+
+  const afterCommit = plugin('afterCommit', 'tap', (body) => {
+    t.assert.strictEqual(body, 'foobar')
+  })
 
   await compile({
     plugins: [
@@ -142,93 +143,81 @@ test('Test commit', async t => {
         password: 'barbaz',
         token: 'quuxnorf',
         serverUrl: 'https://foo.com',
-        gzip: true
+        gzip: true,
       }),
       collectModules,
       configureClient,
       beforeCommit,
-      afterCommit
-    ]
+      afterCommit,
+    ],
   })
 })
 
-test('Test plugin order', async t => {
+test('Test plugin order', async (t) => {
   t.plan(2)
 
-  const collectModules = plugin('collectModules', 'tapAsync',
+  const collectModules = plugin(
+    'collectModules',
+    'tapAsync',
     ({ modules, plugin, compilation }, cb) => {
       t.assert.deepStrictEqual(Object.keys(modules).sort(), ['etc', 'main'])
 
       cb(null, { modules, plugin, compilation })
-    }
+    },
   )
 
-  const configureClient = plugin('configureClient', 'tap',
-    (client) => {
-      t.assert.ok(client instanceof ScreepsModules)
+  const configureClient = plugin('configureClient', 'tap', (client) => {
+    t.assert.ok(client instanceof ScreepsModules)
 
-      client.commit = () => Promise.resolve()
+    client.commit = () => Promise.resolve()
 
-      return client
-    }
-  )
+    return client
+  })
 
   await compile({
-    plugins: [
-      collectModules,
-      configureClient,
-      new ScreepsWebpackPlugin()
-    ]
+    plugins: [collectModules, configureClient, new ScreepsWebpackPlugin()],
   })
 })
 
-test('Test commit source maps', async t => {
+test('Test commit source maps', async (t) => {
   t.plan(2)
 
-  const configureClient = plugin('configureClient', 'tap',
-    (client) => {
-      client.commit = () => Promise.resolve()
+  const configureClient = plugin('configureClient', 'tap', (client) => {
+    client.commit = () => Promise.resolve()
 
-      return client
-    }
-  )
+    return client
+  })
 
-  const beforeCommit = plugin('beforeCommit', 'tap',
-    (_branch, modules) => {
-      t.assert.deepStrictEqual(Object.keys(modules).sort(), ['etc', 'etc.js.map', 'main', 'main.js.map'])
-      t.assert.strictEqual(JSON.parse(modules['main.js.map']).file, 'main.js')
-    }
-  )
+  const beforeCommit = plugin('beforeCommit', 'tap', (_branch, modules) => {
+    t.assert.deepStrictEqual(Object.keys(modules).sort(), [
+      'etc',
+      'etc.js.map',
+      'main',
+      'main.js.map',
+    ])
+    t.assert.strictEqual(JSON.parse(modules['main.js.map']).file, 'main.js')
+  })
 
   await compile({
     devtool: 'source-map',
     output: {
       path: '/',
-      filename: '[name].js'
+      filename: '[name].js',
     },
-    plugins: [
-      new ScreepsWebpackPlugin(),
-      configureClient,
-      beforeCommit
-    ]
+    plugins: [new ScreepsWebpackPlugin(), configureClient, beforeCommit],
   })
 })
 
-test('Test commit failure', async t => {
-  const configureClient = plugin('configureClient', 'tap',
-    (client) => {
-      client.commit = () => Promise.reject(new Error('nope'))
+test('Test commit failure', async (t) => {
+  const configureClient = plugin('configureClient', 'tap', (client) => {
+    client.commit = () => Promise.reject(new Error('nope'))
 
-      return client
-    }
-  )
+    return client
+  })
 
   try {
     await compile({
-      plugins: [
-        new ScreepsWebpackPlugin(),
-        configureClient
-      ]
+      plugins: [new ScreepsWebpackPlugin(), configureClient],
     })
 
     t.assert.fail()
@@ -237,7 +226,7 @@ test('Test commit failure', async t => {
   }
 })
 
-test('Test constructor', t => {
+test('Test constructor', (t) => {
   t.assert.doesNotThrow(() => new ScreepsWebpackPlugin())
   t.assert.ok(new ScreepsWebpackPlugin().options)
 })

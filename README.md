@@ -4,9 +4,14 @@
 
 Bundle and push your AI to Screeps servers!
 
-If you have registered on the official server via Steam or GitHub, please go to [account management](https://screeps.com/a/#!/account) and make sure you have configured an email and password for your account to access your account on https://screeps.com and https://screeps.com/ptr.
+If you have registered on the official server via Steam or GitHub, please go to
+[account management](https://screeps.com/a/#!/account) and make sure you have
+configured an email and password for your account to access your account on
+https://screeps.com and https://screeps.com/ptr.
 
-On private servers, make sure you have [authorization enabled](https://github.com/screepsmods/screepsmod-auth) and that the administrator has created your account.
+On private servers, make sure you have
+[authorization enabled](https://github.com/screepsmods/screepsmod-auth) and that
+the administrator has created your account.
 
 ## Installation
 
@@ -18,7 +23,8 @@ npm install screeps-webpack-plugin
 
 Add the plugin to your Webpack configuration.
 
-Make sure you are using `{target: 'node'}`, other environments aren't supported. You should have at least one chunk named `main` in the output.
+Make sure you are using `{target: 'node'}`, other environments aren't supported.
+You should have at least one chunk named `main` in the output.
 
 ```
 // webpack.config.js
@@ -51,13 +57,16 @@ new ScreepsWebpackPlugin({
 })
 ```
 
-If your server modules provide support, you can use tokens for authentication and send compressed bundles.
+If your server modules provide support, you can use tokens for authentication
+and send compressed bundles.
 
-See [screeps-modules#Usage](https://github.com/langri-sha/screeps-modules#usage) for more information.
+See [screeps-modules#Usage](https://github.com/langri-sha/screeps-modules#usage)
+for more information.
 
 ## Hooks
 
-The plugin adds [tapable](https://github.com/webpack/tapable) hooks to each compilation, which your own plugins can tap into.
+The plugin adds [tapable](https://github.com/webpack/tapable) hooks to each
+compilation, which your own plugins can tap into.
 
 ```
 const ScreepsWebpackPlugin = require('screeps-webpack-plugin')
@@ -113,14 +122,18 @@ hooks.afterCommit.tap('MyPlugin', (body) => {
 
 ## Troubleshooting
 
-The plugin only provides opaque access to the response body, so that it can be safely used in CI. To debug, run with `DEBUG=* webpack $ARGS`.
+The plugin only provides opaque access to the response body, so that it can be
+safely used in CI. To debug, run with `DEBUG=* webpack $ARGS`.
 
 ## Contributing
 
-Share your feedback, bugs and PRs on the [issues tracker](https://github.com/langri-sha/screeps-webpack-plugin/issues).
+Share your feedback, bugs and PRs on the
+[issues tracker](https://github.com/langri-sha/screeps-webpack-plugin/issues).
 
-[ci]: https://github.com/langri-sha/screeps-webpack-plugin/actions/workflows/check.yml
-[ci-badge]: https://github.com/langri-sha/screeps-webpack-plugin/actions/workflows/check.yml/badge.svg
+[ci]:
+  https://github.com/langri-sha/screeps-webpack-plugin/actions/workflows/check.yml
+[ci-badge]:
+  https://github.com/langri-sha/screeps-webpack-plugin/actions/workflows/check.yml/badge.svg
 [npm]: https://www.npmjs.com/package/screeps-webpack-plugin
 [npm-badge]: https://img.shields.io/npm/v/screeps-webpack-plugin.svg
 [node-badge]: https://img.shields.io/node/v/screeps-webpack-plugin.svg
