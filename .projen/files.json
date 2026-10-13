@@ -1,5 +1,6 @@
 {
   "files": [
+    ".config/wt.toml",
     ".editorconfig",
     ".gitattributes",
     ".gitignore",

@@ -7,6 +7,8 @@
   },
   "scripts": {
     "default": "projen default",
+    "worktrunk:dry-run": "projen worktrunk:dry-run",
+    "worktrunk:show": "projen worktrunk:show",
     "start": "pnpm run -s lint; pnpm run -s test",
     "test": "c8 node --test test.js",
     "lint": "standard | snazzy"
