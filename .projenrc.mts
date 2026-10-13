@@ -38,6 +38,9 @@ const project = new Project({
     ],
     peerDeps: ['webpack@^5.0.0'],
   },
+  codeowners: {
+    '*': '@langri-sha',
+  },
   pnpmWorkspace: {
     minimumReleaseAgeExclude: ['@langri-sha/*', ...Project.presetPackages],
   },

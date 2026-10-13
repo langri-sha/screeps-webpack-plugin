@@ -20,6 +20,7 @@ node_modules/
 !/.projen/deps.json
 !/.projen/files.json
 !/package.json
+!/CODEOWNERS
 !/license
 !/pnpm-workspace.yaml
 coverage/
