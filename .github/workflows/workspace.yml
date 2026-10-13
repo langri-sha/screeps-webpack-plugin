@@ -13,6 +13,8 @@ jobs:
     uses: langri-sha/github/.github/workflows/check.yml@v0.24.0
     with:
       beachball: true
+      dagger: true
+      dagger-version: v1.0.0-beta.15
       eslint: true
       packages: true
       prettier: true
