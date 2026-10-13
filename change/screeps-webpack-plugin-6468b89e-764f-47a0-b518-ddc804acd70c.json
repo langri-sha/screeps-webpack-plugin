@@ -1,0 +1,7 @@
+{
+  "type": "major",
+  "comment": "Require webpack 5 and Node.js 24. Replace the `screeps-webpack-plugin-*` events with hooks from `ScreepsWebpackPlugin.getHooks(compilation)`, removing the `COLLECT_MODULES`, `CONFIG_CLIENT`, `BEFORE_COMMIT` and `AFTER_COMMIT` constants. Plugins listed ahead of this one get the client and the collected modules. Ship type declarations.",
+  "packageName": "screeps-webpack-plugin",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
