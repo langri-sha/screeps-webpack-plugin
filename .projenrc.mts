@@ -75,6 +75,27 @@ const project = new Project({
   pnpmWorkspace: {
     minimumReleaseAgeExclude: ['@langri-sha/*', ...Project.presetPackages],
   },
+  renovate: {
+    packageRules: [
+      {
+        description: 'Update our own packages together',
+        groupName: 'langri-sha projen toolchain',
+        groupSlug: 'langri-sha-projen',
+        matchPackageNames: ['@langri-sha/**', ...Project.presetPackages],
+      },
+      {
+        description: 'Install our own packages without waiting them out',
+        matchPackageNames: ['@langri-sha/**', ...Project.presetPackages],
+        minimumReleaseAge: null,
+      },
+      {
+        description:
+          'Install our own GitHub Actions and Terraform modules without waiting them out',
+        matchPackageNames: ['langri-sha/**'],
+        minimumReleaseAge: null,
+      },
+    ],
+  },
   worktrunk: {},
 })
 

@@ -28,6 +28,15 @@
         }
       ]
     },
+    "renovate": {
+      "name": "renovate",
+      "description": "Run Renovate locally for debugging",
+      "steps": [
+        {
+          "exec": "pnpx renovate --platform=local --repository-cache=reset --dry-run=full"
+        }
+      ]
+    },
     "test": {
       "name": "test",
       "description": "Run tests"
