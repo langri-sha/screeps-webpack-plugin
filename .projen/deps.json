@@ -21,6 +21,11 @@
       "type": "build"
     },
     {
+      "name": "@langri-sha/tsconfig",
+      "version": "1.1.1",
+      "type": "build"
+    },
+    {
       "name": "@langri-sha/vitest",
       "version": "0.2.3",
       "type": "build"
@@ -63,6 +68,11 @@
     {
       "name": "tsx",
       "version": "4.23.15",
+      "type": "build"
+    },
+    {
+      "name": "typescript",
+      "version": "5.9.3",
       "type": "build"
     },
     {

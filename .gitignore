@@ -12,6 +12,7 @@
 !.prettierignore
 *.db
 *.log
+*.tsbuildinfo
 !.github/
 !.husky/
 !.projen/
@@ -22,6 +23,7 @@ node_modules/
 !/.projen/deps.json
 !/.projen/files.json
 !/package.json
+!/tsconfig.json
 !/eslint.config.mjs
 !/prettier.config.mjs
 !/.prettierignore
