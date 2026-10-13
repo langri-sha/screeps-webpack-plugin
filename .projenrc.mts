@@ -28,7 +28,7 @@ const project = new Project({
     },
     repository: 'git+https://github.com/langri-sha/screeps-webpack-plugin.git',
 
-    deps: ['debug@^4.0.0', 'screeps-modules@^1.1.1', 'tapable@^2.0.0'],
+    deps: ['debug@^4.0.0', 'screeps-modules@^2.0.0', 'tapable@^2.0.0'],
     devDeps: [
       '@langri-sha/eslint-config@0.9.19',
       '@langri-sha/lint-staged@0.9.11',
