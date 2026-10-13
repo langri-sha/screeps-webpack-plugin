@@ -9,5 +9,5 @@ tsconfig*.json
 /change/
 /coverage/
 /dagger.*
-/dist/
+*.tsbuildinfo
 /fixtures/

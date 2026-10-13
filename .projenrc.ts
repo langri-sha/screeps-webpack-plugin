@@ -1,4 +1,4 @@
-import { Project } from '@langri-sha/projen-project'
+import { Project, TypeScriptConfig } from '@langri-sha/projen-project'
 
 const project = new Project({
   name: 'screeps-webpack-plugin',
@@ -127,7 +127,7 @@ const project = new Project({
       '/change/',
       '/coverage/',
       '/dagger.*',
-      '/dist/',
+      '*.tsbuildinfo',
       '/fixtures/',
     ],
   },
@@ -172,5 +172,29 @@ project.package?.addField('packageManager', 'pnpm@12.11.2')
 project.package?.setScript('start', 'pnpm run -s lint; pnpm run -s test')
 project.package?.setScript('test', 'vitest run --coverage')
 project.package?.setScript('lint', 'eslint .')
+
+project.package?.addField('publishConfig', {
+  access: 'public',
+  main: 'dist/index.js',
+  types: 'dist/index.d.ts',
+})
+
+project.package?.setScript(
+  'prepublishOnly',
+  'rm -rf dist; tsc --project tsconfig.build.json',
+)
+
+new TypeScriptConfig(project, {
+  fileName: 'tsconfig.build.json',
+  config: {
+    extends: '@langri-sha/tsconfig/build',
+    compilerOptions: {
+      module: 'nodenext',
+      moduleResolution: 'nodenext',
+    },
+    include: ['src'],
+    exclude: ['**/*.test.*'],
+  },
+})
 
 project.synth()
