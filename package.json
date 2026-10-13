@@ -52,7 +52,7 @@
     "lint-staged": "17.6.0",
     "memfs": "^4.80.0",
     "prettier": "3.9.9",
-    "projen": "0.104.1",
+    "projen": "0.104.5",
     "tsx": "4.23.15",
     "vitest": "5.0.3",
     "webpack": "5.111.1"

@@ -187,7 +187,7 @@ importers:
         version: 0.4.11(prettier@3.9.9)
       '@langri-sha/projen-project':
         specifier: 0.38.1
-        version: 0.38.1(@babel/core@7.29.7(supports-color@8.1.1))(eslint@10.12.0(supports-color@8.1.1))(husky@9.1.7)(lint-staged@17.6.0)(prettier@3.9.9)(projen@0.104.1(constructs@10.8.1))(supports-color@8.1.1)(tsx@4.23.15)(typescript@6.0.3)
+        version: 0.38.1(@babel/core@7.29.7(supports-color@8.1.1))(eslint@10.12.0(supports-color@8.1.1))(husky@9.1.7)(lint-staged@17.6.0)(prettier@3.9.9)(projen@0.104.5(constructs@10.8.1))(supports-color@8.1.1)(tsx@4.23.15)(typescript@6.0.3)
       '@langri-sha/vitest':
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3)
@@ -210,8 +210,8 @@ importers:
         specifier: 3.9.9
         version: 3.9.9
       projen:
-        specifier: 0.104.1
-        version: 0.104.1(constructs@10.8.1)
+        specifier: 0.104.5
+        version: 0.104.5(constructs@10.8.1)
       tsx:
         specifier: 4.23.15
         version: 4.23.15
@@ -2698,8 +2698,8 @@ packages:
     peerDependencies:
       projen: '>=0.86.0 <1.0.0'
 
-  projen@0.104.1:
-    resolution: {integrity: sha512-+xbjYg592AOcTcaxlzCj3LvLUP2yFwNs5MaKatWJot8RKDM+Q8TnHwsMYEJuYSUgTNxSnkCqq2oh96exkQAsLQ==}
+  projen@0.104.5:
+    resolution: {integrity: sha512-t0Ja/zrLpbcJcuu2duNQZ65NxxQbgUOnrUGDztoRV7dEEU5MWn8/dXlxnYXyj50ftyNxl42zoPyrVw53q0DQZA==}
     engines: {node: '>= 16.0.0'}
     hasBin: true
     peerDependencies:
@@ -3758,32 +3758,32 @@ snapshots:
       prettier: 3.9.9
       prettier-plugin-ini: 1.3.0
 
-  '@langri-sha/projen-project@0.38.1(@babel/core@7.29.7(supports-color@8.1.1))(eslint@10.12.0(supports-color@8.1.1))(husky@9.1.7)(lint-staged@17.6.0)(prettier@3.9.9)(projen@0.104.1(constructs@10.8.1))(supports-color@8.1.1)(tsx@4.23.15)(typescript@6.0.3)':
+  '@langri-sha/projen-project@0.38.1(@babel/core@7.29.7(supports-color@8.1.1))(eslint@10.12.0(supports-color@8.1.1))(husky@9.1.7)(lint-staged@17.6.0)(prettier@3.9.9)(projen@0.104.5(constructs@10.8.1))(supports-color@8.1.1)(tsx@4.23.15)(typescript@6.0.3)':
     dependencies:
-      projen: 0.104.1(constructs@10.8.1)
-      projen-babel-config: 0.5.19(@babel/core@7.29.7(supports-color@8.1.1))(projen@0.104.1(constructs@10.8.1))
-      projen-beachball: 0.5.16(projen@0.104.1(constructs@10.8.1))
-      projen-cargo: 0.2.1(projen@0.104.1(constructs@10.8.1))
-      projen-codeowners: 0.5.16(projen@0.104.1(constructs@10.8.1))
-      projen-dagger: 0.3.5(projen@0.104.1(constructs@10.8.1))
-      projen-editorconfig: 0.6.16(projen@0.104.1(constructs@10.8.1))
-      projen-eslint: 0.3.20(eslint@10.12.0(supports-color@8.1.1))(projen@0.104.1(constructs@10.8.1))
-      projen-husky: 0.3.26(husky@9.1.7)(projen@0.104.1(constructs@10.8.1))
-      projen-jest-config: 0.4.22(projen@0.104.1(constructs@10.8.1))
-      projen-license: 0.3.19(projen@0.104.1(constructs@10.8.1))
-      projen-lint-staged: 0.3.21(lint-staged@17.6.0)(projen@0.104.1(constructs@10.8.1))
-      projen-lint-synthesized: 0.5.21(projen@0.104.1(constructs@10.8.1))(supports-color@8.1.1)
-      projen-pnpm-workspace: 0.4.16(projen@0.104.1(constructs@10.8.1))
-      projen-prettier: 0.4.21(prettier@3.9.9)(projen@0.104.1(constructs@10.8.1))
-      projen-readme: 0.1.16(projen@0.104.1(constructs@10.8.1))
-      projen-renovate: 0.4.28(projen@0.104.1(constructs@10.8.1))
-      projen-ruff: 0.1.3(projen@0.104.1(constructs@10.8.1))
-      projen-skills: 0.1.2(projen@0.104.1(constructs@10.8.1))
-      projen-swcrc: 0.1.29(projen@0.104.1(constructs@10.8.1))
-      projen-ty: 0.1.3(projen@0.104.1(constructs@10.8.1))
-      projen-typescript-config: 0.5.24(projen@0.104.1(constructs@10.8.1))
-      projen-uv: 0.2.2(projen@0.104.1(constructs@10.8.1))
-      projen-worktrunk: 0.1.8(projen@0.104.1(constructs@10.8.1))
+      projen: 0.104.5(constructs@10.8.1)
+      projen-babel-config: 0.5.19(@babel/core@7.29.7(supports-color@8.1.1))(projen@0.104.5(constructs@10.8.1))
+      projen-beachball: 0.5.16(projen@0.104.5(constructs@10.8.1))
+      projen-cargo: 0.2.1(projen@0.104.5(constructs@10.8.1))
+      projen-codeowners: 0.5.16(projen@0.104.5(constructs@10.8.1))
+      projen-dagger: 0.3.5(projen@0.104.5(constructs@10.8.1))
+      projen-editorconfig: 0.6.16(projen@0.104.5(constructs@10.8.1))
+      projen-eslint: 0.3.20(eslint@10.12.0(supports-color@8.1.1))(projen@0.104.5(constructs@10.8.1))
+      projen-husky: 0.3.26(husky@9.1.7)(projen@0.104.5(constructs@10.8.1))
+      projen-jest-config: 0.4.22(projen@0.104.5(constructs@10.8.1))
+      projen-license: 0.3.19(projen@0.104.5(constructs@10.8.1))
+      projen-lint-staged: 0.3.21(lint-staged@17.6.0)(projen@0.104.5(constructs@10.8.1))
+      projen-lint-synthesized: 0.5.21(projen@0.104.5(constructs@10.8.1))(supports-color@8.1.1)
+      projen-pnpm-workspace: 0.4.16(projen@0.104.5(constructs@10.8.1))
+      projen-prettier: 0.4.21(prettier@3.9.9)(projen@0.104.5(constructs@10.8.1))
+      projen-readme: 0.1.16(projen@0.104.5(constructs@10.8.1))
+      projen-renovate: 0.4.28(projen@0.104.5(constructs@10.8.1))
+      projen-ruff: 0.1.3(projen@0.104.5(constructs@10.8.1))
+      projen-skills: 0.1.2(projen@0.104.5(constructs@10.8.1))
+      projen-swcrc: 0.1.29(projen@0.104.5(constructs@10.8.1))
+      projen-ty: 0.1.3(projen@0.104.5(constructs@10.8.1))
+      projen-typescript-config: 0.5.24(projen@0.104.5(constructs@10.8.1))
+      projen-uv: 0.2.2(projen@0.104.5(constructs@10.8.1))
+      projen-worktrunk: 0.1.8(projen@0.104.5(constructs@10.8.1))
       ramda: 0.32.0
       semver: 7.8.5
     optionalDependencies:
@@ -5651,123 +5651,123 @@ snapshots:
     dependencies:
       parse-ms: 4.0.0
 
-  projen-babel-config@0.5.19(@babel/core@7.29.7(supports-color@8.1.1))(projen@0.104.1(constructs@10.8.1)):
+  projen-babel-config@0.5.19(@babel/core@7.29.7(supports-color@8.1.1))(projen@0.104.5(constructs@10.8.1)):
     dependencies:
-      projen: 0.104.1(constructs@10.8.1)
+      projen: 0.104.5(constructs@10.8.1)
       serialize-javascript: 7.1.2
     optionalDependencies:
       '@babel/core': 7.29.7(supports-color@8.1.1)
 
-  projen-beachball@0.5.16(projen@0.104.1(constructs@10.8.1)):
+  projen-beachball@0.5.16(projen@0.104.5(constructs@10.8.1)):
     dependencies:
-      projen: 0.104.1(constructs@10.8.1)
+      projen: 0.104.5(constructs@10.8.1)
 
-  projen-cargo@0.2.1(projen@0.104.1(constructs@10.8.1)):
+  projen-cargo@0.2.1(projen@0.104.5(constructs@10.8.1)):
     dependencies:
-      projen: 0.104.1(constructs@10.8.1)
+      projen: 0.104.5(constructs@10.8.1)
 
-  projen-codeowners@0.5.16(projen@0.104.1(constructs@10.8.1)):
+  projen-codeowners@0.5.16(projen@0.104.5(constructs@10.8.1)):
     dependencies:
-      projen: 0.104.1(constructs@10.8.1)
+      projen: 0.104.5(constructs@10.8.1)
 
-  projen-dagger@0.3.5(projen@0.104.1(constructs@10.8.1)):
+  projen-dagger@0.3.5(projen@0.104.5(constructs@10.8.1)):
     dependencies:
-      projen: 0.104.1(constructs@10.8.1)
+      projen: 0.104.5(constructs@10.8.1)
 
-  projen-editorconfig@0.6.16(projen@0.104.1(constructs@10.8.1)):
+  projen-editorconfig@0.6.16(projen@0.104.5(constructs@10.8.1)):
     dependencies:
-      projen: 0.104.1(constructs@10.8.1)
+      projen: 0.104.5(constructs@10.8.1)
 
-  projen-eslint@0.3.20(eslint@10.12.0(supports-color@8.1.1))(projen@0.104.1(constructs@10.8.1)):
+  projen-eslint@0.3.20(eslint@10.12.0(supports-color@8.1.1))(projen@0.104.5(constructs@10.8.1)):
     dependencies:
-      projen: 0.104.1(constructs@10.8.1)
+      projen: 0.104.5(constructs@10.8.1)
       serialize-javascript: 7.1.2
     optionalDependencies:
       eslint: 10.12.0(supports-color@8.1.1)
 
-  projen-husky@0.3.26(husky@9.1.7)(projen@0.104.1(constructs@10.8.1)):
+  projen-husky@0.3.26(husky@9.1.7)(projen@0.104.5(constructs@10.8.1)):
     dependencies:
-      projen: 0.104.1(constructs@10.8.1)
+      projen: 0.104.5(constructs@10.8.1)
     optionalDependencies:
       husky: 9.1.7
 
-  projen-jest-config@0.4.22(projen@0.104.1(constructs@10.8.1)):
+  projen-jest-config@0.4.22(projen@0.104.5(constructs@10.8.1)):
     dependencies:
-      projen: 0.104.1(constructs@10.8.1)
+      projen: 0.104.5(constructs@10.8.1)
       serialize-javascript: 7.1.2
 
-  projen-license@0.3.19(projen@0.104.1(constructs@10.8.1)):
+  projen-license@0.3.19(projen@0.104.5(constructs@10.8.1)):
     dependencies:
       license-o-matic: 1.2.0
-      projen: 0.104.1(constructs@10.8.1)
+      projen: 0.104.5(constructs@10.8.1)
 
-  projen-lint-staged@0.3.21(lint-staged@17.6.0)(projen@0.104.1(constructs@10.8.1)):
+  projen-lint-staged@0.3.21(lint-staged@17.6.0)(projen@0.104.5(constructs@10.8.1)):
     dependencies:
-      projen: 0.104.1(constructs@10.8.1)
+      projen: 0.104.5(constructs@10.8.1)
       serialize-javascript: 7.1.2
     optionalDependencies:
       lint-staged: 17.6.0
 
-  projen-lint-synthesized@0.5.21(projen@0.104.1(constructs@10.8.1))(supports-color@8.1.1):
+  projen-lint-synthesized@0.5.21(projen@0.104.5(constructs@10.8.1))(supports-color@8.1.1):
     dependencies:
       debug: 4.4.3(supports-color@8.1.1)
       execa: 10.1.0
       minimatch: 10.2.6
-      projen: 0.104.1(constructs@10.8.1)
+      projen: 0.104.5(constructs@10.8.1)
     transitivePeerDependencies:
       - supports-color
 
-  projen-pnpm-workspace@0.4.16(projen@0.104.1(constructs@10.8.1)):
+  projen-pnpm-workspace@0.4.16(projen@0.104.5(constructs@10.8.1)):
     dependencies:
-      projen: 0.104.1(constructs@10.8.1)
+      projen: 0.104.5(constructs@10.8.1)
       yaml: 2.9.1
 
-  projen-prettier@0.4.21(prettier@3.9.9)(projen@0.104.1(constructs@10.8.1)):
+  projen-prettier@0.4.21(prettier@3.9.9)(projen@0.104.5(constructs@10.8.1)):
     dependencies:
-      projen: 0.104.1(constructs@10.8.1)
+      projen: 0.104.5(constructs@10.8.1)
       serialize-javascript: 7.1.2
     optionalDependencies:
       prettier: 3.9.9
 
-  projen-readme@0.1.16(projen@0.104.1(constructs@10.8.1)):
+  projen-readme@0.1.16(projen@0.104.5(constructs@10.8.1)):
     dependencies:
-      projen: 0.104.1(constructs@10.8.1)
+      projen: 0.104.5(constructs@10.8.1)
 
-  projen-renovate@0.4.28(projen@0.104.1(constructs@10.8.1)):
+  projen-renovate@0.4.28(projen@0.104.5(constructs@10.8.1)):
     dependencies:
-      projen: 0.104.1(constructs@10.8.1)
+      projen: 0.104.5(constructs@10.8.1)
 
-  projen-ruff@0.1.3(projen@0.104.1(constructs@10.8.1)):
+  projen-ruff@0.1.3(projen@0.104.5(constructs@10.8.1)):
     dependencies:
-      projen: 0.104.1(constructs@10.8.1)
+      projen: 0.104.5(constructs@10.8.1)
 
-  projen-skills@0.1.2(projen@0.104.1(constructs@10.8.1)):
+  projen-skills@0.1.2(projen@0.104.5(constructs@10.8.1)):
     dependencies:
-      projen: 0.104.1(constructs@10.8.1)
+      projen: 0.104.5(constructs@10.8.1)
 
-  projen-swcrc@0.1.29(projen@0.104.1(constructs@10.8.1)):
+  projen-swcrc@0.1.29(projen@0.104.5(constructs@10.8.1)):
     dependencies:
-      projen: 0.104.1(constructs@10.8.1)
+      projen: 0.104.5(constructs@10.8.1)
 
-  projen-ty@0.1.3(projen@0.104.1(constructs@10.8.1)):
+  projen-ty@0.1.3(projen@0.104.5(constructs@10.8.1)):
     dependencies:
-      projen: 0.104.1(constructs@10.8.1)
+      projen: 0.104.5(constructs@10.8.1)
 
-  projen-typescript-config@0.5.24(projen@0.104.1(constructs@10.8.1)):
+  projen-typescript-config@0.5.24(projen@0.104.5(constructs@10.8.1)):
     dependencies:
       '@schemastore/tsconfig': 1.0.11
-      projen: 0.104.1(constructs@10.8.1)
+      projen: 0.104.5(constructs@10.8.1)
 
-  projen-uv@0.2.2(projen@0.104.1(constructs@10.8.1)):
+  projen-uv@0.2.2(projen@0.104.5(constructs@10.8.1)):
     dependencies:
-      projen: 0.104.1(constructs@10.8.1)
+      projen: 0.104.5(constructs@10.8.1)
       smol-toml: 1.9.1
 
-  projen-worktrunk@0.1.8(projen@0.104.1(constructs@10.8.1)):
+  projen-worktrunk@0.1.8(projen@0.104.5(constructs@10.8.1)):
     dependencies:
-      projen: 0.104.1(constructs@10.8.1)
+      projen: 0.104.5(constructs@10.8.1)
 
-  projen@0.104.1(constructs@10.8.1):
+  projen@0.104.5(constructs@10.8.1):
     dependencies:
       constructs: 10.8.1
 
