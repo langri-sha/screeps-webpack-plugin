@@ -131,9 +131,9 @@ Share your feedback, bugs and PRs on the
 [issues tracker](https://github.com/langri-sha/screeps-webpack-plugin/issues).
 
 [ci]:
-  https://github.com/langri-sha/screeps-webpack-plugin/actions/workflows/check.yml
+  https://github.com/langri-sha/screeps-webpack-plugin/actions/workflows/workspace.yml
 [ci-badge]:
-  https://github.com/langri-sha/screeps-webpack-plugin/actions/workflows/check.yml/badge.svg
+  https://github.com/langri-sha/screeps-webpack-plugin/actions/workflows/workspace.yml/badge.svg
 [npm]: https://www.npmjs.com/package/screeps-webpack-plugin
 [npm-badge]: https://img.shields.io/npm/v/screeps-webpack-plugin.svg
 [node-badge]: https://img.shields.io/node/v/screeps-webpack-plugin.svg
