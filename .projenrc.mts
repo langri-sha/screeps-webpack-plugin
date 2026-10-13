@@ -51,6 +51,7 @@ const project = new Project({
       },
     ],
   },
+  lintSynthesized: {},
   npmIgnore: {
     ignorePatterns: [
       '/*.yaml',
