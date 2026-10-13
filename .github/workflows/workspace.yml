@@ -22,3 +22,15 @@ jobs:
       typescript: true
       vitest: true
     secrets: inherit
+
+  smoke:
+    name: Smoke
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: langri-sha/github/actions/pnpm@v0.24.0
+      - run: pnpm smoke

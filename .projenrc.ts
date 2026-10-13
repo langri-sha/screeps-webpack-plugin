@@ -64,6 +64,7 @@ const project = new Project({
         'pnpm-workspace.yaml',
         'prettier.config.js',
         'renovate.json5',
+        'scripts/**',
         'tsconfig.json',
       ],
     },
@@ -129,6 +130,7 @@ const project = new Project({
       '/dagger.*',
       '*.tsbuildinfo',
       '/fixtures/',
+      '/scripts/',
     ],
   },
   prettier: {
@@ -178,6 +180,8 @@ project.package?.addField('publishConfig', {
   main: 'dist/index.js',
   types: 'dist/index.d.ts',
 })
+
+project.package?.setScript('smoke', 'node scripts/smoke.js')
 
 project.package?.setScript(
   'prepublishOnly',
