@@ -46,7 +46,9 @@ function compile(options: Configuration): Promise<Compiled> {
 
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
-      if (err || !stats) return reject(err)
+      if (err || !stats) {
+        return reject(err)
+      }
 
       debug(stats.toJson())
 
