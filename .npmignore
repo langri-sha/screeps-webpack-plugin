@@ -8,5 +8,6 @@ tsconfig*.json
 /CODEOWNERS
 /change/
 /coverage/
+/dagger.*
 /dist/
 /fixtures/

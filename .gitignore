@@ -24,6 +24,7 @@ node_modules/
 !/.projen/files.json
 !/package.json
 !/tsconfig.json
+!/dagger.toml
 !/eslint.config.mjs
 !/prettier.config.mjs
 !/.prettierignore

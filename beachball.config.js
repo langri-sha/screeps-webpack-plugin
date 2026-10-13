@@ -15,6 +15,8 @@ module.exports = {
     '.projenrc.mts',
     'CODEOWNERS',
     'beachball.config.js',
+    'dagger.lock',
+    'dagger.toml',
     'eslint.config.mjs',
     'lint-staged.config.mjs',
     'pnpm-lock.yaml',
