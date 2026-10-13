@@ -31,6 +31,7 @@ const project = new Project({
     deps: ['debug@^4.0.0', 'screeps-modules@^1.1.1', 'tapable@^2.0.0'],
     devDeps: [
       '@langri-sha/eslint-config@0.9.19',
+      '@langri-sha/prettier@0.4.11',
       'c8@^12.0.0',
       'memfs@^4.80.0',
       'webpack@5.111.1',
@@ -59,6 +60,9 @@ const project = new Project({
       '/renovate.json',
       '/test.js',
     ],
+  },
+  prettier: {
+    ignorePatterns: ['CHANGELOG.md'],
   },
   pnpmWorkspace: {
     minimumReleaseAgeExclude: ['@langri-sha/*', ...Project.presetPackages],

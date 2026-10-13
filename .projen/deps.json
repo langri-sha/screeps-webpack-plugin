@@ -6,6 +6,11 @@
       "type": "build"
     },
     {
+      "name": "@langri-sha/prettier",
+      "version": "0.4.11",
+      "type": "build"
+    },
+    {
       "name": "@langri-sha/projen-project",
       "version": "*",
       "type": "build"
@@ -23,6 +28,11 @@
     {
       "name": "memfs",
       "version": "^4.80.0",
+      "type": "build"
+    },
+    {
+      "name": "prettier",
+      "version": "3.9.9",
       "type": "build"
     },
     {
