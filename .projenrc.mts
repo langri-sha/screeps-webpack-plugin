@@ -55,6 +55,7 @@ const project = new Project({
   pnpmWorkspace: {
     minimumReleaseAgeExclude: ['@langri-sha/*', ...Project.presetPackages],
   },
+  worktrunk: {},
 })
 
 project.gitignore.addPatterns('coverage/')

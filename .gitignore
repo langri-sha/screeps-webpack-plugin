@@ -3,6 +3,7 @@
 !.babelrc
 !.dockerignore
 !.editorconfig
+!.env.example
 !.gitattributes
 !.gitignore
 !.gitkeep
@@ -25,5 +26,7 @@ node_modules/
 !/license
 !/.npmignore
 !/pnpm-workspace.yaml
+!/.config
+!/.config/wt.toml
 coverage/
 !/.projenrc.mts
