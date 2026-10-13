@@ -23,6 +23,7 @@ node_modules/
 !/CODEOWNERS
 !/.editorconfig
 !/license
+!/.npmignore
 !/pnpm-workspace.yaml
 coverage/
 !/.projenrc.mts
