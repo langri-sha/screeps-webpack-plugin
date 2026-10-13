@@ -22,6 +22,8 @@ node_modules/
 !/.projen/files.json
 !/package.json
 !/eslint.config.mjs
+!/prettier.config.mjs
+!/.prettierignore
 !/CODEOWNERS
 !/.editorconfig
 !/license

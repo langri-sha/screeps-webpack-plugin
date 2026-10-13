@@ -20,10 +20,12 @@
   },
   "devDependencies": {
     "@langri-sha/eslint-config": "0.9.19",
+    "@langri-sha/prettier": "0.4.11",
     "@langri-sha/projen-project": "0.38.1",
     "c8": "^12.0.0",
     "eslint": "10.12.0",
     "memfs": "^4.80.0",
+    "prettier": "3.9.9",
     "projen": "0.104.1",
     "tsx": "4.23.15",
     "webpack": "5.111.1"
