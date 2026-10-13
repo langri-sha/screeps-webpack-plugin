@@ -33,8 +33,10 @@ const project = new Project({
       '@langri-sha/eslint-config@0.9.19',
       '@langri-sha/lint-staged@0.9.11',
       '@langri-sha/prettier@0.4.11',
-      'c8@^12.0.0',
+      '@langri-sha/vitest@0.2.3',
+      '@vitest/coverage-v8@5.0.3',
       'memfs@^4.80.0',
+      'vitest@5.0.3',
       'webpack@5.111.1',
     ],
     peerDeps: ['webpack@^5.0.0'],
@@ -46,7 +48,7 @@ const project = new Project({
   eslint: {
     config: [
       {
-        files: ['index.js', 'index.test.js'],
+        files: ['index.js'],
         rules: { '@typescript-eslint/no-require-imports': 'off' },
       },
     ],
@@ -81,7 +83,7 @@ project.gitignore.addPatterns('coverage/')
 project.package?.addField('packageManager', 'pnpm@12.11.2')
 
 project.package?.setScript('start', 'pnpm run -s lint; pnpm run -s test')
-project.package?.setScript('test', 'c8 node --test index.test.js')
+project.package?.setScript('test', 'vitest run --coverage')
 project.package?.setScript('lint', 'eslint .')
 
 project.synth()
