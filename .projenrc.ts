@@ -9,7 +9,7 @@ const project = new Project({
     bugsUrl: 'https://github.com/langri-sha/screeps-webpack-plugin/issues',
     copyrightYear: '2016',
     description: 'Compile your AI against a Screeps server',
-    entrypoint: 'src/index.js',
+    entrypoint: 'src/index.ts',
     type: 'module',
     homepage: 'https://github.com/langri-sha/screeps-webpack-plugin#readme',
     keywords: [
@@ -36,6 +36,8 @@ const project = new Project({
       '@langri-sha/prettier@0.4.11',
       '@langri-sha/tsconfig@1.1.1',
       '@langri-sha/vitest@0.2.3',
+      '@types/debug@4.1.12',
+      '@types/node@24.19.1',
       '@vitest/coverage-v8@5.0.3',
       'memfs@^4.80.0',
       'vitest@5.0.3',
@@ -103,7 +105,12 @@ const project = new Project({
   },
   editorConfig: {},
   eslint: {
-    config: [],
+    config: [
+      {
+        files: ['src/index.ts'],
+        rules: { '@typescript-eslint/no-namespace': 'off' },
+      },
+    ],
   },
   husky: {
     'pre-commit': 'lint-staged',
@@ -152,7 +159,7 @@ const project = new Project({
       compilerOptions: {
         noEmit: true,
       },
-      include: ['src/index.d.ts', 'src/types.test.ts'],
+      include: ['src'],
     },
   },
   worktrunk: {},
@@ -160,7 +167,6 @@ const project = new Project({
 
 project.gitignore.addPatterns('coverage/')
 
-project.package?.addField('types', 'src/index.d.ts')
 project.package?.addField('packageManager', 'pnpm@12.11.2')
 
 project.package?.setScript('start', 'pnpm run -s lint; pnpm run -s test')
