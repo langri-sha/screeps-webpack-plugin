@@ -19,7 +19,9 @@ declare namespace ScreepsWebpackPlugin {
   }
 
   interface Client {
-    commit(branch: string | undefined, modules: Modules): Promise<unknown>
+    commit(
+      ...args: [modules: Modules] | [branch: string, modules: Modules]
+    ): Promise<unknown>
   }
 
   interface CollectModulesData {

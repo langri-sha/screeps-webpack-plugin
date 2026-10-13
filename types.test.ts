@@ -1,4 +1,5 @@
 import { expectTypeOf, test } from '@langri-sha/vitest'
+import ScreepsModules from 'screeps-modules'
 import type { Compilation } from 'webpack'
 
 import ScreepsWebpackPlugin from './index.js'
@@ -49,4 +50,10 @@ test('hooks are tapped per compilation', () => {
   hooks.afterCommit.tap('Test', (body) => {
     expectTypeOf(body).toBeUnknown()
   })
+})
+
+test('a screeps-modules client is accepted as the configured client', () => {
+  const client: ScreepsWebpackPlugin.Client = new ScreepsModules()
+
+  expectTypeOf(client).toHaveProperty('commit')
 })
