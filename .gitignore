@@ -21,6 +21,7 @@ node_modules/
 !/.projen/files.json
 !/package.json
 !/CODEOWNERS
+!/.editorconfig
 !/license
 !/pnpm-workspace.yaml
 coverage/
