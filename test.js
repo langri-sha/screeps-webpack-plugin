@@ -113,7 +113,7 @@ test('Test commit', async t => {
       t.assert.ok(client instanceof ScreepsModules)
       t.assert.ok(plugin instanceof ScreepsWebpackPlugin)
 
-      client.commit = (...args) => {
+      client.commit = () => {
         return Promise.resolve('foobar')
       }
 
@@ -194,7 +194,7 @@ test('Test commit source maps', async t => {
   )
 
   const beforeCommit = plugin('beforeCommit', 'tap',
-    (branch, modules) => {
+    (_branch, modules) => {
       t.assert.deepStrictEqual(Object.keys(modules).sort(), ['etc', 'etc.js.map', 'main', 'main.js.map'])
       t.assert.strictEqual(JSON.parse(modules['main.js.map']).file, 'main.js')
     }

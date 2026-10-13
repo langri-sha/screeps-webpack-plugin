@@ -146,7 +146,7 @@ class ScreepsWebpackPlugin {
       .catch(cb)
   }
 
-  configureClient (initial, plugin) {
+  configureClient (_initial, plugin) {
     return new ScreepsModules(plugin.options)
   }
 }
