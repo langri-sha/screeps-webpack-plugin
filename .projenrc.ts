@@ -36,7 +36,7 @@ const project = new Project({
       '@langri-sha/prettier@0.4.11',
       '@langri-sha/tsconfig@1.1.1',
       '@langri-sha/vitest@0.2.3',
-      '@types/debug@4.1.12',
+      '@types/debug@4.1.13',
       '@types/node@24.19.1',
       '@vitest/coverage-v8@5.0.3',
       'memfs@^4.80.0',
