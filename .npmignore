@@ -6,4 +6,4 @@
 /coverage/
 /fixtures/
 /renovate.json
-/test.js
+/index.test.js

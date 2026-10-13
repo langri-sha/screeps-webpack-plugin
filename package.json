@@ -31,7 +31,7 @@
     "lint": "eslint .",
     "prepare": "husky",
     "start": "pnpm run -s lint; pnpm run -s test",
-    "test": "c8 node --test test.js",
+    "test": "c8 node --test index.test.js",
     "worktrunk:dry-run": "projen worktrunk:dry-run",
     "worktrunk:show": "projen worktrunk:show"
   },
