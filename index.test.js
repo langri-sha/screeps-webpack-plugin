@@ -1,12 +1,13 @@
-const test = require('node:test')
+import { expect, test } from '@langri-sha/vitest'
+import createDebug from 'debug'
+import { Volume, createFsFromVolume } from 'memfs'
+import ScreepsModules from 'screeps-modules'
+import webpack from 'webpack'
+import Compilation from 'webpack/lib/Compilation.js'
 
-const debug = require('debug')('screeps-webpack-plugin')
-const { createFsFromVolume, Volume } = require('memfs')
-const ScreepsModules = require('screeps-modules')
-const webpack = require('webpack')
-const Compilation = require('webpack/lib/Compilation')
+import ScreepsWebpackPlugin from './index.js'
 
-const ScreepsWebpackPlugin = require('./index')
+const debug = createDebug('screeps-webpack-plugin')
 
 function compile(options) {
   const compiler = webpack(
@@ -59,21 +60,21 @@ const plugin = (hook, method, fn) =>
     }
   })()
 
-const checkError = (t, err, ...checks) => {
-  t.assert.strictEqual(err.name, 'ScreepsWebpackPluginError')
+const checkError = (err, ...checks) => {
+  expect(err.name).toBe('ScreepsWebpackPluginError')
 
   for (const check of checks) {
-    t.assert.ok(err.toString().match(check))
+    expect(err.toString()).toMatch(check)
   }
 }
 
-test('Test Webpack compiler setup', async (t) => {
-  t.plan(1)
+test('compiles with an unrelated plugin', async () => {
+  expect.assertions(1)
 
   class TestPlugin {
     apply(compiler) {
       compiler.hooks.done.tap('TestPlugin', () => {
-        t.assert.ok(true)
+        expect(true).toBe(true)
       })
     }
   }
@@ -81,33 +82,29 @@ test('Test Webpack compiler setup', async (t) => {
   await compile({ plugins: [new TestPlugin()] })
 })
 
-test("Test requires target 'node'", async (t) => {
-  try {
-    await compile({
-      target: 'web',
-      plugins: [new ScreepsWebpackPlugin()],
-    })
+test("reports an error when the target is not 'node'", async () => {
+  const errors = await compile({
+    target: 'web',
+    plugins: [new ScreepsWebpackPlugin()],
+  }).catch((errors) => errors)
 
-    t.assert.fail()
-  } catch (errors) {
-    t.assert.strictEqual(errors.length, 1)
-    checkError(t, errors[0], 'target', 'node')
-  }
+  expect(errors).toHaveLength(1)
+  checkError(errors[0], 'target', 'node')
 })
 
-test('Test commit', async (t) => {
-  t.plan(10)
+test('commits the collected modules through the configured client', async () => {
+  expect.assertions(10)
 
   const collectModules = plugin(
     'collectModules',
     'tapAsync',
     ({ modules, plugin, compilation }, cb) => {
-      t.assert.deepStrictEqual(Object.keys(modules).sort(), ['etc', 'main'])
-      t.assert.ok(modules.main.match(/foobar/))
-      t.assert.ok(modules.etc.match(/foobar/))
+      expect(Object.keys(modules).sort()).toEqual(['etc', 'main'])
+      expect(modules.main).toMatch(/foobar/)
+      expect(modules.etc).toMatch(/foobar/)
 
-      t.assert.ok(plugin instanceof ScreepsWebpackPlugin)
-      t.assert.ok(compilation instanceof Compilation)
+      expect(plugin).toBeInstanceOf(ScreepsWebpackPlugin)
+      expect(compilation).toBeInstanceOf(Compilation)
 
       modules.quux = 'norf'
 
@@ -116,8 +113,8 @@ test('Test commit', async (t) => {
   )
 
   const configureClient = plugin('configureClient', 'tap', (client, plugin) => {
-    t.assert.ok(client instanceof ScreepsModules)
-    t.assert.ok(plugin instanceof ScreepsWebpackPlugin)
+    expect(client).toBeInstanceOf(ScreepsModules)
+    expect(plugin).toBeInstanceOf(ScreepsWebpackPlugin)
 
     client.commit = () => {
       return Promise.resolve('foobar')
@@ -127,12 +124,12 @@ test('Test commit', async (t) => {
   })
 
   const beforeCommit = plugin('beforeCommit', 'tap', (branch, modules) => {
-    t.assert.strictEqual(branch, 'test')
-    t.assert.strictEqual(modules.quux, 'norf')
+    expect(branch).toBe('test')
+    expect(modules.quux).toBe('norf')
   })
 
   const afterCommit = plugin('afterCommit', 'tap', (body) => {
-    t.assert.strictEqual(body, 'foobar')
+    expect(body).toBe('foobar')
   })
 
   await compile({
@@ -153,21 +150,21 @@ test('Test commit', async (t) => {
   })
 })
 
-test('Test plugin order', async (t) => {
-  t.plan(2)
+test('runs ahead of the plugins listed before it', async () => {
+  expect.assertions(2)
 
   const collectModules = plugin(
     'collectModules',
     'tapAsync',
     ({ modules, plugin, compilation }, cb) => {
-      t.assert.deepStrictEqual(Object.keys(modules).sort(), ['etc', 'main'])
+      expect(Object.keys(modules).sort()).toEqual(['etc', 'main'])
 
       cb(null, { modules, plugin, compilation })
     },
   )
 
   const configureClient = plugin('configureClient', 'tap', (client) => {
-    t.assert.ok(client instanceof ScreepsModules)
+    expect(client).toBeInstanceOf(ScreepsModules)
 
     client.commit = () => Promise.resolve()
 
@@ -179,8 +176,8 @@ test('Test plugin order', async (t) => {
   })
 })
 
-test('Test commit source maps', async (t) => {
-  t.plan(2)
+test('commits the source maps next to the modules', async () => {
+  expect.assertions(2)
 
   const configureClient = plugin('configureClient', 'tap', (client) => {
     client.commit = () => Promise.resolve()
@@ -189,13 +186,13 @@ test('Test commit source maps', async (t) => {
   })
 
   const beforeCommit = plugin('beforeCommit', 'tap', (_branch, modules) => {
-    t.assert.deepStrictEqual(Object.keys(modules).sort(), [
+    expect(Object.keys(modules).sort()).toEqual([
       'etc',
       'etc.js.map',
       'main',
       'main.js.map',
     ])
-    t.assert.strictEqual(JSON.parse(modules['main.js.map']).file, 'main.js')
+    expect(JSON.parse(modules['main.js.map']).file).toBe('main.js')
   })
 
   await compile({
@@ -208,25 +205,22 @@ test('Test commit source maps', async (t) => {
   })
 })
 
-test('Test commit failure', async (t) => {
+test('reports a failed commit as a compilation error', async () => {
   const configureClient = plugin('configureClient', 'tap', (client) => {
     client.commit = () => Promise.reject(new Error('nope'))
 
     return client
   })
 
-  try {
-    await compile({
-      plugins: [new ScreepsWebpackPlugin(), configureClient],
-    })
+  const errors = await compile({
+    plugins: [new ScreepsWebpackPlugin(), configureClient],
+  }).catch((errors) => errors)
 
-    t.assert.fail()
-  } catch ([e]) {
-    checkError(t, e, 'nope')
-  }
+  expect(errors).toHaveLength(1)
+  checkError(errors[0], 'nope')
 })
 
-test('Test constructor', (t) => {
-  t.assert.doesNotThrow(() => new ScreepsWebpackPlugin())
-  t.assert.ok(new ScreepsWebpackPlugin().options)
+test('constructs without options', () => {
+  expect(() => new ScreepsWebpackPlugin()).not.toThrow()
+  expect(new ScreepsWebpackPlugin().options).toBeTruthy()
 })

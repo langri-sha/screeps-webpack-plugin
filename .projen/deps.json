@@ -21,8 +21,13 @@
       "type": "build"
     },
     {
-      "name": "c8",
-      "version": "^12.0.0",
+      "name": "@langri-sha/vitest",
+      "version": "0.2.3",
+      "type": "build"
+    },
+    {
+      "name": "@vitest/coverage-v8",
+      "version": "5.0.3",
       "type": "build"
     },
     {
@@ -58,6 +63,11 @@
     {
       "name": "tsx",
       "version": "4.23.15",
+      "type": "build"
+    },
+    {
+      "name": "vitest",
+      "version": "5.0.3",
       "type": "build"
     },
     {
