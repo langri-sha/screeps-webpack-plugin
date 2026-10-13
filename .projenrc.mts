@@ -133,25 +133,21 @@ const project = new Project({
     ignorePatterns: ['CHANGELOG.md'],
   },
   pnpmWorkspace: {
-    minimumReleaseAgeExclude: ['@langri-sha/*', ...Project.presetPackages],
+    minimumReleaseAgeExclude: [
+      '@langri-sha/*',
+      'screeps-modules',
+      ...Project.presetPackages,
+    ],
   },
   renovate: {
+    extends: ['github>langri-sha/renovate-config'],
     packageRules: [
       {
-        description: 'Update our own packages together',
+        description:
+          'Update screeps-modules with our own packages and install it without waiting it out',
         groupName: 'langri-sha projen toolchain',
         groupSlug: 'langri-sha-projen',
-        matchPackageNames: ['@langri-sha/**', ...Project.presetPackages],
-      },
-      {
-        description: 'Install our own packages without waiting them out',
-        matchPackageNames: ['@langri-sha/**', ...Project.presetPackages],
-        minimumReleaseAge: null,
-      },
-      {
-        description:
-          'Install our own GitHub Actions and Terraform modules without waiting them out',
-        matchPackageNames: ['langri-sha/**'],
+        matchPackageNames: ['screeps-modules'],
         minimumReleaseAge: null,
       },
     ],
