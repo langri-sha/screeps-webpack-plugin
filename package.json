@@ -11,7 +11,7 @@
     "worktrunk:show": "projen worktrunk:show",
     "start": "pnpm run -s lint; pnpm run -s test",
     "test": "c8 node --test test.js",
-    "lint": "standard | snazzy"
+    "lint": "eslint ."
   },
   "author": {
     "name": "Filip Dupanović",
@@ -19,12 +19,12 @@
     "organization": false
   },
   "devDependencies": {
+    "@langri-sha/eslint-config": "0.9.19",
     "@langri-sha/projen-project": "0.38.1",
     "c8": "^12.0.0",
+    "eslint": "10.12.0",
     "memfs": "^4.80.0",
     "projen": "0.104.1",
-    "snazzy": "^9.0.0",
-    "standard": "^17.0.0",
     "tsx": "4.23.15",
     "webpack": "5.111.1"
   },

@@ -1,6 +1,11 @@
 {
   "dependencies": [
     {
+      "name": "@langri-sha/eslint-config",
+      "version": "0.9.19",
+      "type": "build"
+    },
+    {
       "name": "@langri-sha/projen-project",
       "version": "*",
       "type": "build"
@@ -11,6 +16,11 @@
       "type": "build"
     },
     {
+      "name": "eslint",
+      "version": "10.12.0",
+      "type": "build"
+    },
+    {
       "name": "memfs",
       "version": "^4.80.0",
       "type": "build"
@@ -18,16 +28,6 @@
     {
       "name": "projen",
       "version": "0.104.1",
-      "type": "build"
-    },
-    {
-      "name": "snazzy",
-      "version": "^9.0.0",
-      "type": "build"
-    },
-    {
-      "name": "standard",
-      "version": "^17.0.0",
       "type": "build"
     },
     {

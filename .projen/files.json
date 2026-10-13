@@ -9,6 +9,7 @@
     ".projen/files.json",
     ".projen/tasks.json",
     "CODEOWNERS",
+    "eslint.config.mjs",
     "license",
     "pnpm-workspace.yaml"
   ],
