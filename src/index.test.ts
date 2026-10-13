@@ -2,14 +2,23 @@ import { expect, test } from '@langri-sha/vitest'
 import createDebug from 'debug'
 import { Volume, createFsFromVolume } from 'memfs'
 import ScreepsModules from 'screeps-modules'
-import webpack from 'webpack'
-import Compilation from 'webpack/lib/Compilation.js'
+import webpack, {
+  Compilation,
+  type Compiler,
+  type Configuration,
+  type Stats,
+} from 'webpack'
 
 import ScreepsWebpackPlugin from './index.js'
 
 const debug = createDebug('screeps-webpack-plugin')
 
-function compile(options) {
+interface Compiled {
+  compiler: Compiler
+  stats: Stats
+}
+
+function compile(options: Configuration): Promise<Compiled> {
   const compiler = webpack(
     Object.assign(
       {
@@ -31,13 +40,15 @@ function compile(options) {
       options,
     ),
   )
-  compiler.outputFileSystem = createFsFromVolume(new Volume())
+  compiler.outputFileSystem = createFsFromVolume(
+    new Volume(),
+  ) as unknown as Compiler['outputFileSystem']
 
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
-      debug(stats.toJson())
+      if (err || !stats) return reject(err)
 
-      if (err) return reject(err)
+      debug(stats.toJson())
 
       if (stats.hasErrors() || stats.hasWarnings()) {
         return reject(stats.compilation.errors)
@@ -48,19 +59,47 @@ function compile(options) {
   })
 }
 
-const plugin = (hook, method, fn) =>
+interface HookCallbacks {
+  collectModules: (
+    data: ScreepsWebpackPlugin.CollectModulesData,
+    cb: (
+      err: Error | null,
+      data?: ScreepsWebpackPlugin.CollectModulesData,
+    ) => void,
+  ) => void
+  configureClient: (
+    client: ScreepsWebpackPlugin.Client,
+    plugin: ScreepsWebpackPlugin,
+  ) => ScreepsWebpackPlugin.Client
+  beforeCommit: (
+    branch: string | undefined,
+    modules: ScreepsWebpackPlugin.Modules,
+  ) => void
+  afterCommit: (body: unknown) => void
+}
+
+const plugin = <Hook extends keyof HookCallbacks>(
+  hook: Hook,
+  method: 'tap' | 'tapAsync',
+  fn: HookCallbacks[Hook],
+) =>
   new (class {
-    apply(compiler) {
+    apply(compiler: Compiler) {
       compiler.hooks.compilation.tap('TestPlugin', (compilation) => {
-        ScreepsWebpackPlugin.getHooks(compilation)[hook][method](
-          'TestPlugin',
-          fn,
-        )
+        const hooks = ScreepsWebpackPlugin.getHooks(compilation)[
+          hook
+        ] as unknown
+        const tapper = hooks as Record<
+          typeof method,
+          (name: string, fn: unknown) => void
+        >
+
+        tapper[method]('TestPlugin', fn)
       })
     }
   })()
 
-const checkError = (err, ...checks) => {
+const checkError = (err: Error, ...checks: Array<string | RegExp>) => {
   expect(err.name).toBe('ScreepsWebpackPluginError')
 
   for (const check of checks) {
@@ -72,7 +111,7 @@ test('compiles with an unrelated plugin', async () => {
   expect.assertions(1)
 
   class TestPlugin {
-    apply(compiler) {
+    apply(compiler: Compiler) {
       compiler.hooks.done.tap('TestPlugin', () => {
         expect(true).toBe(true)
       })
@@ -192,7 +231,7 @@ test('commits the source maps next to the modules', async () => {
       'main',
       'main.js.map',
     ])
-    expect(JSON.parse(modules['main.js.map']).file).toBe('main.js')
+    expect(JSON.parse(modules['main.js.map'] as string).file).toBe('main.js')
   })
 
   await compile({

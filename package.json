@@ -26,8 +26,7 @@
     "organization": false
   },
   "type": "module",
-  "main": "src/index.js",
-  "types": "src/index.d.ts",
+  "main": "src/index.ts",
   "scripts": {
     "change": "projen change",
     "default": "projen default",
@@ -51,6 +50,8 @@
     "@langri-sha/projen-project": "0.38.2",
     "@langri-sha/tsconfig": "1.1.1",
     "@langri-sha/vitest": "0.2.3",
+    "@types/debug": "4.1.12",
+    "@types/node": "24.19.1",
     "@vitest/coverage-v8": "5.0.3",
     "beachball": "2.66.0",
     "eslint": "10.12.0",
