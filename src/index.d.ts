@@ -48,4 +48,6 @@ declare class ScreepsWebpackPlugin {
   apply(compiler: Compiler): void
 }
 
-export = ScreepsWebpackPlugin
+export default ScreepsWebpackPlugin
+
+export { ScreepsWebpackPlugin as 'module.exports' }
