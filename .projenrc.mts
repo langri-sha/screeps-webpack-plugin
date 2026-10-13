@@ -42,6 +42,16 @@ const project = new Project({
     '*': '@langri-sha',
   },
   editorConfig: {},
+  npmIgnore: {
+    ignorePatterns: [
+      '/*.yaml',
+      '/CODEOWNERS',
+      '/coverage/',
+      '/fixtures/',
+      '/renovate.json',
+      '/test.js',
+    ],
+  },
   pnpmWorkspace: {
     minimumReleaseAgeExclude: ['@langri-sha/*', ...Project.presetPackages],
   },
