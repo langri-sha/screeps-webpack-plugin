@@ -95,6 +95,17 @@
       customType: 'regex',
       datasourceTemplate: 'github-tags',
       versioningTemplate: 'semver',
+      depNameTemplate: 'dagger/dagger',
+      managerFilePatterns: ['/^\\.github/workflows/[^/]+\\.ya?ml$/'],
+      matchStrings: [
+        '(?:^|\\n)[ \\t]*dagger-version:[ \\t]*[\'"]?v(?<currentValue>\\d[^\\s\'"]*)',
+      ],
+      extractVersionTemplate: '^v(?<version>.+)$',
+    },
+    {
+      customType: 'regex',
+      datasourceTemplate: 'github-tags',
+      versioningTemplate: 'semver',
       managerFilePatterns: [
         '/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/',
         '/(^|/)dagger\\.toml$/',
