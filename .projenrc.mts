@@ -30,10 +30,9 @@ const project = new Project({
 
     deps: ['debug@^4.0.0', 'screeps-modules@^1.1.1', 'tapable@^2.0.0'],
     devDeps: [
+      '@langri-sha/eslint-config@0.9.19',
       'c8@^12.0.0',
       'memfs@^4.80.0',
-      'snazzy@^9.0.0',
-      'standard@^17.0.0',
       'webpack@5.111.1',
     ],
     peerDeps: ['webpack@^5.0.0'],
@@ -42,6 +41,15 @@ const project = new Project({
     '*': '@langri-sha',
   },
   editorConfig: {},
+  eslint: {
+    config: [
+      { rules: { 'prettier/prettier': 'off' } },
+      {
+        files: ['index.js', 'test.js'],
+        rules: { '@typescript-eslint/no-require-imports': 'off' },
+      },
+    ],
+  },
   npmIgnore: {
     ignorePatterns: [
       '/*.yaml',
@@ -64,6 +72,6 @@ project.package?.addField('packageManager', 'pnpm@12.11.2')
 
 project.package?.setScript('start', 'pnpm run -s lint; pnpm run -s test')
 project.package?.setScript('test', 'c8 node --test test.js')
-project.package?.setScript('lint', 'standard | snazzy')
+project.package?.setScript('lint', 'eslint .')
 
 project.synth()

@@ -21,6 +21,7 @@ node_modules/
 !/.projen/deps.json
 !/.projen/files.json
 !/package.json
+!/eslint.config.mjs
 !/CODEOWNERS
 !/.editorconfig
 !/license

@@ -8,6 +8,7 @@
 /.npmignore linguist-generated
 /.projen/** linguist-generated
 /CODEOWNERS linguist-generated
+/eslint.config.mjs linguist-generated
 /license linguist-generated
 /package.json linguist-generated
 /pnpm-lock.yaml linguist-generated
