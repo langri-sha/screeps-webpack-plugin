@@ -28,6 +28,7 @@
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
+    "change": "projen change",
     "default": "projen default",
     "lint": "eslint .",
     "prepare": "husky",
@@ -50,6 +51,7 @@
     "@langri-sha/tsconfig": "1.1.1",
     "@langri-sha/vitest": "0.2.3",
     "@vitest/coverage-v8": "5.0.3",
+    "beachball": "2.66.0",
     "eslint": "10.12.0",
     "husky": "9.1.7",
     "lint-staged": "17.6.0",

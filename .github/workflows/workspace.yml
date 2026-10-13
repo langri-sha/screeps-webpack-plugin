@@ -12,6 +12,7 @@ jobs:
       contents: write
     uses: langri-sha/github/.github/workflows/check.yml@v0.24.0
     with:
+      beachball: true
       eslint: true
       packages: true
       prettier: true
