@@ -5,12 +5,14 @@
 /.editorconfig linguist-generated
 /.gitattributes linguist-generated
 /.gitignore linguist-generated
+/.husky/pre-commit linguist-generated
 /.npmignore linguist-generated
 /.prettierignore linguist-generated
 /.projen/** linguist-generated
 /CODEOWNERS linguist-generated
 /eslint.config.mjs linguist-generated
 /license linguist-generated
+/lint-staged.config.mjs linguist-generated
 /package.json linguist-generated
 /pnpm-lock.yaml linguist-generated
 /pnpm-workspace.yaml linguist-generated

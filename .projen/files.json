@@ -4,6 +4,7 @@
     ".editorconfig",
     ".gitattributes",
     ".gitignore",
+    ".husky/pre-commit",
     ".npmignore",
     ".prettierignore",
     ".projen/deps.json",
@@ -12,6 +13,7 @@
     "CODEOWNERS",
     "eslint.config.mjs",
     "license",
+    "lint-staged.config.mjs",
     "pnpm-workspace.yaml",
     "prettier.config.mjs"
   ],

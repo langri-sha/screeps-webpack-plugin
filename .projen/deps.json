@@ -6,6 +6,11 @@
       "type": "build"
     },
     {
+      "name": "@langri-sha/lint-staged",
+      "version": "0.9.11",
+      "type": "build"
+    },
+    {
       "name": "@langri-sha/prettier",
       "version": "0.4.11",
       "type": "build"
@@ -23,6 +28,16 @@
     {
       "name": "eslint",
       "version": "10.12.0",
+      "type": "build"
+    },
+    {
+      "name": "husky",
+      "version": "9.1.7",
+      "type": "build"
+    },
+    {
+      "name": "lint-staged",
+      "version": "17.6.0",
       "type": "build"
     },
     {
