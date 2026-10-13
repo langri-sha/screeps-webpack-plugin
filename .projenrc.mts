@@ -60,13 +60,14 @@ const project = new Project({
   lintSynthesized: {},
   npmIgnore: {
     ignorePatterns: [
+      '*.test.*',
       '/*.config.*',
+      '/*.json5',
       '/*.yaml',
       '/CODEOWNERS',
       '/coverage/',
+      '/dist/',
       '/fixtures/',
-      '/renovate.json',
-      '/index.test.js',
     ],
   },
   prettier: {
