@@ -24,6 +24,5 @@ module.exports = {
     'prettier.config.mjs',
     'renovate.json5',
     'tsconfig.json',
-    'types.test.ts',
   ],
 }

@@ -5,7 +5,7 @@
   "compilerOptions": {
     "noEmit": true
   },
-  "include": ["index.d.ts", "types.test.ts"],
+  "include": ["src/index.d.ts", "src/types.test.ts"],
   "files": [
     ".projenrc.mts",
     "beachball.config.js",

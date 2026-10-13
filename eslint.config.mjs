@@ -4,7 +4,7 @@ export default [
   ...defaults,
   { ignores: ['**/.*', '**/dist/', '!.projenrc.mts'] },
   {
-    files: ['index.js'],
+    files: ['src/index.js'],
     rules: { '@typescript-eslint/no-require-imports': 'off' },
   },
 ]
