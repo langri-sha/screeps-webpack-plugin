@@ -9,7 +9,7 @@ const project = new Project({
     bugsUrl: 'https://github.com/langri-sha/screeps-webpack-plugin/issues',
     copyrightYear: '2016',
     description: 'Compile your AI against a Screeps server',
-    entrypoint: 'index.js',
+    entrypoint: 'src/index.js',
     homepage: 'https://github.com/langri-sha/screeps-webpack-plugin#readme',
     keywords: [
       'branch',
@@ -62,7 +62,6 @@ const project = new Project({
         'prettier.config.mjs',
         'renovate.json5',
         'tsconfig.json',
-        'types.test.ts',
       ],
     },
   },
@@ -105,7 +104,7 @@ const project = new Project({
   eslint: {
     config: [
       {
-        files: ['index.js'],
+        files: ['src/index.js'],
         rules: { '@typescript-eslint/no-require-imports': 'off' },
       },
     ],
@@ -157,7 +156,7 @@ const project = new Project({
       compilerOptions: {
         noEmit: true,
       },
-      include: ['index.d.ts', 'types.test.ts'],
+      include: ['src/index.d.ts', 'src/types.test.ts'],
     },
   },
   worktrunk: {},
@@ -165,7 +164,7 @@ const project = new Project({
 
 project.gitignore.addPatterns('coverage/')
 
-project.package?.addField('types', 'index.d.ts')
+project.package?.addField('types', 'src/index.d.ts')
 project.package?.addField('packageManager', 'pnpm@12.11.2')
 
 project.package?.setScript('start', 'pnpm run -s lint; pnpm run -s test')
