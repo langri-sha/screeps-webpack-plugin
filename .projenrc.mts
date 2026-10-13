@@ -46,7 +46,7 @@ const project = new Project({
   eslint: {
     config: [
       {
-        files: ['index.js', 'test.js'],
+        files: ['index.js', 'index.test.js'],
         rules: { '@typescript-eslint/no-require-imports': 'off' },
       },
     ],
@@ -64,7 +64,7 @@ const project = new Project({
       '/coverage/',
       '/fixtures/',
       '/renovate.json',
-      '/test.js',
+      '/index.test.js',
     ],
   },
   prettier: {
@@ -81,7 +81,7 @@ project.gitignore.addPatterns('coverage/')
 project.package?.addField('packageManager', 'pnpm@12.11.2')
 
 project.package?.setScript('start', 'pnpm run -s lint; pnpm run -s test')
-project.package?.setScript('test', 'c8 node --test test.js')
+project.package?.setScript('test', 'c8 node --test index.test.js')
 project.package?.setScript('lint', 'eslint .')
 
 project.synth()
