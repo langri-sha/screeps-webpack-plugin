@@ -1,12 +1,12 @@
+const test = require('node:test')
+
+const debug = require('debug')('screeps-webpack-plugin')
 const { createFsFromVolume, Volume } = require('memfs')
 const ScreepsModules = require('screeps-modules')
-const test = require('node:test')
 const webpack = require('webpack')
 const Compilation = require('webpack/lib/Compilation')
 
 const ScreepsWebpackPlugin = require('./index')
-
-const debug = require('debug')('screeps-webpack-plugin')
 
 function compile (options) {
   const compiler = webpack(Object.assign({

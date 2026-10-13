@@ -1,9 +1,9 @@
-const debug = require('debug')('screeps-webpack-plugin')
-const path = require('path')
 const fs = require('fs')
-const { AsyncSeriesWaterfallHook, SyncHook, SyncWaterfallHook } = require('tapable')
+const path = require('path')
 
+const debug = require('debug')('screeps-webpack-plugin')
 const ScreepsModules = require('screeps-modules')
+const { AsyncSeriesWaterfallHook, SyncHook, SyncWaterfallHook } = require('tapable')
 
 const PLUGIN_NAME = 'ScreepsWebpackPlugin'
 
