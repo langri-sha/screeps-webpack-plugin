@@ -11,3 +11,4 @@ tsconfig*.json
 /dagger.*
 *.tsbuildinfo
 /fixtures/
+/scripts/

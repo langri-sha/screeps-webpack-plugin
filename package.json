@@ -34,6 +34,7 @@
     "prepare": "husky",
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json",
     "renovate": "projen renovate",
+    "smoke": "node scripts/smoke.js",
     "start": "pnpm run -s lint; pnpm run -s test",
     "test": "vitest run --coverage",
     "worktrunk:dry-run": "projen worktrunk:dry-run",
