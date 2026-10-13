@@ -39,4 +39,5 @@ node_modules/
 !/.config/wt.toml
 !/renovate.json5
 coverage/
+!/tsconfig.build.json
 !/.projenrc.ts
