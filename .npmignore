@@ -6,6 +6,7 @@ tsconfig*.json
 /*.json5
 /*.yaml
 /CODEOWNERS
+/change/
 /coverage/
 /dist/
 /fixtures/

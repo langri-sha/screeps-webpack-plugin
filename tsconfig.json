@@ -8,6 +8,7 @@
   "include": ["index.d.ts", "types.test.ts"],
   "files": [
     ".projenrc.mts",
+    "beachball.config.js",
     "eslint.config.mjs",
     "lint-staged.config.mjs",
     "prettier.config.mjs"

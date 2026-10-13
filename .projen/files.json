@@ -10,6 +10,7 @@
     ".projen/deps.json",
     ".projen/files.json",
     ".projen/tasks.json",
+    "beachball.config.js",
     "CODEOWNERS",
     "eslint.config.mjs",
     "license",
