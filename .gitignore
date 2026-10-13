@@ -33,5 +33,6 @@ node_modules/
 !/pnpm-workspace.yaml
 !/.config
 !/.config/wt.toml
+!/renovate.json5
 coverage/
 !/.projenrc.mts

@@ -30,6 +30,7 @@
     "default": "projen default",
     "lint": "eslint .",
     "prepare": "husky",
+    "renovate": "projen renovate",
     "start": "pnpm run -s lint; pnpm run -s test",
     "test": "vitest run --coverage",
     "worktrunk:dry-run": "projen worktrunk:dry-run",
