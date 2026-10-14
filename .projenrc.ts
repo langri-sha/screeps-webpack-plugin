@@ -31,7 +31,7 @@ const project = new Project({
 
     deps: ['debug@^4.0.0', 'screeps-modules@^2.0.0', 'tapable@^2.0.0'],
     devDeps: [
-      '@langri-sha/eslint-config@0.9.19',
+      '@langri-sha/eslint-config@0.10.0',
       '@langri-sha/lint-staged@0.9.11',
       '@langri-sha/prettier@0.4.11',
       '@langri-sha/tsconfig@1.1.1',
