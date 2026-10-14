@@ -11,6 +11,7 @@
 ["","git-sha",["github.com/dagger/prettier","refs/tags/v0.1.0"],"f791d3c0d8c8049174985155f004904cb7657e79"]
 ["","git-sha",["github.com/dagger/vitest","refs/tags/v0.1.0"],"0a987afc28f6b3301af468f2aadf76020ac9c119"]
 ["","git-sha",["github.com/langri-sha/dagger","ci/v0.1.0"],"c862c9d4afc807deb2383b0811ecd3acd148c032"]
+["","git-sha",["github.com/langri-sha/dagger","typescript/v0.1.0"],"03eb1ce06ad8a571a8a97dba07a482828c8efe63"]
 ["","oci-sha",["docker.io/library/node:24-slim"],"sha256:d6aa754f16b3197301076f047b5def2f02ea1dbbc2ca920407d46d7ec7f87b20"]
 ["","vanity-url",["https://dagger.io/js/eslint"],"https://github.com/dagger/eslint"]
 ["","vanity-url",["https://dagger.io/js/prettier"],"https://github.com/dagger/prettier"]

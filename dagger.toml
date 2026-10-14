@@ -30,3 +30,6 @@ source = "dagger.io/js/vitest"
   [modules.vitest.settings]
   baseImageAddress = "node:24-slim"
   packageManager = "pnpm"
+
+[modules.typescript]
+source = "github.com/langri-sha/dagger/typescript@typescript/v0.1.0"
