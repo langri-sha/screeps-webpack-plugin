@@ -37,7 +37,7 @@
     },
     {
       "name": "@types/node",
-      "version": "24.19.1",
+      "version": "24.19.2",
       "type": "build"
     },
     {
