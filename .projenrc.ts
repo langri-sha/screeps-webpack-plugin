@@ -101,6 +101,9 @@ const project = new Project({
             packageManager: 'pnpm',
           },
         },
+        typescript: {
+          source: 'github.com/langri-sha/dagger/typescript@typescript/v0.1.0',
+        },
       },
     },
   },
