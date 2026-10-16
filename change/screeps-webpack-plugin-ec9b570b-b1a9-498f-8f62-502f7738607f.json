@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Update dependency pnpm to v12.13.0",
+  "packageName": "screeps-webpack-plugin",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
