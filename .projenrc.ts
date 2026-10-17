@@ -95,11 +95,7 @@ const project = new Project({
           },
         },
         vitest: {
-          source: 'dagger.io/js/vitest',
-          settings: {
-            baseImageAddress: 'node:24-slim',
-            packageManager: 'pnpm',
-          },
+          source: 'github.com/langri-sha/dagger/vitest@v1.2.0',
         },
         typescript: {
           source: 'github.com/langri-sha/dagger/typescript@v1.2.0',
