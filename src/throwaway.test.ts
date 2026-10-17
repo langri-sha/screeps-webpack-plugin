@@ -1,5 +1,5 @@
-import { expect, test } from "vitest";
+import { expect, test } from 'vitest'
 
-test("matches a throwaway snapshot", () => {
-  expect({ throwaway: true }).toMatchSnapshot();
-});
+test('matches a throwaway snapshot', () => {
+  expect({ throwaway: true }).toMatchSnapshot()
+})

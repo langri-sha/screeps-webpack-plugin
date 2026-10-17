@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Throwaway: exercise the Dagger post-upgrade job",
+  "packageName": "screeps-webpack-plugin",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
