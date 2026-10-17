@@ -8,6 +8,7 @@
 ["","git-latest",["github.com/langri-sha/dagger",["tagPrefix","beachball"],["version","v1.2.0"]],"refs/tags/v1.2.0"]
 ["","git-latest",["github.com/langri-sha/dagger",["tagPrefix","beachball"],["version","v1.2.1"]],"refs/tags/v1.2.1"]
 ["","git-latest",["github.com/langri-sha/dagger",["tagPrefix","ci"],["version","v1.2.0"]],"refs/tags/v1.2.0"]
+["","git-latest",["github.com/langri-sha/dagger",["tagPrefix","ci"],["version","v1.2.1"]],"refs/tags/v1.2.1"]
 ["","git-latest",["github.com/langri-sha/dagger",["tagPrefix","typescript"],["version","v1.2.0"]],"refs/tags/v1.2.0"]
 ["","git-latest",["github.com/langri-sha/dagger",["tagPrefix","vitest"],["version","v1.2.0"]],"refs/tags/v1.2.0"]
 ["","git-sha",["github.com/dagger/eslint","refs/tags/v0.2.0"],"71bcaa0f9852f8c9421c3aa328ddce57ee143236"]
