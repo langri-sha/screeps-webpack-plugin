@@ -25,11 +25,7 @@ source = "dagger.io/js/prettier"
   packageManager = "pnpm"
 
 [modules.vitest]
-source = "dagger.io/js/vitest"
-
-  [modules.vitest.settings]
-  baseImageAddress = "node:24-slim"
-  packageManager = "pnpm"
+source = "github.com/langri-sha/dagger/vitest@v1.2.0"
 
 [modules.typescript]
 source = "github.com/langri-sha/dagger/typescript@v1.2.0"
