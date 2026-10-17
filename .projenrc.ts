@@ -78,7 +78,7 @@ const project = new Project({
       ignore: ['**/node_modules', '**/dist', '**/coverage', '**/*.tsbuildinfo'],
       modules: {
         ci: {
-          source: 'github.com/langri-sha/dagger/ci@ci/v0.1.0',
+          source: 'github.com/langri-sha/dagger/ci@v1.2.0',
         },
         eslint: {
           source: 'dagger.io/js/eslint',
@@ -102,7 +102,7 @@ const project = new Project({
           },
         },
         typescript: {
-          source: 'github.com/langri-sha/dagger/typescript@typescript/v0.1.0',
+          source: 'github.com/langri-sha/dagger/typescript@v1.2.0',
         },
       },
     },
