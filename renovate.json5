@@ -116,7 +116,7 @@
       ],
       depNameTemplate: 'github.com/{{{repo}}}{{#if subdir}}/{{{subdir}}}{{/if}}',
       packageNameTemplate: '{{{repo}}}',
-      extractVersionTemplate: '^{{#if tagDir}}{{{tagDir}}}{{else}}{{#if subdir}}{{{subdir}}}/{{/if}}{{/if}}v(?<version>.+)$',
+      extractVersionTemplate: "^{{#if tagDir}}{{{tagDir}}}{{else}}{{#if subdir}}{{#unless (includes (toArray 'dagger/python' 'langri-sha/dagger') repo)}}{{{subdir}}}/{{/unless}}{{/if}}{{/if}}v(?<version>.+)$",
     },
     {
       customType: 'regex',
