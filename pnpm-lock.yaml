@@ -186,8 +186,8 @@ importers:
         specifier: 0.4.11
         version: 0.4.11(prettier@3.9.9)
       '@langri-sha/projen-project':
-        specifier: 0.38.2
-        version: 0.38.2(@babel/core@7.29.7(supports-color@8.1.1))(beachball@2.66.0(typescript@5.9.3))(eslint@10.12.0(supports-color@8.1.1))(husky@9.1.7)(lint-staged@17.6.0)(prettier@3.9.9)(projen@0.104.1(constructs@10.8.1))(supports-color@8.1.1)(tsx@4.23.15)(typescript@5.9.3)
+        specifier: 0.39.0
+        version: 0.39.0(@babel/core@7.29.7(supports-color@8.1.1))(beachball@2.66.0(typescript@5.9.3))(eslint@10.12.0(supports-color@8.1.1))(husky@9.1.7)(lint-staged@17.6.0)(prettier@3.9.9)(projen@0.104.1(constructs@10.8.1))(supports-color@8.1.1)(tsx@4.23.15)(typescript@5.9.3)
       '@langri-sha/tsconfig':
         specifier: 1.1.1
         version: 1.1.1(typescript@5.9.3)
@@ -731,8 +731,8 @@ packages:
     peerDependencies:
       prettier: ^3.0.0
 
-  '@langri-sha/projen-project@0.38.2':
-    resolution: {integrity: sha512-zB2NmTxtvFsl/0XorMsazbT5Tvus4T2KP91WNqoKXAdGeoX6btYuPyB71sYZODuJoxxeAKiHI/iT0u0QZeOr6g==}
+  '@langri-sha/projen-project@0.39.0':
+    resolution: {integrity: sha512-IW44FEVW2EAgxJICq5+buTccKKewZuRBsDYAljXVvhJHKCs8OF/8i7EiR0y/G3yOelo/cCpTb+IRDhh9fGXM2A==}
     peerDependencies:
       '@babel/core': ^8.0.0
       '@swc-node/register': ^1.0.0
@@ -1676,8 +1676,8 @@ packages:
     resolution: {integrity: sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==}
     engines: {node: '>=0.8.x'}
 
-  execa@10.1.0:
-    resolution: {integrity: sha512-5HT/600HqXEtmkb9mK/PkTWw+bQSCzPnWiZ4/87wD3Hi0wFzCapOuNT9p4M08PDd+KLHdHvFhKjOWmNx/npRNQ==}
+  execa@10.1.1:
+    resolution: {integrity: sha512-yJAC9ulsE6fU0K6wzJBIH+wI+KAtMeu6Ck8rs23OVzvEhqXjGADdI6K+YNIDAjcQQ6AwXTD96cKExJo6xFJXyg==}
     engines: {node: '>=22'}
 
   execa@5.1.1:
@@ -2584,8 +2584,8 @@ packages:
       lint-staged:
         optional: true
 
-  projen-lint-synthesized@0.5.21:
-    resolution: {integrity: sha512-ex/FPwYC5EHpc/V0GkxwOJvd3SPZuVHL88bDhgQlx2VdaT4v0pOZMXwrTR4Vg1sWCPZrkM5GUK7Epyg4CtL7nw==}
+  projen-lint-synthesized@0.5.22:
+    resolution: {integrity: sha512-ZQ+nbbKvRo5vRo7lIqRCDGI7hDaV2qF4HlThRuHfd8P+hbu2CuU4kAhjZ+wOp1ysvUoCnU+3hCzXlSzRilt66Q==}
     peerDependencies:
       projen: '>=0.86.0 <1.0.0'
 
@@ -3703,7 +3703,7 @@ snapshots:
       prettier: 3.9.9
       prettier-plugin-ini: 1.3.0
 
-  '@langri-sha/projen-project@0.38.2(@babel/core@7.29.7(supports-color@8.1.1))(beachball@2.66.0(typescript@5.9.3))(eslint@10.12.0(supports-color@8.1.1))(husky@9.1.7)(lint-staged@17.6.0)(prettier@3.9.9)(projen@0.104.1(constructs@10.8.1))(supports-color@8.1.1)(tsx@4.23.15)(typescript@5.9.3)':
+  '@langri-sha/projen-project@0.39.0(@babel/core@7.29.7(supports-color@8.1.1))(beachball@2.66.0(typescript@5.9.3))(eslint@10.12.0(supports-color@8.1.1))(husky@9.1.7)(lint-staged@17.6.0)(prettier@3.9.9)(projen@0.104.1(constructs@10.8.1))(supports-color@8.1.1)(tsx@4.23.15)(typescript@5.9.3)':
     dependencies:
       projen: 0.104.1(constructs@10.8.1)
       projen-babel-config: 0.5.19(@babel/core@7.29.7(supports-color@8.1.1))(projen@0.104.1(constructs@10.8.1))
@@ -3717,7 +3717,7 @@ snapshots:
       projen-jest-config: 0.4.22(projen@0.104.1(constructs@10.8.1))
       projen-license: 0.3.19(projen@0.104.1(constructs@10.8.1))
       projen-lint-staged: 0.3.21(lint-staged@17.6.0)(projen@0.104.1(constructs@10.8.1))
-      projen-lint-synthesized: 0.5.21(projen@0.104.1(constructs@10.8.1))(supports-color@8.1.1)
+      projen-lint-synthesized: 0.5.22(projen@0.104.1(constructs@10.8.1))(supports-color@8.1.1)
       projen-pnpm-workspace: 0.4.16(projen@0.104.1(constructs@10.8.1))
       projen-prettier: 0.4.21(prettier@3.9.9)(projen@0.104.1(constructs@10.8.1))
       projen-readme: 0.1.16(projen@0.104.1(constructs@10.8.1))
@@ -4796,7 +4796,7 @@ snapshots:
 
   events@3.3.0: {}
 
-  execa@10.1.0:
+  execa@10.1.1:
     dependencies:
       '@sindresorhus/merge-streams': 4.0.0
       figures: 6.1.0
@@ -5613,10 +5613,10 @@ snapshots:
     optionalDependencies:
       lint-staged: 17.6.0
 
-  projen-lint-synthesized@0.5.21(projen@0.104.1(constructs@10.8.1))(supports-color@8.1.1):
+  projen-lint-synthesized@0.5.22(projen@0.104.1(constructs@10.8.1))(supports-color@8.1.1):
     dependencies:
       debug: 4.4.3(supports-color@8.1.1)
-      execa: 10.1.0
+      execa: 10.1.1
       minimatch: 10.2.6
       projen: 0.104.1(constructs@10.8.1)
     transitivePeerDependencies:
