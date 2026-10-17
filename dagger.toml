@@ -8,7 +8,7 @@ ignore = [
 ]
 
 [modules.ci]
-source = "github.com/langri-sha/dagger/ci@v1.2.0"
+source = "github.com/langri-sha/dagger/ci@v1.2.1"
 
 [modules.eslint]
 source = "dagger.io/js/eslint"
