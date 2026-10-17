@@ -18,6 +18,7 @@ const project = new Project({
       'commit',
       'plugin',
       'screeps',
+      'throwaway',
       'webpack',
       'webpackplugin',
     ],
