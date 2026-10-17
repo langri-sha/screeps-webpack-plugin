@@ -7,8 +7,11 @@ ignore = [
   "**/*.tsbuildinfo"
 ]
 
+[modules.beachball]
+source = "github.com/langri-sha/dagger/beachball@v1.2.0"
+
 [modules.ci]
-source = "github.com/langri-sha/dagger/ci@ci/v0.1.0"
+source = "github.com/langri-sha/dagger/ci@v1.2.0"
 
 [modules.eslint]
 source = "dagger.io/js/eslint"

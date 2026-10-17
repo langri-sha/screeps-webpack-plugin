@@ -77,8 +77,11 @@ const project = new Project({
     workspace: {
       ignore: ['**/node_modules', '**/dist', '**/coverage', '**/*.tsbuildinfo'],
       modules: {
+        beachball: {
+          source: 'github.com/langri-sha/dagger/beachball@v1.2.0',
+        },
         ci: {
-          source: 'github.com/langri-sha/dagger/ci@ci/v0.1.0',
+          source: 'github.com/langri-sha/dagger/ci@v1.2.0',
         },
         eslint: {
           source: 'dagger.io/js/eslint',
