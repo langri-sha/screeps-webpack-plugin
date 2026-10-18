@@ -28,7 +28,7 @@ source = "dagger.io/js/prettier"
 source = "github.com/langri-sha/dagger/vitest@v1.2.0"
 
 [modules.typescript]
-source = "github.com/langri-sha/dagger/typescript@v1.2.0"
+source = "github.com/langri-sha/dagger/typescript@v1.2.1"
 
 [modules.beachball]
 source = "github.com/langri-sha/dagger/beachball@v1.2.1"
