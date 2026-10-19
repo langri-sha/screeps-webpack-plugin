@@ -98,7 +98,7 @@ const project = new Project({
           source: 'github.com/langri-sha/dagger/vitest@v1.2.1',
         },
         typescript: {
-          source: 'github.com/langri-sha/dagger/typescript@v1.2.1',
+          source: 'github.com/langri-sha/dagger/typescript@v1.4.0',
         },
         beachball: {
           source: 'github.com/langri-sha/dagger/beachball@v1.4.0',
