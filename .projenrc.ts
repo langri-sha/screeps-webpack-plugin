@@ -78,7 +78,7 @@ const project = new Project({
       ignore: ['**/node_modules', '**/dist', '**/coverage', '**/*.tsbuildinfo'],
       modules: {
         ci: {
-          source: 'github.com/langri-sha/dagger/ci@v1.6.0',
+          source: 'github.com/langri-sha/dagger/ci@v1.7.0',
         },
         eslint: {
           source: 'dagger.io/js/eslint',
@@ -95,13 +95,13 @@ const project = new Project({
           },
         },
         vitest: {
-          source: 'github.com/langri-sha/dagger/vitest@v1.6.0',
+          source: 'github.com/langri-sha/dagger/vitest@v1.7.0',
         },
         typescript: {
-          source: 'github.com/langri-sha/dagger/typescript@v1.6.0',
+          source: 'github.com/langri-sha/dagger/typescript@v1.7.0',
         },
         beachball: {
-          source: 'github.com/langri-sha/dagger/beachball@v1.6.0',
+          source: 'github.com/langri-sha/dagger/beachball@v1.7.0',
         },
       },
     },
