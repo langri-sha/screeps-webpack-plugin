@@ -10,6 +10,9 @@ ignore = [
 [modules.ci]
 source = "github.com/langri-sha/dagger/ci@v1.7.0"
 
+  [modules.ci.generate]
+  skip = [ "projen" ]
+
 [modules.eslint]
 source = "dagger.io/js/eslint"
 
@@ -32,3 +35,6 @@ source = "github.com/langri-sha/dagger/typescript@v1.7.0"
 
 [modules.beachball]
 source = "github.com/langri-sha/dagger/beachball@v1.7.0"
+
+[modules.projen]
+source = "github.com/langri-sha/dagger/projen@v1.7.0"
