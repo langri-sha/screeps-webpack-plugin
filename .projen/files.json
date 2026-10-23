@@ -1,5 +1,6 @@
 {
   "files": [
+    ".claude/settings.json",
     ".config/wt.toml",
     ".editorconfig",
     ".gitattributes",
