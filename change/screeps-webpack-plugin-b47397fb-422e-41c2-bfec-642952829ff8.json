@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Require Node.js 24.22.1, which fixes CVE-2026-111497",
+  "packageName": "screeps-webpack-plugin",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
