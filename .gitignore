@@ -29,6 +29,9 @@ node_modules/
 !/prettier.config.js
 !/.prettierignore
 !/beachball.config.cjs
+!/.claude
+/.claude/settings.local.json
+!/.claude/settings.json
 !/CODEOWNERS
 !/.editorconfig
 !/license
