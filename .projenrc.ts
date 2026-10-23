@@ -23,7 +23,7 @@ const project = new Project({
     ],
     license: 'MIT',
     licensed: true,
-    minNodeVersion: '24.0.0',
+    minNodeVersion: '24.22.1',
     peerDependencyOptions: {
       pinnedDevDependency: false,
     },
