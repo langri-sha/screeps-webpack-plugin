@@ -72,7 +72,7 @@
   },
   "packageManager": "pnpm@12.14.0",
   "engines": {
-    "node": ">= 24.0.0"
+    "node": ">= 24.22.1"
   },
   "publishConfig": {
     "access": "public",
