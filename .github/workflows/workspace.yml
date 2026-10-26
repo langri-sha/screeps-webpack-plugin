@@ -15,7 +15,7 @@ jobs:
     with:
       beachball: true
       dagger: true
-      dagger-version: v1.0.0-beta.20
+      dagger-version: v1.0.0-beta.21
       eslint: true
       packages: true
       prettier: true
