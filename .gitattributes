@@ -5,6 +5,11 @@
 /.config/wt.toml linguist-generated -linguist-generated
 /.editorconfig linguist-generated
 /.gitattributes linguist-generated
+/.github/ISSUE_TEMPLATE/01-bug-report.yml linguist-generated
+/.github/ISSUE_TEMPLATE/02-feature-request.yml linguist-generated
+/.github/ISSUE_TEMPLATE/03-maintenance.yml linguist-generated
+/.github/ISSUE_TEMPLATE/config.yml linguist-generated
+/.github/pull_request_template.md linguist-generated
 /.gitignore linguist-generated
 /.husky/pre-commit linguist-generated
 /.npmignore linguist-generated
