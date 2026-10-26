@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Update dependency @langri-sha/projen-project to v0.42.0",
+  "packageName": "screeps-webpack-plugin",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
