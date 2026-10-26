@@ -234,8 +234,8 @@ importers:
         specifier: 5.0.5
         version: 5.0.5(@types/node@24.19.2)(@vitest/coverage-v8@5.0.5)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))
       webpack:
-        specifier: 5.112.0
-        version: 5.112.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29)
+        specifier: 5.112.1
+        version: 5.112.1(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29)
 
 packages:
 
@@ -2780,9 +2780,15 @@ packages:
     resolution: {integrity: sha512-x/+Cz4YrimQxQccJf5mKEbIa1NzeCRNI5Ecl/ekmlYaampdNLPalVyIcCZNNH3MvmqBugV5TMYZXv0ljslUlaw==}
     engines: {node: '>= 0.4'}
 
-  schema-utils@4.5.0:
-    resolution: {integrity: sha512-zJlMCZ0cAR5p/Y4oVpRoqioDMJcGxaXRrQ/4rP4WyR84vc5z/DolXdbvXeDpTwbtocDFr2rhPqHPErDCUtz2kA==}
+  schema-utils@4.8.1:
+    resolution: {integrity: sha512-x39pYlJPyH7Uge5QO64B9XGP9zLDc9WNmiQZc+CE3IzZPvMu3lHOuAMGpYNoPixEL7MSWlGhYTg5UlLSL8G6iw==}
     engines: {node: '>= 10.13.0'}
+    hasBin: true
+    peerDependencies:
+      webpack: ^5.112.0
+    peerDependenciesMeta:
+      webpack:
+        optional: true
 
   screeps-modules@2.0.0:
     resolution: {integrity: sha512-n2p4CA/GrkdTuzJsb0EdvruMZSEIl6KlbpFw7i6YWPfJuzHvKiHeYmOWxo1DuYZrstHLTrN1b6zgLTKKGB283g==}
@@ -3153,16 +3159,16 @@ packages:
       jsdom:
         optional: true
 
-  watchpack@2.6.2:
-    resolution: {integrity: sha512-67nxRd7I5uAyn+KamYsCqU30iVgCgZ4aj8ZOGzmxs7zNPuvlnoYltm6+6JkOjEcD6WVXdu1BfH+gVQs3FUuW7Q==}
+  watchpack@2.6.3:
+    resolution: {integrity: sha512-s3NZy0QpTY9qGqzc0wtz4qI28z3+5qKbbAec4MV4G9N3CfgZ9wgvQRr0cl2jh/tqkWG1NWHkmVMHZpCamev5Wg==}
     engines: {node: '>=10.13.0'}
 
   webpack-sources@3.6.0:
     resolution: {integrity: sha512-EIMmPVvNI0CYXyRPp34F2Qk7W37/BZVZIofS6LAUnrNjCVahS+hO4mxwFJDjQjODTGZDtVzLYoN2+1dYkhk9qA==}
     engines: {node: '>=10.13.0'}
 
-  webpack@5.112.0:
-    resolution: {integrity: sha512-NIBpsRuCll036haDDt/CfcTDfsWNR9Z782nMRMI9D377BsGcYzZDTNU5TyzhCJzPIcihAxMBaMAhq2WSaDrH8Q==}
+  webpack@5.112.1:
+    resolution: {integrity: sha512-DsEgOfaY5XrvTTEU7QvktlOpYEipgNUyXQY4rQO4KtFmr71IwjMoRWyv9rJNo6qwqctRzh9sO9VIwMgnWmiBVg==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     peerDependencies:
@@ -5381,13 +5387,13 @@ snapshots:
     dependencies:
       brace-expansion: 1.1.21
 
-  minimizer-webpack-plugin@5.13.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29)(webpack@5.112.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29)):
+  minimizer-webpack-plugin@5.13.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29)(webpack@5.112.1(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
-      schema-utils: 4.5.0
+      schema-utils: 4.8.1(webpack@5.112.1(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29))
       terser: 5.51.2
-      webpack: 5.112.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29)
+      webpack: 5.112.1(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29)
     optionalDependencies:
       esbuild: 0.28.2
       lightningcss: 1.33.0
@@ -5807,12 +5813,14 @@ snapshots:
       es-errors: 1.3.0
       is-regex: 1.2.1
 
-  schema-utils@4.5.0:
+  schema-utils@4.8.1(webpack@5.112.1(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29)):
     dependencies:
       '@types/json-schema': 7.0.15
       ajv: 8.20.0
       ajv-formats: 3.0.1
       ajv-keywords: 5.1.0(ajv@8.20.0)
+    optionalDependencies:
+      webpack: 5.112.1(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29)
 
   screeps-modules@2.0.0(supports-color@8.1.1):
     dependencies:
@@ -6185,13 +6193,13 @@ snapshots:
     transitivePeerDependencies:
       - msw
 
-  watchpack@2.6.2:
+  watchpack@2.6.3:
     dependencies:
       graceful-fs: 4.2.11
 
   webpack-sources@3.6.0: {}
 
-  webpack@5.112.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29):
+  webpack@5.112.1(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29):
     dependencies:
       '@types/estree': 1.0.9
       '@types/json-schema': 7.0.15
@@ -6205,10 +6213,10 @@ snapshots:
       events: 3.3.0
       graceful-fs: 4.2.11
       mime-db: 1.54.0
-      minimizer-webpack-plugin: 5.13.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29)(webpack@5.112.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29))
-      schema-utils: 4.5.0
+      minimizer-webpack-plugin: 5.13.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29)(webpack@5.112.1(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29))
+      schema-utils: 4.8.1(webpack@5.112.1(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29))
       tapable: 2.3.3
-      watchpack: 2.6.2
+      watchpack: 2.6.3
       webpack-sources: 3.6.0
     transitivePeerDependencies:
       - '@minify-html/node'
