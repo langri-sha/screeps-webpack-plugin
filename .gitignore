@@ -34,6 +34,11 @@ node_modules/
 !/.claude/settings.json
 !/CODEOWNERS
 !/.editorconfig
+!/.github/ISSUE_TEMPLATE/01-bug-report.yml
+!/.github/ISSUE_TEMPLATE/02-feature-request.yml
+!/.github/ISSUE_TEMPLATE/03-maintenance.yml
+!/.github/ISSUE_TEMPLATE/config.yml
+!/.github/pull_request_template.md
 !/license
 !/lint-staged.config.js
 !/.npmignore

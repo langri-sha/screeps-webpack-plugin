@@ -124,6 +124,7 @@ const project = new Project({
       },
     ],
   },
+  githubTemplates: {},
   husky: {
     'pre-commit': 'lint-staged',
   },
