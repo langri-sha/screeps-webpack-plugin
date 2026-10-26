@@ -78,7 +78,7 @@ const project = new Project({
     '*': '@langri-sha',
   },
   dagger: {
-    engineVersion: 'v1.0.0-beta.20',
+    engineVersion: 'v1.0.0-beta.21',
     workspace: {
       ignore: ['**/node_modules', '**/dist', '**/coverage', '**/*.tsbuildinfo'],
       modules: {
