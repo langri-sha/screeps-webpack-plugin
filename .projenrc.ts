@@ -83,7 +83,7 @@ const project = new Project({
       ignore: ['**/node_modules', '**/dist', '**/coverage', '**/*.tsbuildinfo'],
       modules: {
         ci: {
-          source: 'github.com/langri-sha/dagger/ci@v1.9.0',
+          source: 'github.com/langri-sha/dagger/ci@v1.9.1',
           generate: { skip: ['projen'] },
         },
         eslint: {
@@ -101,16 +101,16 @@ const project = new Project({
           },
         },
         vitest: {
-          source: 'github.com/langri-sha/dagger/vitest@v1.9.0',
+          source: 'github.com/langri-sha/dagger/vitest@v1.9.1',
         },
         typescript: {
-          source: 'github.com/langri-sha/dagger/typescript@v1.9.0',
+          source: 'github.com/langri-sha/dagger/typescript@v1.9.1',
         },
         beachball: {
-          source: 'github.com/langri-sha/dagger/beachball@v1.9.0',
+          source: 'github.com/langri-sha/dagger/beachball@v1.9.1',
         },
         projen: {
-          source: 'github.com/langri-sha/dagger/projen@v1.9.0',
+          source: 'github.com/langri-sha/dagger/projen@v1.9.1',
         },
       },
     },
