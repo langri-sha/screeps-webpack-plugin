@@ -8,7 +8,7 @@ ignore = [
 ]
 
 [modules.ci]
-source = "github.com/langri-sha/dagger/ci@v1.9.1"
+source = "github.com/langri-sha/dagger/ci@v1.9.2"
 
   [modules.ci.generate]
   skip = [ "projen" ]
@@ -28,13 +28,13 @@ source = "dagger.io/js/prettier"
   packageManager = "pnpm"
 
 [modules.vitest]
-source = "github.com/langri-sha/dagger/vitest@v1.9.1"
+source = "github.com/langri-sha/dagger/vitest@v1.9.2"
 
 [modules.typescript]
-source = "github.com/langri-sha/dagger/typescript@v1.9.1"
+source = "github.com/langri-sha/dagger/typescript@v1.9.2"
 
 [modules.beachball]
-source = "github.com/langri-sha/dagger/beachball@v1.9.1"
+source = "github.com/langri-sha/dagger/beachball@v1.9.2"
 
 [modules.projen]
-source = "github.com/langri-sha/dagger/projen@v1.9.1"
+source = "github.com/langri-sha/dagger/projen@v1.9.2"
