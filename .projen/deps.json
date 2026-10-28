@@ -81,6 +81,11 @@
       "type": "build"
     },
     {
+      "name": "skills",
+      "version": "1.7.4",
+      "type": "build"
+    },
+    {
       "name": "tsx",
       "version": "4.23.15",
       "type": "build"

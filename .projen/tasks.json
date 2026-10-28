@@ -46,6 +46,19 @@
         }
       ]
     },
+    "skills": {
+      "name": "skills",
+      "description": "Install the declared skills with the skills CLI",
+      "env": {
+        "DISABLE_TELEMETRY": "1",
+        "LC_ALL": "C"
+      },
+      "steps": [
+        {
+          "exec": "skills experimental_sync -a claude-code -y"
+        }
+      ]
+    },
     "test": {
       "name": "test",
       "description": "Run tests"

@@ -31,6 +31,7 @@
         'lint-staged',
         'prettier',
         'projen',
+        'skills',
         'tsx',
         'typescript',
       ],
@@ -47,6 +48,12 @@
       groupName: 'langri-sha Dagger modules',
       groupSlug: 'langri-sha-dagger-modules',
       matchDepNames: ['github.com/langri-sha/dagger/**'],
+    },
+    {
+      description: 'Skill commits carry no release date. Propose them without waiting out the release age',
+      matchManagers: ['custom.regex'],
+      matchDepTypes: ['skills'],
+      minimumReleaseAgeBehaviour: 'timestamp-optional',
     },
     {
       description: 'Update screeps-modules with our own packages and install it without waiting it out',
@@ -123,6 +130,16 @@
       depNameTemplate: 'github.com/{{{repo}}}{{#if subdir}}/{{{subdir}}}{{/if}}',
       packageNameTemplate: '{{{repo}}}',
       extractVersionTemplate: "^{{#if tagDir}}{{{tagDir}}}{{else}}{{#if subdir}}{{#unless (includes (toArray 'dagger/python' 'langri-sha/dagger') repo)}}{{{subdir}}}/{{/unless}}{{/if}}{{/if}}v(?<version>.+)$",
+    },
+    {
+      customType: 'regex',
+      datasourceTemplate: 'git-refs',
+      depTypeTemplate: 'skills',
+      managerFilePatterns: ['/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/'],
+      matchStrings: [
+        'source:\\s*[\'"](?<depName>[\\w.-]+/[\\w.-]+)[\'"],\\s*ref:\\s*[\'"](?<currentDigest>[0-9a-f]{40})[\'"]',
+      ],
+      packageNameTemplate: 'https://github.com/{{{depName}}}',
     },
     {
       customType: 'regex',

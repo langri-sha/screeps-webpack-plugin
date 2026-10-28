@@ -43,6 +43,7 @@ node_modules/
 !/lint-staged.config.js
 !/.npmignore
 !/pnpm-workspace.yaml
+!/.agents
 !/.config
 !/.config/wt.toml
 !/renovate.json5
