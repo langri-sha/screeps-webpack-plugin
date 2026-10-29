@@ -143,6 +143,17 @@
     },
     {
       customType: 'regex',
+      datasourceTemplate: 'github-tags',
+      versioningTemplate: 'semver',
+      depTypeTemplate: 'skills',
+      managerFilePatterns: ['/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/'],
+      matchStrings: [
+        'source:\\s*[\'"](?<depName>[\\w.-]+/[\\w.-]+)[\'"],\\s*ref:\\s*[\'"]v(?<currentValue>\\d+\\.\\d+\\.\\d+)[\'"]',
+      ],
+      extractVersionTemplate: '^v(?<version>.+)$',
+    },
+    {
+      customType: 'regex',
       datasourceTemplate: 'npm',
       managerFilePatterns: ['/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/'],
       matchStrings: [
