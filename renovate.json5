@@ -25,6 +25,9 @@
       description: 'Versions owned by @langri-sha/projen-project. Declare the dependency in `.projenrc.ts` to manage it here instead',
       matchManagers: ['npm'],
       matchPackageNames: [
+        '@langri-sha/eslint-config',
+        '@langri-sha/lint-staged',
+        '@langri-sha/prettier',
         'beachball',
         'eslint',
         'husky',
