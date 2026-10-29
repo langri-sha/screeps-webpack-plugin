@@ -1,178 +1,99 @@
 ---
 name: create-pr
-description:
-  Use this skill when the user says "create a PR", "open a pull request", or
-  wants to create a GitHub pull request. Analyzes git changes, reads the PR
-  template, generates descriptions, and handles stacked branches.
+description: >-
+  Opens a GitHub pull request for the current branch with gh: picks the base,
+  fills the repo's PR template in under 150 words, and refuses branches that
+  belong to a native GitHub stack. Use when asked to create, open or update a
+  PR. Not for splitting a change into a stack (split-pr-stack) or merging
+  (wrap).
 ---
 
 # Create PR
 
-Create a GitHub pull request from the current branch: determine the base,
-analyze commits and diff, fill the repo's PR template, and open the PR with
-`gh`. Handles stacked branches (Git Town), detached HEAD, and custom bases.
+## Before writing anything
 
-Deep-dive material (stacked-branch details, template parsing, troubleshooting)
-lives in `references/pr-workflow.md` — load it for complex scenarios, not on the
-happy path.
+- **Native stack guard.** If `gh extension list` shows `gh-stack`, run
+  `gh stack view --json`. Exit 0 means this branch is in a native stack: open no
+  standalone PR, even when the user names a base; surface the conflict instead.
+  Publish with `gh stack submit --auto`, which opens drafts, then set each
+  layer's title and body with `gh pr edit`. The `split-pr-stack` skill builds
+  such stacks.
+- **Existing PR.** `gh pr list --head <branch> --json url,baseRefName`. If one
+  exists, its base is the base, and offer `gh pr edit` instead of opening a
+  duplicate.
+- **Base.** The user's, if named. Otherwise, for a new PR:
+  1. After `git fetch origin`, list other open PRs' branches with
+     `gh pr list --limit 1000 --json headRefName`. Skip this branch and any head
+     the default branch already contains
+     (`git merge-base --is-ancestor origin/<head> origin/<default>`).
+  2. Keep the heads this branch contains
+     (`git merge-base --is-ancestor origin/<head> HEAD`), and base on the
+     closest: the one with the fewest
+     `git rev-list --count origin/<head>..HEAD`. Ask only on a tie. Basing on it
+     makes the PR show only this layer.
+  3. With no such head, use the default branch
+     (`gh repo view --json defaultBranchRef -q .defaultBranchRef.name`), unless
+     `git log origin/<default>..HEAD` lists commits that aren't part of this
+     change, such as a parent rebased since; then ask for the base.
+- **State.** Uncommitted changes won't be in the PR, so ask whether to commit
+  them (`create-commit`), stash them, or leave them out. On a detached HEAD,
+  create a short kebab-case branch named for the change, with no type prefix. An
+  empty diff against `origin/<base>` means there is nothing to open; say so. If
+  the branch is behind `origin/<base>`, suggest rebasing before pushing.
 
-## Workflow
+Compare against the remote base, since local refs go stale:
+`git fetch origin <base>`, then `git log origin/<base>..HEAD` and
+`git diff --stat origin/<base>...HEAD`. Read the full diff for the files that
+matter, skipping lockfiles and generated output.
 
-### 1. Determine the Base Branch
+## Title
 
-**Native GitHub stack guard** — always check first. If the `gh-stack` extension
-is installed (`gh extension list`), run `gh stack view --json`: exit 0 means the
-current branch is part of a native GitHub stack; exit 2 means it is not. Never
-create a standalone PR for a native stack branch — not even when the user
-supplies a base branch; surface the conflict instead. Publish the stack's PRs
-with `gh stack submit --auto` (creates drafts), then apply the generated title
-and body with `gh pr edit`. See the `split-pr-stack` skill for building such
-stacks and the official `gh-stack` skill for command semantics.
+A plain sentence in sentence case, starting with an imperative verb, with no
+trailing period. Describe what the change does; the branch name and commit
+subjects are input, not output. Use a title the user gives verbatim. Drop type
+prefixes (`feat:`, `fix(api):`) and markers like `[WIP]`, and keep acronyms
+upper case. Mirror the issue title when the PR resolves one and it already reads
+plainly. Backtick a package or symbol only when it helps: "Bump `eslint` to v9".
 
-Otherwise, in priority order:
+## Body
 
-1. **User-specified** — "create a PR to develop" → `develop`.
-2. **Git Town parent** — `python3 scripts/detect_stacked_branch.py`; exit 0
-   prints the parent branch (stacked), 1 means not stacked, 2 means Git Town
-   unavailable.
-3. **Default branch** — `main`/`master` per `git remote show origin`.
+The whole body stays under 150 words, whatever the template asks for. Reviewers
+skim, and the diff and commits already say what changed.
 
-### 2. Verify Workspace State
+- Use the repo's template (`.github/pull_request_template.md` or a variant).
+  Fill only its sections, skip any with nothing to say rather than writing N/A,
+  add none of your own, and leave checkboxes unchecked.
+- Summary: why the change exists, plus what the diff can't show, such as manual
+  steps, risk or rollout. One to three sentences. Fold in anything the user
+  asked to mention.
+- Don't list the changes. Spend one sentence only on a decision a reviewer would
+  otherwise miss.
+- Test plan: one line naming what ran.
+- Write as the author, in the first person or with no attribution. Never name
+  the author or refer to them in the third person.
+- `Closes #123` when the branch resolves an issue.
+- In a stack, describe this layer only. GitHub renders the stack, so add no
+  stack section, PR list or "builds on #123".
 
-```bash
-git status --porcelain
-```
+Without a template, write a short paragraph and the one-line test plan, with no
+headings.
 
-If there are uncommitted changes, ask whether to commit them (via
-`/create-commit`), stash them, or proceed without them — they won't be in the PR
-otherwise.
+## Open it
 
-### 3. Resolve the Branch
-
-- On a named branch: use it.
-- On detached HEAD: generate a name with
-  `python3 scripts/generate_branch_name.py [base]` and `git checkout -b` it.
-
-### 4. Generate the PR Title
-
-PR titles are for humans: plain, descriptive language that reads naturally — not
-a reformatted branch name or commit subject.
-
-- Describe what the change does, based on the commits and diff (step 5). The
-  branch name is only a hint.
-- When the PR resolves a specific issue, mirror the issue title if it already
-  reads as a plain description; otherwise normalize it with these rules.
-- Strip conventional-commit type prefixes (`feat:`, `fix:`, `chore:`, `docs:`,
-  `refactor:`, `test:`, `perf:`, `build:`, `ci:`), including scoped forms like
-  `feat(api):`. Commits may keep the convention; the title must not.
-- Drop jargon and markers that mean nothing outside the code, such as
-  `{ check }` or `[WIP]`.
-- Use sentence case with a leading imperative verb. Capitalize only the first
-  word, proper nouns, and acronyms (PDF, API, JWT). No trailing period.
-- A backticked `name` (package, tool, or symbol) is acceptable only when it
-  genuinely aids clarity, e.g. "Bump `eslint` to v9".
-
-Examples:
-
-- `feat: add pdf export` → "Add PDF export"
-- `fix/login-redirect-loop` → "Fix login redirect loop"
-- `chore(deps): update eslint to v9` → "Bump `eslint` to v9"
-- `add-user-authentication` → "Add user authentication"
-
-### 5. Analyze Changes
-
-Always compare against the **remote** base — local refs go stale:
-
-```bash
-git fetch origin <base>
-git log origin/<base>..HEAD --pretty=format:"%h %s%n%b"
-git diff --stat origin/<base>...HEAD
-```
-
-Read the full diff when it is manageable; for large diffs, prioritize source
-files over lockfiles/assets and lean on commit messages. Synthesize **what**
-changed, **why**, and **how to test it**.
-
-### 6. Fill the PR Template
-
-Locate the template (`.github/PULL_REQUEST_TEMPLATE.md`, then
-`.github/pull_request_template.md`, then repo root, then `docs/`). Keep the
-whole body under 150 words, whatever the template asks for:
-
-- **Summary** — why the change exists, plus what the diff can't show:
-  manual steps, risk, rollout. One to three sentences.
-- **Changes** — never list them; the diff and the commits already do. Skip
-  the section, or use one sentence for a decision a reviewer would miss.
-- **Test plan** — one line naming what ran. No checklists.
-- Skip sections with nothing to say instead of writing N/A, and add no
-  sections of your own. Leave all checkboxes unchecked.
-- Write as the author, in the first person or with no attribution. Never
-  name the author or refer to them in the third person.
-- Include `Closes #123` / `Fixes #123` when the branch resolves an issue.
-
-If no template exists, write a short paragraph and a one-line test plan,
-without headings.
-
-### 7. Infer Metadata
-
-- **Labels**: from the nature of the change — bug fixes → `bug`, features →
-  `enhancement`, docs-only → `documentation`, dependency bumps → `dependencies`.
-- **Reviewers**: only when the user names one, or CODEOWNERS clearly applies.
-
-User input always overrides inference — explicit titles verbatim, explicit base
-branches, extra context into the Summary.
-
-### 8. Confirm, Push, Create
-
-Check for an existing PR first:
-
-```bash
-gh pr list --head <branch> --json url
-```
-
-If one exists, share the URL and offer `gh pr edit` instead of creating.
-
-**Confirmation gate:** show the generated title and body and ask "Does this look
-good?" — unless the user asked for a non-interactive run or a composing skill
-(e.g. `/wrap`) says to skip confirmation.
-
-Write the body to a timestamped temp file and create:
+Show the base, title and body and ask for a go, unless the user asked for a
+non-interactive run or a composing skill such as `wrap` said to skip it. A skip
+doesn't cover an inferred base other than the default branch: confirm that one
+anyway, since merging the PR lands it there.
 
 ```bash
 git push -u origin <branch>
-gh pr create \
-  --base <base> \
-  --title "<title>" \
-  --label "<labels>" \
-  --body-file /tmp/pr-body-<YYYYMMDDTHHMMSSZ>.md
+gh pr create --base <base> --title "<title>" --body-file <file>
 ```
 
-Return the PR URL to the user.
+Write the body to a file from `mktemp`, outside the repository, and pass its
+printed path literally: shell variables don't last between commands.
 
-## Stacked Branches
-
-A stack splits a feature into dependent PRs, each based on its parent branch
-rather than main. Git Town stacks are detected through
-`scripts/detect_stacked_branch.py` (Git Town stores parent relationships in git
-config); native GitHub stacks are caught by the guard in step 1. For a stacked
-PR, the base is the parent branch, and the title and description cover this
-layer only. GitHub renders the stack natively, so never add a stack section, PR
-list, position marker, or "builds on #123" note — a hand-kept copy only goes
-stale. Full details in `references/pr-workflow.md`.
-
-## Helper Scripts
-
-- **`scripts/detect_stacked_branch.py`** — prints the Git Town parent branch;
-  exit codes 0 (stacked), 1 (not stacked), 2 (Git Town unavailable).
-- **`scripts/generate_branch_name.py [base]`** — derives a dasherized branch
-  name from commits/changes; used for detached HEAD.
-
-## Edge Cases
-
-- **Empty diff against base** — nothing to PR; say so instead of opening an
-  empty PR.
-- **PR already exists for the branch** — offer to update it, never open a
-  duplicate.
-- **Behind the base** — suggest `git rebase origin/<base>` before pushing.
-- Anything else (auth failures, missing `gh`, template quirks):
-  `references/pr-workflow.md` has the troubleshooting table.
+Add `--label` for the kind of change (`bug`, `enhancement`, `documentation`,
+`dependencies`) only when `gh label list --limit 1000` shows it: `gh pr create`
+refuses a label the repository doesn't have. Request reviewers only when the
+user names them or CODEOWNERS clearly applies. Return the PR URL.
