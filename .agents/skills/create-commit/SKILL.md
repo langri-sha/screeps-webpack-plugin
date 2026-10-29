@@ -1,6 +1,10 @@
 ---
 name: create-commit
-description: Use this whenever creating Git commits.
+description: >-
+  Plans and writes atomic Git commits: one reviewable decision per commit, plain
+  imperative subjects without type prefixes, and bodies that say why. Use
+  whenever creating a commit, splitting work into commits, or writing a commit
+  message. Not for reorganizing existing history (rewrite-history).
 ---
 
 # Create Commit
@@ -23,8 +27,9 @@ single-purpose commits, and write messages that explain what and why.
   (`Closes #123`, `Refs #45`) — never in the subject. Subjects with refs clutter
   `git log --oneline` and go stale across forks and rebases.
 - **Fixups**: when the change corrects earlier unmerged work rather than adding
-  something new, use `fixup! <exact subject of the target commit>` so
-  `git rebase --autosquash` can fold it in.
+  something new, use `fixup! <exact subject of the target commit>` so autosquash
+  can fold it in:
+  `GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash "$(git merge-base HEAD origin/<default>)"`.
 
 ## Atomicity
 
@@ -94,4 +99,3 @@ a change from the tests that cover it.
 
 - **`references/atomic-commits.md`** — atomic commit principles, decision trees,
   and red flags
-- **`references/commit-format.md`** — full message format specification
