@@ -35,4 +35,3 @@ minimumReleaseAgeExclude:
   - projen-typescript-config
   - projen-uv
   - projen-worktrunk
-packages: []
