@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "Let the preset supply the config packages",
+  "packageName": "screeps-webpack-plugin",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "none"
+}
