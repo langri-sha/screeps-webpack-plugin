@@ -171,7 +171,7 @@ importers:
         version: 4.4.3(supports-color@8.1.1)
       screeps-modules:
         specifier: ^2.0.0
-        version: 2.0.0(supports-color@8.1.1)
+        version: 2.1.0(supports-color@8.1.1)
       tapable:
         specifier: ^2.0.0
         version: 2.3.3
@@ -2845,9 +2845,9 @@ packages:
       webpack:
         optional: true
 
-  screeps-modules@2.0.0:
-    resolution: {integrity: sha512-n2p4CA/GrkdTuzJsb0EdvruMZSEIl6KlbpFw7i6YWPfJuzHvKiHeYmOWxo1DuYZrstHLTrN1b6zgLTKKGB283g==}
-    engines: {node: '>= 24.0.0'}
+  screeps-modules@2.1.0:
+    resolution: {integrity: sha512-JIERd0hteqaQnnnMvBDYdPFpH6ozhURSdL5TRxt71BpYVaBiMBFU4k2oYBYVBwVED+mvXEW1MHTmaJCcSRqUfg==}
+    engines: {node: '>= 24.22.1'}
 
   semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
@@ -5927,7 +5927,7 @@ snapshots:
     optionalDependencies:
       webpack: 5.112.2(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29)
 
-  screeps-modules@2.0.0(supports-color@8.1.1):
+  screeps-modules@2.1.0(supports-color@8.1.1):
     dependencies:
       debug: 4.4.3(supports-color@8.1.1)
     transitivePeerDependencies:
