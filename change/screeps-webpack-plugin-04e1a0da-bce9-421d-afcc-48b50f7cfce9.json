@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update dependency webpack to v5.112.1",
-  "packageName": "screeps-webpack-plugin",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

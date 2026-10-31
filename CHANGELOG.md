@@ -1,8 +1,39 @@
 # Change Log - screeps-webpack-plugin
 
-<!-- This log was last generated on Tue, 13 Oct 2026 23:52:48 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sat, 31 Oct 2026 17:00:50 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 2.1.0
+
+Sat, 31 Oct 2026 17:00:50 GMT
+
+### Minor changes
+
+- Require Node.js 24.22.1, which fixes CVE-2026-111497 (filip.dupanovic@gmail.com)
+
+### Patches
+
+- Update dependency webpack to v5.112.1
+- Update dependency webpack to v5.112.0
+- Update dependency @langri-sha/eslint-config to v0.10.0
+- Update dependency @langri-sha/projen-project to v0.40.0
+- Update vitest monorepo to v5.0.4
+- Update dependency langri-sha/skills to v1.1.0
+- Update dependency pnpm to v12.16.1
+- Update dependency @langri-sha/projen-project to v0.42.0
+- Update dependency @langri-sha/projen-project to v0.43.0
+- Update dependency @types/debug to v4.1.13
+- Update langri-sha/skills digest to 8be1a50
+- Update dependency @types/node to v24.19.2
+- Update dependency pnpm to v12.15.0
+- Update dependency pnpm to v12.16.0
+- Update dependency @langri-sha/projen-project to v0.39.0
+- Update vitest monorepo to v5.0.5
+- Update dependency pnpm to v12.14.0
+- Update dependency pnpm to v12.13.0
+- Update dependency webpack to v5.112.2
+- Update dependency @langri-sha/projen-project to v0.42.4
 
 ## 2.0.0
 

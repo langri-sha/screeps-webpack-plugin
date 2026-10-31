@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "Declare the create-commit and create-pr skills",
-  "packageName": "screeps-webpack-plugin",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "none"
-}

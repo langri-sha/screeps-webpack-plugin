@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update dependency langri-sha/skills to v1.1.0",
-  "packageName": "screeps-webpack-plugin",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

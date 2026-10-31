@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "Pin skills to v1.0.0",
-  "packageName": "screeps-webpack-plugin",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

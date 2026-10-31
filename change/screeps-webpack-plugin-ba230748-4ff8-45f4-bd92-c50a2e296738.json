@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "Let the preset supply Vitest",
-  "packageName": "screeps-webpack-plugin",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "none"
-}

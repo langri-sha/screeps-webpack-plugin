@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update vitest monorepo to v5.0.4",
-  "packageName": "screeps-webpack-plugin",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

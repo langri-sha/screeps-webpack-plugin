@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "Stop Claude Code adding attribution to commits and pull requests",
-  "packageName": "screeps-webpack-plugin",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "none"
-}

@@ -2,6 +2,175 @@
   "name": "screeps-webpack-plugin",
   "entries": [
     {
+      "date": "Sat, 31 Oct 2026 17:00:50 GMT",
+      "version": "2.1.0",
+      "tag": "screeps-webpack-plugin_v2.1.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "ca460d97bbe003452ac02f49afefc053b1ec9db2",
+            "comment": "Update dependency webpack to v5.112.1"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "ca460d97bbe003452ac02f49afefc053b1ec9db2",
+            "comment": "Update dependency webpack to v5.112.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "ca460d97bbe003452ac02f49afefc053b1ec9db2",
+            "comment": "Update dependency @langri-sha/eslint-config to v0.10.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "ca460d97bbe003452ac02f49afefc053b1ec9db2",
+            "comment": "Update dependency @langri-sha/projen-project to v0.40.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "ca460d97bbe003452ac02f49afefc053b1ec9db2",
+            "comment": "Update vitest monorepo to v5.0.4"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "ca460d97bbe003452ac02f49afefc053b1ec9db2",
+            "comment": "Update dependency langri-sha/skills to v1.1.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "ca460d97bbe003452ac02f49afefc053b1ec9db2",
+            "comment": "Update dependency pnpm to v12.16.1"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "ca460d97bbe003452ac02f49afefc053b1ec9db2",
+            "comment": "Update dependency @langri-sha/projen-project to v0.42.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "ca460d97bbe003452ac02f49afefc053b1ec9db2",
+            "comment": "Update dependency @langri-sha/projen-project to v0.43.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "ca460d97bbe003452ac02f49afefc053b1ec9db2",
+            "comment": "Update dependency @types/debug to v4.1.13"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "ca460d97bbe003452ac02f49afefc053b1ec9db2",
+            "comment": "Update langri-sha/skills digest to 8be1a50"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "ca460d97bbe003452ac02f49afefc053b1ec9db2",
+            "comment": "Update dependency @types/node to v24.19.2"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "ca460d97bbe003452ac02f49afefc053b1ec9db2",
+            "comment": "Update dependency pnpm to v12.15.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "ca460d97bbe003452ac02f49afefc053b1ec9db2",
+            "comment": "Update dependency pnpm to v12.16.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "ca460d97bbe003452ac02f49afefc053b1ec9db2",
+            "comment": "Update dependency @langri-sha/projen-project to v0.39.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "ca460d97bbe003452ac02f49afefc053b1ec9db2",
+            "comment": "Update vitest monorepo to v5.0.5"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "ca460d97bbe003452ac02f49afefc053b1ec9db2",
+            "comment": "Update dependency pnpm to v12.14.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "ca460d97bbe003452ac02f49afefc053b1ec9db2",
+            "comment": "Update dependency pnpm to v12.13.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "ca460d97bbe003452ac02f49afefc053b1ec9db2",
+            "comment": "Update dependency webpack to v5.112.2"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "ca460d97bbe003452ac02f49afefc053b1ec9db2",
+            "comment": "Update dependency @langri-sha/projen-project to v0.42.4"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "screeps-webpack-plugin",
+            "commit": "ca460d97bbe003452ac02f49afefc053b1ec9db2",
+            "comment": "Let the preset supply the config packages"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "screeps-webpack-plugin",
+            "commit": "ca460d97bbe003452ac02f49afefc053b1ec9db2",
+            "comment": "Pin skills to v1.0.0"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "screeps-webpack-plugin",
+            "commit": "ca460d97bbe003452ac02f49afefc053b1ec9db2",
+            "comment": "Declare the create-commit and create-pr skills"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "screeps-webpack-plugin",
+            "commit": "ca460d97bbe003452ac02f49afefc053b1ec9db2",
+            "comment": "Let the preset supply Vitest"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "screeps-webpack-plugin",
+            "commit": "ca460d97bbe003452ac02f49afefc053b1ec9db2",
+            "comment": "Stop Claude Code adding attribution to commits and pull requests"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "screeps-webpack-plugin",
+            "commit": "ca460d97bbe003452ac02f49afefc053b1ec9db2",
+            "comment": "Require Node.js 24.22.1, which fixes CVE-2026-111497"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 13 Oct 2026 23:52:48 GMT",
       "version": "2.0.0",
       "tag": "screeps-webpack-plugin_v2.0.0",
