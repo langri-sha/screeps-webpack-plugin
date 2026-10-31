@@ -129,7 +129,6 @@ const project = new Project({
   lintSynthesized: {},
   npmIgnore: {
     ignorePatterns: [
-      '*.test.*',
       '/*.config.*',
       '/*.json5',
       '/*.yaml',
@@ -173,6 +172,7 @@ const project = new Project({
       include: ['src'],
     },
   },
+  vitest: true,
   worktrunk: {},
   skills: {
     ignore: false,
