@@ -189,8 +189,8 @@ importers:
         specifier: 0.50.0
         version: 0.50.0(@babel/core@7.29.7(supports-color@8.1.1))(@langri-sha/eslint-config@0.12.0(@typescript-eslint/utils@8.72.1(eslint@10.14.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))(eslint-import-resolver-node@0.3.10(supports-color@8.1.1))(eslint@10.14.0(supports-color@8.1.1))(prettier@3.9.9)(supports-color@8.1.1)(typescript@6.0.3))(@langri-sha/lint-staged@0.9.11(eslint@10.14.0(supports-color@8.1.1))(lint-staged@17.6.0)(prettier@3.9.9))(@langri-sha/prettier@0.4.11(prettier@3.9.9))(beachball@2.66.0(typescript@6.0.3))(eslint@10.14.0(supports-color@8.1.1))(husky@9.1.7)(lint-staged@17.6.0)(prettier@3.9.9)(projen@0.104.1(constructs@10.8.1))(skills@1.7.5)(tsx@4.23.15)(typescript@6.0.3)(vitest@5.0.5)
       '@langri-sha/tsconfig':
-        specifier: 2.0.0
-        version: 2.0.0(typescript@6.0.3)
+        specifier: 3.0.0
+        version: 3.0.0(typescript@6.0.3)
       '@langri-sha/vitest':
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.5)
@@ -814,10 +814,10 @@ packages:
       vitest:
         optional: true
 
-  '@langri-sha/tsconfig@2.0.0':
-    resolution: {integrity: sha512-Z63R+J2wjUPJz0H9IEI+ddHcPWSSld930ATrksqE7TFiUd5jkbtn8dELB1v5A70SzaKemUZ4IJEVVBJuiGdrNw==}
+  '@langri-sha/tsconfig@3.0.0':
+    resolution: {integrity: sha512-ezvta6zHsLhZAD0La/FpRFh0qbHxrNLOs0akNN9iehHpPsT/FAm/++Yh6tRfbb+AUjo7+nbntq2xR3tbprWN5Q==}
     peerDependencies:
-      typescript: ^5.5.0 || ^6.0.0 || ^7.0.0
+      typescript: ^6.0.0 || ^7.0.0
 
   '@langri-sha/vitest@0.2.3':
     resolution: {integrity: sha512-TZ4LTiy4zHcxuW+Eb9tlyM0VNQBkd5DBm24XhhzZwscsXDjpQ/yed3LYjF/BI3qa6tIbw5hIGaEW+nrR0XZZiA==}
@@ -3846,7 +3846,7 @@ snapshots:
       typescript: 6.0.3
       vitest: 5.0.5(@types/node@24.19.2)(@vitest/coverage-v8@5.0.5)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))
 
-  '@langri-sha/tsconfig@2.0.0(typescript@6.0.3)':
+  '@langri-sha/tsconfig@3.0.0(typescript@6.0.3)':
     dependencies:
       typescript: 6.0.3
 
