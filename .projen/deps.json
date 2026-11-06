@@ -82,7 +82,7 @@
     },
     {
       "name": "skills",
-      "version": "1.7.4",
+      "version": "1.7.5",
       "type": "build"
     },
     {
@@ -92,7 +92,7 @@
     },
     {
       "name": "typescript",
-      "version": "5.9.3",
+      "version": "6.0.3",
       "type": "build"
     },
     {
