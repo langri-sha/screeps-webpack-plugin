@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "Upgrade to TypeScript 6",
+  "packageName": "screeps-webpack-plugin",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "none"
+}

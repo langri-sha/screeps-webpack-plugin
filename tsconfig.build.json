@@ -4,7 +4,8 @@
   "extends": "@langri-sha/tsconfig/build",
   "compilerOptions": {
     "module": "nodenext",
-    "moduleResolution": "nodenext"
+    "moduleResolution": "nodenext",
+    "types": ["debug", "node"]
   },
   "include": ["src"],
   "exclude": ["**/*.test.*"]
