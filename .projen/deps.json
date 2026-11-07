@@ -2,7 +2,7 @@
   "dependencies": [
     {
       "name": "@langri-sha/eslint-config",
-      "version": "0.12.0",
+      "version": "0.13.0",
       "type": "build"
     },
     {
@@ -82,7 +82,7 @@
     },
     {
       "name": "skills",
-      "version": "1.7.5",
+      "version": "1.7.6",
       "type": "build"
     },
     {
