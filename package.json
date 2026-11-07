@@ -47,10 +47,10 @@
     "tapable": "^2.0.0"
   },
   "devDependencies": {
-    "@langri-sha/eslint-config": "0.12.0",
+    "@langri-sha/eslint-config": "0.13.0",
     "@langri-sha/lint-staged": "0.9.11",
     "@langri-sha/prettier": "0.4.11",
-    "@langri-sha/projen-project": "0.50.0",
+    "@langri-sha/projen-project": "0.51.0",
     "@langri-sha/tsconfig": "3.0.0",
     "@langri-sha/vitest": "0.2.3",
     "@types/debug": "4.1.13",
@@ -63,7 +63,7 @@
     "memfs": "^4.80.0",
     "prettier": "3.9.9",
     "projen": "0.104.1",
-    "skills": "1.7.5",
+    "skills": "1.7.6",
     "tsx": "4.23.15",
     "typescript": "6.0.3",
     "vitest": "5.0.5",
