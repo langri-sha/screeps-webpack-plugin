@@ -42,7 +42,7 @@
     },
     {
       "name": "@vitest/coverage-v8",
-      "version": "5.0.5",
+      "version": "5.1.0",
       "type": "build"
     },
     {
@@ -97,7 +97,7 @@
     },
     {
       "name": "vitest",
-      "version": "5.0.5",
+      "version": "5.1.0",
       "type": "build"
     },
     {
