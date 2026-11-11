@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update dependency @langri-sha/tsconfig to v2",
-  "packageName": "screeps-webpack-plugin",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

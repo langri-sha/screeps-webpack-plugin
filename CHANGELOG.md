@@ -1,8 +1,29 @@
 # Change Log - screeps-webpack-plugin
 
-<!-- This log was last generated on Sat, 31 Oct 2026 17:00:50 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 11 Nov 2026 23:35:31 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 2.1.1
+
+Wed, 11 Nov 2026 23:35:31 GMT
+
+### Patches
+
+- Update dependency @langri-sha/projen-project to v0.53.0
+- Update dependency @langri-sha/projen-project to v0.48.1
+- Update dependency @langri-sha/projen-project to v0.52.0
+- Update dependency @langri-sha/tsconfig to v3
+- Update dependency @langri-sha/projen-project to v0.49.1
+- Update dependency @langri-sha/tsconfig to v2
+- Update dependency @langri-sha/projen-project to v0.48.3
+- Update dependency @langri-sha/projen-project to v0.47.0
+- Update dependency pnpm to v12.18.0
+- Update dependency pnpm to v12.17.0
+- Update vitest monorepo to v5.1.0
+- Update dependency @langri-sha/projen-project to v0.54.0
+- Update dependency @langri-sha/projen-project to v0.48.2
+- Update dependency @langri-sha/projen-project to v0.52.1
 
 ## 2.1.0
 

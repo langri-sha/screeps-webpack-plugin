@@ -2,6 +2,119 @@
   "name": "screeps-webpack-plugin",
   "entries": [
     {
+      "date": "Wed, 11 Nov 2026 23:35:31 GMT",
+      "version": "2.1.1",
+      "tag": "screeps-webpack-plugin_v2.1.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "1de7f06d71cbe30fc337c97275ef6e50f3134357",
+            "comment": "Update dependency @langri-sha/projen-project to v0.53.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "1de7f06d71cbe30fc337c97275ef6e50f3134357",
+            "comment": "Update dependency @langri-sha/projen-project to v0.48.1"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "1de7f06d71cbe30fc337c97275ef6e50f3134357",
+            "comment": "Update dependency @langri-sha/projen-project to v0.52.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "1de7f06d71cbe30fc337c97275ef6e50f3134357",
+            "comment": "Update dependency @langri-sha/tsconfig to v3"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "1de7f06d71cbe30fc337c97275ef6e50f3134357",
+            "comment": "Update dependency @langri-sha/projen-project to v0.49.1"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "1de7f06d71cbe30fc337c97275ef6e50f3134357",
+            "comment": "Update dependency @langri-sha/tsconfig to v2"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "1de7f06d71cbe30fc337c97275ef6e50f3134357",
+            "comment": "Update dependency @langri-sha/projen-project to v0.48.3"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "1de7f06d71cbe30fc337c97275ef6e50f3134357",
+            "comment": "Update dependency @langri-sha/projen-project to v0.47.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "1de7f06d71cbe30fc337c97275ef6e50f3134357",
+            "comment": "Update dependency pnpm to v12.18.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "1de7f06d71cbe30fc337c97275ef6e50f3134357",
+            "comment": "Update dependency pnpm to v12.17.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "1de7f06d71cbe30fc337c97275ef6e50f3134357",
+            "comment": "Update vitest monorepo to v5.1.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "1de7f06d71cbe30fc337c97275ef6e50f3134357",
+            "comment": "Update dependency @langri-sha/projen-project to v0.54.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "1de7f06d71cbe30fc337c97275ef6e50f3134357",
+            "comment": "Update dependency @langri-sha/projen-project to v0.48.2"
+          },
+          {
+            "author": "email not defined",
+            "package": "screeps-webpack-plugin",
+            "commit": "1de7f06d71cbe30fc337c97275ef6e50f3134357",
+            "comment": "Update dependency @langri-sha/projen-project to v0.52.1"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "screeps-webpack-plugin",
+            "commit": "1de7f06d71cbe30fc337c97275ef6e50f3134357",
+            "comment": "Upgrade to TypeScript 6"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "screeps-webpack-plugin",
+            "commit": "1de7f06d71cbe30fc337c97275ef6e50f3134357",
+            "comment": "Modernize webpack configuration and deployment examples"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "screeps-webpack-plugin",
+            "commit": "1de7f06d71cbe30fc337c97275ef6e50f3134357",
+            "comment": "Upgrade @langri-sha/projen-project to 0.51.0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 31 Oct 2026 17:00:50 GMT",
       "version": "2.1.0",
       "tag": "screeps-webpack-plugin_v2.1.0",
