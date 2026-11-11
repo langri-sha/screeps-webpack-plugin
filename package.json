@@ -64,7 +64,6 @@
     "prettier": "3.9.9",
     "projen": "0.104.1",
     "skills": "1.7.6",
-    "tsx": "4.23.15",
     "typescript": "6.0.3",
     "vitest": "5.1.0",
     "webpack": "5.112.2"

@@ -86,11 +86,6 @@
       "type": "build"
     },
     {
-      "name": "tsx",
-      "version": "4.23.15",
-      "type": "build"
-    },
-    {
       "name": "typescript",
       "version": "6.0.3",
       "type": "build"
