@@ -15,45 +15,58 @@ the administrator has created your account.
 
 ## Installation
 
-```
-npm install screeps-webpack-plugin
+```sh
+npm install --save-dev screeps-webpack-plugin webpack webpack-cli
 ```
 
-The package requires Node.js 24 or later, and loads through both `import` and
-`require()`:
-
-```
-import ScreepsWebpackPlugin from 'screeps-webpack-plugin'
-const ScreepsWebpackPlugin = require('screeps-webpack-plugin')
-```
+The package requires Node.js 24.22.1 or later and webpack 5. It supports ES
+module imports and CommonJS `require()`.
 
 ## Usage
 
-Add the plugin to your Webpack configuration.
+Create `src/main.js` with the loop Screeps calls each tick:
 
-Make sure you are using `{target: 'node'}`, other environments aren't supported.
-You should have at least one chunk named `main` in the output.
-
-```
-// webpack.config.js
-const path = require('path')
-const ScreepsWebpackPlugin = require('screeps-webpack-plugin')
-
-module.exports = {
-  target: 'node',
-  entry: './index.js',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'main',
-    libraryTarget: 'commonjs'
-  },
-  plugins: [new ScreepsWebpackPlugin(options)]
+```js
+export function loop() {
+  console.log(`Current tick: ${Game.time}`)
 }
+```
+
+Use an ES module configuration in `webpack.config.mjs`. The plugin requires
+`target: 'node'`. Screeps expects an output module named `main`; the `commonjs2`
+library type exposes the loop through the exports it expects.
+
+```js
+import { fileURLToPath } from 'node:url'
+import ScreepsWebpackPlugin from 'screeps-webpack-plugin'
+
+export default {
+  mode: 'production',
+  target: 'node',
+  entry: { main: './src/main.js' },
+  output: {
+    path: fileURLToPath(new URL('./dist/', import.meta.url)),
+    filename: '[name].js',
+    library: { type: 'commonjs2' },
+  },
+  plugins: [
+    new ScreepsWebpackPlugin({
+      token: process.env.SCREEPS_TOKEN,
+      branch: process.env.SCREEPS_BRANCH ?? '$activeWorld',
+    }),
+  ],
+}
+```
+
+Set `SCREEPS_TOKEN` in the environment, then build and upload:
+
+```sh
+npx webpack --config webpack.config.mjs
 ```
 
 ## Options
 
-```
+```js
 new ScreepsWebpackPlugin({
   branch: '$activeWorld',
   email: 'EMAIL',
@@ -61,7 +74,7 @@ new ScreepsWebpackPlugin({
   token: 'TOKEN',
   serverUrl: 'https://screeps.com',
   serverPassword: 'SERVER_PASS',
-  gzip: false
+  gzip: false,
 })
 ```
 
@@ -76,8 +89,8 @@ for more information.
 The plugin adds [tapable](https://github.com/webpack/tapable) hooks to each
 compilation, which your own plugins can tap into.
 
-```
-const ScreepsWebpackPlugin = require('screeps-webpack-plugin')
+```js
+import ScreepsWebpackPlugin from 'screeps-webpack-plugin'
 
 compiler.hooks.compilation.tap('MyPlugin', (compilation) => {
   const hooks = ScreepsWebpackPlugin.getHooks(compilation)
@@ -90,18 +103,21 @@ compiler.hooks.compilation.tap('MyPlugin', (compilation) => {
 
 Asynchronously alter the modules which will be pushed to the server.
 
-```
-hooks.collectModules.tapAsync('MyPlugin', ({ modules, plugin, compilation }, cb) => {
-  // ...
-  cb(null, { modules, plugin, compilation })
-})
+```js
+hooks.collectModules.tapAsync(
+  'MyPlugin',
+  ({ modules, plugin, compilation }, cb) => {
+    // ...
+    cb(null, { modules, plugin, compilation })
+  },
+)
 ```
 
 ##### `configureClient`
 
 Configure the client used for the request.
 
-```
+```js
 hooks.configureClient.tap('MyPlugin', (client, plugin) => {
   // ...
   return client
@@ -112,7 +128,7 @@ hooks.configureClient.tap('MyPlugin', (client, plugin) => {
 
 Inspect request data.
 
-```
+```js
 hooks.beforeCommit.tap('MyPlugin', (branch, modules) => {
   // ...
 })
@@ -122,7 +138,7 @@ hooks.beforeCommit.tap('MyPlugin', (branch, modules) => {
 
 Inspect the response body of the commit.
 
-```
+```js
 hooks.afterCommit.tap('MyPlugin', (body) => {
   // ...
 })
