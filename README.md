@@ -4,10 +4,9 @@
 
 Bundle and push your AI to Screeps servers!
 
-If you have registered on the official server via Steam or GitHub, please go to
-[account management](https://screeps.com/a/#!/account) and make sure you have
-configured an email and password for your account to access your account on
-https://screeps.com and https://screeps.com/ptr.
+For the official server, create an
+[authentication token](https://docs.screeps.com/auth-tokens.html) with
+permission to upload code. Supply it through the environment when deploying.
 
 On private servers, make sure you have
 [authorization enabled](https://github.com/screepsmods/screepsmod-auth) and that
@@ -40,46 +39,67 @@ library type exposes the loop through the exports it expects.
 import { fileURLToPath } from 'node:url'
 import ScreepsWebpackPlugin from 'screeps-webpack-plugin'
 
-export default {
-  mode: 'production',
-  target: 'node',
-  entry: { main: './src/main.js' },
-  output: {
-    path: fileURLToPath(new URL('./dist/', import.meta.url)),
-    filename: '[name].js',
-    library: { type: 'commonjs2' },
-  },
-  plugins: [
-    new ScreepsWebpackPlugin({
-      token: process.env.SCREEPS_TOKEN,
-      branch: process.env.SCREEPS_BRANCH ?? '$activeWorld',
-    }),
-  ],
+export default (env = {}) => {
+  const deploy = env.deploy === true
+  const token = process.env.SCREEPS_TOKEN
+
+  if (deploy && !token) {
+    throw new Error('Set SCREEPS_TOKEN before deploying')
+  }
+
+  return {
+    mode: 'production',
+    target: 'node',
+    entry: { main: './src/main.js' },
+    output: {
+      path: fileURLToPath(new URL('./dist/', import.meta.url)),
+      filename: '[name].js',
+      library: { type: 'commonjs2' },
+    },
+    plugins: deploy
+      ? [
+          new ScreepsWebpackPlugin({
+            token,
+            branch: process.env.SCREEPS_BRANCH || '$activeWorld',
+          }),
+        ]
+      : [],
+  }
 }
 ```
 
-Set `SCREEPS_TOKEN` in the environment, then build and upload:
+Build locally:
 
 ```sh
 npx webpack --config webpack.config.mjs
 ```
+
+Set `SCREEPS_TOKEN` in the environment and add `--env deploy` to upload:
+
+```sh
+npx webpack --config webpack.config.mjs --env deploy
+```
+
+`SCREEPS_BRANCH` selects the destination branch and defaults to `$activeWorld`.
+The token is read by the configuration and is not bundled into the bot.
 
 ## Options
 
 ```js
 new ScreepsWebpackPlugin({
   branch: '$activeWorld',
-  email: 'EMAIL',
-  password: 'PASSWORD',
-  token: 'TOKEN',
+  token: process.env.SCREEPS_TOKEN ?? '',
+  email: process.env.SCREEPS_EMAIL ?? '',
+  password: process.env.SCREEPS_PASSWORD ?? '',
   serverUrl: 'https://screeps.com',
-  serverPassword: 'SERVER_PASS',
+  serverPassword: process.env.SCREEPS_SERVER_PASSWORD ?? '',
   gzip: false,
 })
 ```
 
-If your server modules provide support, you can use tokens for authentication
-and send compressed bundles.
+Set a token or an email/password pair; leave unused credential variables unset.
+Private-server support for tokens and compressed bundles depends on the
+installed server modules.
 
 See [screeps-modules#Usage](https://github.com/langri-sha/screeps-modules#usage)
 for more information.
