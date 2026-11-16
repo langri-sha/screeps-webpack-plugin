@@ -183,7 +183,7 @@ importers:
         version: 2.1.0(supports-color@8.1.1)
       tapable:
         specifier: ^2.0.0
-        version: 2.3.3
+        version: 2.3.4
     devDependencies:
       '@langri-sha/eslint-config':
         specifier: 0.13.0
@@ -3033,8 +3033,8 @@ packages:
     resolution: {integrity: sha512-U+/AXT6LWsxnj2vz9HeUuPWBNgdWxjyIEjEPdbJARC9txmgPzo2VEdqnFo4hHaNyMPtycyVJrSaQYeQv/PoyyA==}
     engines: {node: ^14.18.0 || >=16.0.0}
 
-  tapable@2.3.3:
-    resolution: {integrity: sha512-uxc/zpqFg6x7C8vOE7lh6Lbda8eEL9zmVm/PLeTPBRhh1xCgdWaQ+J1CUieGpIfm2HdtsUpRv+HshiasBMcc6A==}
+  tapable@2.3.4:
+    resolution: {integrity: sha512-NHFiWnAbMJxNNpBwiO7jJVGDuqMxT9/oV8v57RR+fgBQShkJil5inGD8/xWy0hjLyHQyX1tu27QANhlz3KBqCg==}
     engines: {node: '>=6'}
 
   tar@7.5.22:
@@ -4584,7 +4584,7 @@ snapshots:
   enhanced-resolve@5.26.0:
     dependencies:
       graceful-fs: 4.2.11
-      tapable: 2.3.3
+      tapable: 2.3.4
 
   entities@8.1.0: {}
 
@@ -6233,7 +6233,7 @@ snapshots:
       '@dual-bundle/import-meta-resolve': 4.2.1
       '@pkgr/core': 0.3.6
 
-  tapable@2.3.3: {}
+  tapable@2.3.4: {}
 
   tar@7.5.22:
     dependencies:
@@ -6463,7 +6463,7 @@ snapshots:
       mime-db: 1.54.0
       minimizer-webpack-plugin: 5.13.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29)(webpack@5.112.2(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29))
       schema-utils: 4.8.1(webpack@5.112.2(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.29))
-      tapable: 2.3.3
+      tapable: 2.3.4
       watchpack: 2.6.3
       webpack-sources: 3.6.0
     transitivePeerDependencies:
