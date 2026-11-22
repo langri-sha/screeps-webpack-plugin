@@ -38,7 +38,7 @@ const project = new Project({
       '@vitest/coverage-v8@5.1.1',
       'memfs@^4.80.0',
       'vitest@5.1.1',
-      'webpack@5.112.2',
+      'webpack@5.113.0',
     ],
     peerDeps: ['webpack@^5.0.0'],
   },
