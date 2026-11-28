@@ -77,39 +77,7 @@ const project = new Project({
   dagger: {
     engineVersion: 'v1.0.0-beta.28',
     workspace: {
-      ignore: ['**/node_modules', '**/dist', '**/coverage', '**/*.tsbuildinfo'],
-      modules: {
-        ci: {
-          source: 'github.com/langri-sha/dagger/ci@v2.4.1',
-          generate: { skip: ['projen'] },
-        },
-        eslint: {
-          source: 'dagger.io/js/eslint',
-          settings: {
-            baseImageAddress: 'node:24-slim',
-            packageManager: 'pnpm',
-          },
-        },
-        prettier: {
-          source: 'dagger.io/js/prettier',
-          settings: {
-            baseImageAddress: 'node:24-slim',
-            packageManager: 'pnpm',
-          },
-        },
-        vitest: {
-          source: 'github.com/langri-sha/dagger/vitest@v2.4.1',
-        },
-        typescript: {
-          source: 'github.com/langri-sha/dagger/typescript@v2.4.1',
-        },
-        beachball: {
-          source: 'github.com/langri-sha/dagger/beachball@v2.4.1',
-        },
-        projen: {
-          source: 'github.com/langri-sha/dagger/projen@v2.4.1',
-        },
-      },
+      ignore: ['**/coverage'],
     },
   },
   editorConfig: {},
