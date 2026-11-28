@@ -55,7 +55,7 @@
     "@langri-sha/vitest": "0.2.3",
     "@types/debug": "4.1.13",
     "@types/node": "24.19.3",
-    "@vitest/coverage-v8": "5.1.1",
+    "@vitest/coverage-v8": "5.1.2",
     "beachball": "2.66.0",
     "eslint": "10.15.0",
     "husky": "9.1.7",
@@ -65,7 +65,7 @@
     "projen": "0.104.1",
     "skills": "1.9.0",
     "typescript": "6.0.3",
-    "vitest": "5.1.1",
+    "vitest": "5.1.2",
     "webpack": "5.113.0"
   },
   "peerDependencies": {
