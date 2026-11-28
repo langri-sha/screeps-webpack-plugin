@@ -54,7 +54,7 @@
     "@langri-sha/tsconfig": "3.0.0",
     "@langri-sha/vitest": "0.2.3",
     "@types/debug": "4.1.13",
-    "@types/node": "24.19.3",
+    "@types/node": "24.19.4",
     "@vitest/coverage-v8": "5.1.1",
     "beachball": "2.66.0",
     "eslint": "10.15.0",
