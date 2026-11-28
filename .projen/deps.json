@@ -52,7 +52,7 @@
     },
     {
       "name": "eslint",
-      "version": "10.14.0",
+      "version": "10.15.0",
       "type": "build"
     },
     {
@@ -62,7 +62,7 @@
     },
     {
       "name": "lint-staged",
-      "version": "17.6.0",
+      "version": "17.6.2",
       "type": "build"
     },
     {
@@ -82,7 +82,7 @@
     },
     {
       "name": "skills",
-      "version": "1.7.6",
+      "version": "1.9.0",
       "type": "build"
     },
     {

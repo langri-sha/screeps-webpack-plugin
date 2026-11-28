@@ -123,7 +123,6 @@
       versioningTemplate: 'semver',
       managerFilePatterns: [
         '/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/',
-        '/(^|/)dagger\\.toml$/',
         '/(^|/)dagger-module\\.toml$/',
       ],
       matchStrings: [
